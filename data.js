@@ -74,6 +74,20 @@ var coords = {
 	/* PC */
 
 	/* Overworld */
+	"Overworld": {
+		"X":             [  7,   0,    158,  14],
+		"Pokédex":       [ 15,  21,     74,  52],
+		"Trainer card":  [ 95,  21,    154,  52],
+		"Pokémon":       [ 15,  61,     74,  92],
+		"Save":          [ 95,  61,    154,  92],
+		"Bag":           [ 15, 101,     74, 132],
+		"Options":       [ 95, 101,    154, 132],
+		"Pokégear":      [ 15, 141,     74, 172],
+		"Register 1":    [202,   7,    253,  37],
+		"Register 2":    [202,  45,    253,  75],
+		"Running shoes": [183,  85,    253, 132],
+		"A":             [167, 143,    253, 186],
+	},
 
 	/* Misc (nicknames, Pokéathlon, etc.) */
 
