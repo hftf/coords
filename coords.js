@@ -27,7 +27,7 @@ function rotate_state(e) {
 }
 
 function example() {
-	reset_all('unchecked');
+	reset_all();
 	for (var i = 1; i <= 4; i ++)
 		set_state(document.getElementById('FightAttack ' + i), 'checked');
 	for (var i = 1; i <= 6; i ++)
@@ -35,7 +35,27 @@ function example() {
 	return false;
 }
 
+var encode = { 'unchecked': 0, 'checked': 1, 'indeterminate': 2 };
+var decode = { 0: 'unchecked', 1: 'checked', 2: 'indeterminate' };
+function serialize() {
+	var x = {};
+	var l = document.querySelectorAll('.menu input')
+	for (var i = 0; i < l.length; i ++) {
+		var v = l[i], u = encode[v.dataset.state];
+		if(u !== 0)
+			x[v.id] = u;
+	}
+	return JSON.stringify(x);
+}
+function unserialize(s) {
+	reset_all();
+	var x = JSON.parse(s);
+	for (var i in x)
+		set_state(document.getElementById(i), decode[x[i]]);
+}
+
 function reset_all(state) {
+	var state = state || 'unchecked';
 	var inputs = document.querySelectorAll('.menu input');
 	for (var i = 0; i < inputs.length; i ++)
 		set_state(inputs[i], state);
