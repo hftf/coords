@@ -26,6 +26,14 @@ function rotate_state(e) {
 	set_state(this, next_state[this.dataset.state]);
 }
 
+function set_states(e) {
+	var children = document.querySelectorAll('input[data-parent="' + this.id + '"]');
+	var state = next_state[this.dataset.state];
+	set_state(this, state);
+	for (var i = 0; i < children.length; i ++)
+		set_state(children[i], state);
+}
+
 function set_state(el, state) {
 	el.dataset.state = state;
 	switch (state) {
@@ -120,7 +128,7 @@ function draw_menu(menu) {
 	checkbox.setAttribute('type', 'checkbox');
 	checkbox.setAttribute('id', menu);
 	checkbox.setAttribute('data-state', 'unchecked');
-	checkbox.onclick = rotate_state;
+	checkbox.onclick = set_states;
 	h.appendChild(checkbox);
 	h.insertAdjacentHTML('beforeend', '<label for="' + menu + '">' + menu + '</label>');
 	div.appendChild(h);

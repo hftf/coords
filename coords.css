@@ -8,7 +8,7 @@
 	font-family: 'Alto Pro';
 	font-weight: bold;
 	font-style: normal;
-	src: local('Alto Pro Bold'), url('AltoPro-Bold.otf');
+	src: local('Alto Pro Bold'), local('Alto Pro'), url('AltoPro-Bold.otf');
 }
 
 body {
@@ -67,7 +67,6 @@ canvas#main {
 	margin: 0 0 0.5em;
 }
 .menu-heading h3 input {
-	display: none; /* Until it does something */
 	position: absolute;
 	left: 0;
 }
