@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<script src="data.js"></script>
+	<script src="coords.js"></script>
+	<link rel="stylesheet" type="text/css" href="coords.css" />
+</head>
+<body>
+<h2>In HeartGold, if I want to click certain buttons while avoiding others…</h2>
+<div id="key">
+<p>Key:</p>
+<ul>
+	<li><input type="checkbox" checked  /> I want to click this button</li>
+	<li><input type="checkbox" id="ind" /> I want to avoid clicking this button</li>
+	<li><input type="checkbox"          /> I don’t care if this button is clicked</li>
+</ul>
+</div>
+
+<table id="b">
+</table>
+
+<h2>…then I should use the coordinates <span id="coords"></span></h2>
+<canvas id="main" width="512" height="384"></canvas>
+</body>
+</html>

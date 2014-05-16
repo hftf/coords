@@ -1,0 +1,53 @@
+body {
+	margin: 3em 2em;
+	font-family: 'Alto Pro', 'Segoe UI', 'Trebuchet MS', sans-serif;
+}
+
+#key ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#key input {
+	margin-right: 1.5em;
+	outline: none;
+}
+
+canvas {
+	width: 128px;
+	height: 96px;
+	background: #e6e6e6;
+	/*border: 0.5px solid #bbb;*/
+	border-radius: 2px;
+}
+canvas#main {
+	width: 512px;
+	height: 384px;
+}
+
+table {
+	margin: 3em 0;
+}
+th, td {
+	vertical-align: bottom;
+	text-align: center;
+	padding: 0.5em 1em;
+}
+td div {
+	position: relative;
+}
+th {
+	padding-right: 4em;
+}
+td input {
+	position: absolute;
+	margin-left: 0;
+	left: 0em;
+}
+td small {
+	font-size: 0.7em;
+}
+td small span {
+	width: 50%;
+	display: inline-block;
+}
