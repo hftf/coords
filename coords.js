@@ -63,7 +63,7 @@ function draw() {
 			var d = main_ctx.getImageData(~~rx, ~~ry, 1, 1).data;
 
 			if (d[3] !== 0)
-				s = Math.floor(rx / 2) + ',' + Math.floor(ry / 2) + '.';
+				s = Math.floor(rx / 2) + ',' + Math.floor(ry / 2);
 		}
 
 		span.innerHTML = s;
