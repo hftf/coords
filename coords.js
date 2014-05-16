@@ -75,7 +75,7 @@ function draw() {
 		b.appendChild(child);
 	}
 
-	all_inputs = document.querySelectorAll('#b input');
+	all_inputs = document.querySelectorAll('.menu-list input');
 }
 
 function recomposite_main() {
@@ -105,7 +105,16 @@ function draw_menu(menu) {
 	section.setAttribute('class', 'menu');
 	var div = document.createElement('div');
 	div.setAttribute('class', 'menu-heading');
-	div.innerHTML = '<h3>' + menu + '</h3>';
+	var h = document.createElement('h3');
+
+	var checkbox = document.createElement('input');
+	checkbox.setAttribute('type', 'checkbox');
+	checkbox.setAttribute('id', menu);
+	checkbox.setAttribute('data-state', 'unchecked');
+	checkbox.onclick = rotate_state;
+	h.appendChild(checkbox);
+	h.insertAdjacentHTML('beforeend', '<label for="' + menu + '">' + menu + '</label>');
+	div.appendChild(h);
 
 	// Reset
 	current_color = 0;

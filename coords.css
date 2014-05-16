@@ -63,7 +63,12 @@ canvas#main {
 	margin-right: 2em;
 }
 .menu-heading h3 {
+	position: relative;
 	margin: 0 0 0.5em;
+}
+.menu-heading h3 input {
+	position: absolute;
+	left: 0;
 }
 .menu-list {
 	width: 20em;
