@@ -26,6 +26,21 @@ function rotate_state(e) {
 	set_state(this, next_state[this.dataset.state]);
 }
 
+function example() {
+	reset_all('unchecked');
+	for (var i = 1; i <= 4; i ++)
+		set_state(document.getElementById('FightAttack ' + i), 'checked');
+	for (var i = 1; i <= 6; i ++)
+		set_state(document.getElementById('PocketItem ' + i), 'indeterminate');
+	return false;
+}
+
+function reset_all(state) {
+	var inputs = document.querySelectorAll('.menu input');
+	for (var i = 0; i < inputs.length; i ++)
+		set_state(inputs[i], state);
+}
+
 function set_states(e) {
 	var children = document.querySelectorAll('input[data-parent="' + this.id + '"]');
 	var state = next_state[this.dataset.state];
@@ -63,6 +78,7 @@ function draw() {
 	var key_checkboxes = document.querySelectorAll('#key input');
 	for (var i in key_checkboxes)
 		key_checkboxes[i].onclick = function() { return false; };
+	document.getElementById('example').onclick = example;
 
 	var main = document.getElementById('main');
 	main_ctx = main.getContext('2d');
