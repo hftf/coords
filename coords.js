@@ -17,20 +17,29 @@ function new_canvas() {
 
 function to_xywh(x1, y1, x2, y2) { return [x1, y1, x2 - x1 + 1, y2 - y1 + 1]; }
 
+var next_state = {
+	'unchecked': 'checked',
+	'checked': 'indeterminate',
+	'indeterminate': 'unchecked',
+}
 function rotate_state(e) {
-	switch (this.dataset.state) {
+	set_state(this, next_state[this.dataset.state]);
+}
+
+function set_state(el, state) {
+	el.dataset.state = state;
+	switch (state) {
 		case 'unchecked':
-			this.dataset.state = 'checked';
-			this.checked = true;
+			el.indeterminate = false;
+			el.checked = false;
 			break;
 		case 'checked':
-			this.dataset.state = 'indeterminate';
-			this.indeterminate = true;
+			el.indeterminate = false;
+			el.checked = true;
 			break;
 		case 'indeterminate':
-			this.dataset.state = 'unchecked';
-			this.indeterminate = false;
-			this.checked = false;
+			el.indeterminate = true;
+			el.checked = false;
 			break;
 	}
 
