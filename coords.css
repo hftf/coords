@@ -59,6 +59,7 @@ canvas#main {
 
 .rekt {
 	text-align: left;
+	margin-bottom: 0.5em;
 }
 .rekt input {
 	width: 10%;
@@ -75,8 +76,10 @@ canvas#main {
 	width: 70%;
 }
 .rekt small {
+	box-sizing: border-box;
 	vertical-align: middle;
 	display: inline-block;
+	padding: 1px 4px;
 	width: 30%;
 	font-size: 0.6em;
 }

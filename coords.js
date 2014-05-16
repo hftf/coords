@@ -140,8 +140,8 @@ function draw_rekt(rekt, parent, parent_ctx) {
 	var color = palette[current_color++];
 	div.insertAdjacentHTML('beforeend',
 		'<label for="' + parent + rekt + '">' +
-		'<strong><span style="color: ' + color + ';">■</span> ' + rekt + '</strong>' +
-		'<small>' + format_x1y1.apply(null, coords[menu][rekt]) + '</small>' +
+		'<strong>' + rekt + '</strong>' +
+		'<small style="background: ' + color + ';">' + format_x1y1.apply(null, coords[menu][rekt]) + '</small>' +
 		'</label>');
 
 	parent_ctx.fillStyle = color;
