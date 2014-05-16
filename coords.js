@@ -82,7 +82,7 @@ function recomposite_main() {
 	var gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 	for (var i = 0; i < all_inputs.length; i ++) {
 		var input = all_inputs[i];
-		gathered[input.dataset.state].push([input.id, input.dataset.parent]);
+		gathered[input.dataset.state].push([input.dataset.id, input.dataset.parent]);
 	}
 
 	main_ctx.clearRect(0, 0, cw, ch);
@@ -130,7 +130,8 @@ function draw_rekt(rekt, parent, parent_ctx) {
 
 	var checkbox = document.createElement('input');
 	checkbox.setAttribute('type', 'checkbox');
-	checkbox.setAttribute('id', rekt);
+	checkbox.setAttribute('id', parent + rekt);
+	checkbox.setAttribute('data-id', rekt);
 	checkbox.setAttribute('data-parent', parent);
 	checkbox.setAttribute('data-state', 'unchecked');
 	checkbox.onclick = rotate_state;
@@ -138,7 +139,7 @@ function draw_rekt(rekt, parent, parent_ctx) {
 
 	var color = palette[current_color++];
 	div.insertAdjacentHTML('beforeend',
-		'<label for="' + rekt + '">' +
+		'<label for="' + parent + rekt + '">' +
 		'<strong><span style="color: ' + color + ';">■</span> ' + rekt + '</strong>' +
 		'<small>' + format_x1y1.apply(null, coords[menu][rekt]) + '</small>' +
 		'</label>');
