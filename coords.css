@@ -1,3 +1,17 @@
+@font-face {
+	font-family: 'Alto Pro';
+	font-weight: normal;
+	font-style: normal;
+	src: local('Alto Pro'), url('AltoPro-Normal.otf');
+}
+@font-face {
+	font-family: 'Alto Pro';
+	font-weight: bold;
+	font-style: normal;
+	src: local('Alto Pro'), url('AltoPro-Bold.otf');
+}
+
+
 body {
 	margin: 3em 2em;
 	font-family: 'Alto Pro', 'Segoe UI', 'Trebuchet MS', sans-serif;
