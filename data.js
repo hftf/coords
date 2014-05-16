@@ -1,5 +1,6 @@
 var bounds =             [  0,   0,   255, 191];
 var coords = {
+	/* BATTLE */
 	"Battle": {
 		"Fight":         [  0,  23,   253, 142],
 		"Bag":           [  0, 143,    78, 191],
@@ -13,6 +14,7 @@ var coords = {
 		"Attack 4":      [127,  87,   253, 142],
 		"Cancel":        [  7, 151,   246, 191],
 	},
+	// TODO: Double battle targets
 	"Bag": {
 		"Restore":       [  0,   7,   125,  77],
 		"Balls":         [127,   7,   253,  77],
@@ -36,7 +38,7 @@ var coords = {
 		"Use":           [  0, 151,   205, 189],
 		"Cancel":        [215, 151,   253, 189],
 	},
-	"Pokémon": { // Also "use item on"
+	"Pokémon": { // Also for "use item on"
 		"Pokémon 1":     [  0,   0,   125,  45],
 		"Pokémon 2":     [127,   7,   253,  53],
 		"Pokémon 3":     [  0,  47,   125,  93],
@@ -51,7 +53,7 @@ var coords = {
 		"Check moves":   [103, 151,   205, 189],
 		"Cancel":        [215, 151,   253, 189],
 	},
-	"Check moves": {
+	"Check moves": { // Almost the same as "Summary"
 		"Move 1":        [  0,  47,   125,  93],
 		"Move 2":        [127,  47,   253,  93],
 		"Move 3":        [  0,  95,   125, 141],
@@ -68,4 +70,11 @@ var coords = {
 		"Slot 4":        [127, 167,   165, 181],
 		"Cancel":        [215, 151,   253, 189],
 	},
+
+	/* PC */
+
+	/* Overworld */
+
+	/* Misc (nicknames, Pokéathlon, etc.) */
+
 };

@@ -67,6 +67,7 @@ canvas#main {
 	margin: 0 0 0.5em;
 }
 .menu-heading h3 input {
+	display: none; /* Until it does something */
 	position: absolute;
 	left: 0;
 }

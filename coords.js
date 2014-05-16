@@ -153,7 +153,7 @@ function draw_rekt(rekt, parent, parent_ctx) {
 	checkbox.onclick = rotate_state;
 	div.appendChild(checkbox);
 
-	var color = palette[current_color++];
+	var color = palette[current_color ++];
 	div.insertAdjacentHTML('beforeend',
 		'<label for="' + parent + rekt + '">' +
 		'<strong>' + rekt + '</strong>' +
