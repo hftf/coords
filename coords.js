@@ -99,6 +99,8 @@ function draw() {
 	for (var i in key_checkboxes)
 		key_checkboxes[i].onclick = function() { return false; };
 	document.getElementById('example').onclick = example;
+	document.getElementById('export').onclick = function() { window.prompt('Please copy the text below.', serialize()); };
+	document.getElementById('import').onclick = function() { unserialize(window.prompt('Please paste your exported configuration below.', '')); };
 
 	var main = document.getElementById('main');
 	main_ctx = main.getContext('2d');
