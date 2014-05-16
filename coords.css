@@ -16,6 +16,13 @@ body {
 	margin: 3em 2em;
 	font-family: 'Alto Pro', 'Segoe UI', 'Trebuchet MS', sans-serif;
 }
+section {
+	display: inline-block;
+	width: 50%;
+}
+.then {
+	position: fixed;
+}
 
 #key ul {
 	list-style: none;
@@ -40,21 +47,28 @@ canvas#main {
 }
 
 .menu {
-	display: inline-block;
-	vertical-align: top;
-	width: 11em;
-	margin: 0 2em;
-	text-align: center;
+	margin: 4em 0;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 }
-.menu h3 {
-	margin-bottom: 0.5em;
+.menu > div {
+	vertical-align: top;
+	display: inline-block;
 }
-.menu ul {
+.menu-heading {
+	text-align: center;
+	margin-right: 2em;
+}
+.menu-heading h3 {
+	margin: 0 0 0.5em;
+}
+.menu-list {
+	width: 15em;
+}
+.menu-list ul {
 	list-style: none;
 	padding: 0;
-	margin-bottom: 0;
+	margin: 0;
 }
 
 .rekt {
@@ -69,17 +83,16 @@ canvas#main {
 .rekt label {
 	vertical-align: middle;
 	display: inline-block;
-	width: 90%;
 }
 .rekt strong {
 	display: inline-block;
-	width: 70%;
+	width: 10em;
 }
 .rekt small {
 	box-sizing: border-box;
 	vertical-align: middle;
 	display: inline-block;
 	padding: 1px 4px;
-	width: 30%;
+	width: 5em;
 	font-size: 0.6em;
 }

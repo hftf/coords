@@ -101,8 +101,10 @@ function recomposite_main() {
 
 function draw_menu(menu) {
 	// Heading
+	var section = document.createElement('div');
+	section.setAttribute('class', 'menu');
 	var div = document.createElement('div');
-	div.setAttribute('class', 'menu');
+	div.setAttribute('class', 'menu-heading');
 	div.innerHTML = '<h3>' + menu + '</h3>';
 
 	// Reset
@@ -112,6 +114,10 @@ function draw_menu(menu) {
 	var ctx = c.getContext('2d');
 	ctx.globalCompositeOperation = 'dest-over';
 	div.appendChild(c);
+	section.appendChild(div);
+
+	var div2 = document.createElement('div');
+	div2.setAttribute('class', 'menu-list');
 	var ul = document.createElement('ul');
 
 	for (rekt in coords[menu]) {
@@ -119,8 +125,9 @@ function draw_menu(menu) {
 		ul.appendChild(child_c);
 	}
 
-	div.appendChild(ul);
-	return div;
+	div2.appendChild(ul);
+	section.appendChild(div2);
+	return section;
 }
 
 function draw_rekt(rekt, parent, parent_ctx) {
