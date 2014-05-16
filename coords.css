@@ -11,11 +11,19 @@
 	src: local('Alto Pro Bold'), url('AltoPro-Bold.otf');
 }
 
-
 body {
 	margin: 3em 2em;
 	font-family: 'Alto Pro', 'Segoe UI', 'Trebuchet MS', sans-serif;
 }
+.tm {
+	color: #aaa;
+}
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
 section {
 	display: inline-block;
 	width: 50%;
@@ -24,11 +32,6 @@ section {
 	position: fixed;
 }
 
-#key ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
 #key input {
 	margin-right: 1.5em;
 	outline: none;
@@ -63,17 +66,11 @@ canvas#main {
 	margin: 0 0 0.5em;
 }
 .menu-list {
-	width: 15em;
-}
-.menu-list ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+	width: 20em;
 }
 
 .rekt {
-	text-align: left;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.25em;
 }
 .rekt input {
 	width: 10%;
@@ -81,7 +78,6 @@ canvas#main {
 	vertical-align: middle;
 }
 .rekt label {
-	vertical-align: middle;
 	display: inline-block;
 }
 .rekt strong {
