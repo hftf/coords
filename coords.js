@@ -38,7 +38,7 @@ function rotate_state(e) {
 }
 
 function format_x1y1(x1, y1, x2, y2) {
-	return '<small><span>↖ ' + x1 + ',' + y1 + '</span><span>↘ ' + x2 + ',' + y2 + '</span></small>';
+	return '↖ ' + x1 + ',' + y1 + '<br />↘ ' + x2 + ',' + y2;
 }
 
 function draw() {
@@ -101,9 +101,9 @@ function recomposite_main() {
 
 function draw_menu(menu) {
 	// Heading
-	var div = document.createElement('tr');
-	var th = document.createElement('th');
-	th.innerHTML = menu + '<br /><br />';
+	var div = document.createElement('div');
+	div.setAttribute('class', 'menu');
+	div.innerHTML = '<h3>' + menu + '</h3>';
 
 	// Reset
 	current_color = 0;
@@ -111,22 +111,22 @@ function draw_menu(menu) {
 	var c = new_canvas();
 	var ctx = c.getContext('2d');
 	ctx.globalCompositeOperation = 'dest-over';
-	th.appendChild(c);
-	div.appendChild(th);
+	div.appendChild(c);
+	var ul = document.createElement('ul');
 
 	for (rekt in coords[menu]) {
 		var child_c = draw_rekt(rekt, menu, ctx);
-		div.appendChild(child_c);
+		ul.appendChild(child_c);
 	}
 
+	div.appendChild(ul);
 	return div;
 }
 
 function draw_rekt(rekt, parent, parent_ctx) {
 	// Heading
-	var div = document.createElement('div');
-	div.setAttribute('class', 'button');
-	div.innerHTML = '<strong>' + rekt + '</strong>';
+	var div = document.createElement('li');
+	div.setAttribute('class', 'rekt');
 
 	var checkbox = document.createElement('input');
 	checkbox.setAttribute('type', 'checkbox');
@@ -135,27 +135,19 @@ function draw_rekt(rekt, parent, parent_ctx) {
 	checkbox.setAttribute('data-state', 'unchecked');
 	checkbox.onclick = rotate_state;
 	div.appendChild(checkbox);
-	div.insertAdjacentHTML('beforeend', '<br />' + format_x1y1.apply(null, coords[menu][rekt]) + '<br />');
 
-	var c = new_canvas();
-	c.setAttribute('id', rekt + 'canvas')
-	var ctx = c.getContext('2d');
-
-	// Pop the next color from the palette
 	var color = palette[current_color++];
-	ctx.fillStyle = color;
+	div.insertAdjacentHTML('beforeend',
+		'<label for="' + rekt + '">' +
+		'<strong><span style="color: ' + color + ';">■</span> ' + rekt + '</strong>' +
+		'<small>' + format_x1y1.apply(null, coords[menu][rekt]) + '</small>' +
+		'</label>');
+
 	parent_ctx.fillStyle = color;
-
 	var xywh = to_xywh.apply(null, coords[menu][rekt]);
-
-	// Draw a rektangle
-	ctx.fillRect.apply(ctx, xywh);
 	parent_ctx.fillRect.apply(parent_ctx, xywh);
 
-	div.appendChild(c)
-	var td = document.createElement('td');
-	td.appendChild(div);
-	return td;
+	return div;
 }
 
 window.onload = draw;
