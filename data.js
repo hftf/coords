@@ -14,7 +14,12 @@ var coords = {
 		"Attack 4":      [127,  87,   253, 142],
 		"Cancel":        [  7, 151,   246, 191],
 	},
-	// TODO: Double battle targets
+	"Double battle": {
+		"Foe 1":         [  0,   7,   118,  78],
+		"Foe 2":         [135,   7,   253,  78],
+		"Ally 1":        [  0,  87,   118, 142],
+		"Ally 2":        [135,  87,   253, 142],
+	},
 	"Bag": {
 		"Restore":       [  0,   7,   125,  77],
 		"Balls":         [127,   7,   253,  77],
