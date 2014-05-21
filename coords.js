@@ -93,6 +93,15 @@ function format_x1y1(x1, y1, x2, y2) {
 	return '↖ ' + x1 + ',' + y1 + '<br />↘ ' + x2 + ',' + y2;
 }
 
+function mouse2coords(e) {
+	var x = (e.offsetX === undefined) ? e.layerX - e.currentTarget.offsetLeft : e.offsetX,
+		y = (e.offsetY === undefined) ? e.layerY - e.currentTarget.offsetTop  : e.offsetY,
+		fx = Math.floor(x / 2),
+		fy = Math.floor(y / 2);
+
+	return { x: x, y: y, fx: fx, fy: fy };
+}
+
 function draw() {
 	document.getElementById('ind').indeterminate = true;
 	var key_checkboxes = document.querySelectorAll('#key input');
@@ -109,19 +118,37 @@ function draw() {
 	main_ctx.fillStyle = '#7af';
 
 	var span = document.getElementById('coords');
+	var span2 = document.getElementById('coords2');
+	var overlaps = document.getElementById('overlaps');
 	main.onmousemove = function(e) {
 		var s = '';
-		var rx = (e.offsetX === undefined) ? e.layerX - e.currentTarget.offsetLeft : e.offsetX,
-			ry = (e.offsetY === undefined) ? e.layerY - e.currentTarget.offsetTop  : e.offsetY;
+		var r = mouse2coords(e);
 
-		if (rx >= 0 || ry >= 0) {
-			var d = main_ctx.getImageData(~~rx, ~~ry, 1, 1).data;
+		if (r.x >= 0 || r.y >= 0) {
+			var d = main_ctx.getImageData(~~r.x, ~~r.y, 1, 1).data;
 
 			if (d[3] !== 0)
-				s = Math.floor(rx / 2) + ',' + Math.floor(ry / 2);
+				s = r.fx + ',' + r.fy;
 		}
 
 		span.innerHTML = s;
+	};
+	main.onclick = function(e) {
+		var r = mouse2coords(e), rekt, inside, insides = [];
+
+		span2.innerHTML = r.fx + ',' + r.fy;
+		span2.parentNode.style.display = 'block';
+
+		for (menu in coords) {
+			for (rekt in coords[menu]) {
+				x1y1 = coords[menu][rekt];
+				console.log(menu, rekt, x1y1, r);
+				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
+				if (inside)
+					insides.push('<a href="#' + menu + rekt + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
+			}
+		}
+		overlaps.innerHTML = insides.join('');
 	};
 
 	b = document.getElementById('b');

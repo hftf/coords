@@ -82,6 +82,9 @@ canvas#main {
 	margin: 0;
 	vertical-align: middle;
 }
+.rekt input:target + label {
+    background: #ff8;
+}
 .rekt label {
 	display: inline-block;
 }
@@ -96,4 +99,14 @@ canvas#main {
 	padding: 1px 4px;
 	width: 5.5em;
 	font-size: 0.6em;
+}
+
+.overlap {
+	display: inline-block;
+	min-width: 12em;
+	color: inherit;
+	text-decoration: inherit;
+}
+.overlap:hover {
+	text-decoration: underline;
 }
