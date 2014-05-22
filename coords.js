@@ -103,10 +103,14 @@ function mouse2coords(e) {
 }
 
 function draw() {
-	document.getElementById('ind').indeterminate = true;
-	var key_checkboxes = document.querySelectorAll('#key input');
-	for (var i in key_checkboxes)
+	var indeterminates = document.getElementsByClassName('ind');
+	for (var i in indeterminates)
+		indeterminates[i].indeterminate = true;
+	var key_checkboxes = document.getElementsByClassName('noclick');
+	for (var i in key_checkboxes) {
+		console.log(i);
 		key_checkboxes[i].onclick = function() { return false; };
+	}
 	document.getElementById('example').onclick = example;
 	document.getElementById('export').onclick = function() { window.prompt('Please copy the text below.', serialize()); };
 	document.getElementById('import').onclick = function() { unserialize(window.prompt('Please paste your exported configuration below.', '')); };
@@ -151,20 +155,27 @@ function draw() {
 
 	};
 	main.onclick = function(e) {
-		var r = mouse2coords(e), rekt, inside, insides = [];
+		var r = mouse2coords(e), rekt, inside, input,
+			gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 
 		span2.innerHTML = r.fx + ',' + r.fy;
-		span2.parentNode.style.display = 'block';
+		span2.parentNode.parentNode.style.display = 'block';
 
 		for (menu in coords) {
 			for (rekt in coords[menu]) {
 				x1y1 = coords[menu][rekt];
 				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
-				if (inside)
-					insides.push('<a href="#' + menu + rekt + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
+				if (inside) {
+					input = document.getElementById(menu + rekt);
+					gathered[input.dataset.state].push('<a href="#' + menu + rekt + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
+				}
 			}
 		}
-		overlaps.innerHTML = insides.join('');
+		for (var i in gathered) {
+			var el = document.getElementById('overlaps-' + i);
+			el.innerHTML = gathered[i].join('');
+			el.parentNode.style.display = (gathered[i].length === 0) ? 'none' : 'block';
+		}
 	};
 
 	b = document.getElementById('b');
