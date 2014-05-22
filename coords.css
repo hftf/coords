@@ -2,13 +2,13 @@
 	font-family: 'Alto Pro';
 	font-weight: normal;
 	font-style: normal;
-	src: local('Alto Pro'), url('AltoPro-Normal.otf');
+	src: local('Alto Pro'), url('fonts/AltoPro-Normal.otf');
 }
 @font-face {
 	font-family: 'Alto Pro';
 	font-weight: bold;
 	font-style: normal;
-	src: local('Alto Pro Bold'), local('Alto Pro'), url('AltoPro-Bold.otf');
+	src: local('Alto Pro Bold'), local('Alto Pro'), url('fonts/AltoPro-Bold.otf');
 }
 
 body {
