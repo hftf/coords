@@ -111,12 +111,31 @@ function draw() {
 	document.getElementById('export').onclick = function() { window.prompt('Please copy the text below.', serialize()); };
 	document.getElementById('import').onclick = function() { unserialize(window.prompt('Please paste your exported configuration below.', '')); };
 
+	var grid = document.getElementById('grid');
+	var grid_ctx = grid.getContext('2d');
+	grid_ctx.strokeStyle = grid_ctx.fillStyle = '#aaa';
+	grid_ctx.lineWidth = 1;
+	grid_ctx.font = '22px Alto Pro';
+	for (var x = 64; x <= cw; x += 64) {
+		grid_ctx.textAlign = 'right';
+		grid_ctx.moveTo     (4*x+0.5, 0);
+		grid_ctx.lineTo     (4*x+0.5, ch*4);
+		grid_ctx.fillText(x, 4*x-4,   20);
+		grid_ctx.textAlign = 'left';
+		grid_ctx.moveTo     (0,       4*x+0.5);
+		grid_ctx.lineTo     (cw*4,    4*x+0.5);
+		grid_ctx.fillText(x, 4,      4*x-4);
+	}
+	grid_ctx.fillText(0, 4, 20);
+	grid_ctx.stroke();
+
 	var main = document.getElementById('main');
 	main_ctx = main.getContext('2d');
 	main_ctx.scale(2, 2);
 	// main_ctx.globalCompositeOperation = 'dest-out';
 	main_ctx.fillStyle = '#7af';
 
+	// Click and hover handlers for main canvas
 	var span = document.getElementById('coords');
 	var span2 = document.getElementById('coords2');
 	var overlaps = document.getElementById('overlaps');
@@ -142,7 +161,6 @@ function draw() {
 		for (menu in coords) {
 			for (rekt in coords[menu]) {
 				x1y1 = coords[menu][rekt];
-				console.log(menu, rekt, x1y1, r);
 				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
 				if (inside)
 					insides.push('<a href="#' + menu + rekt + '" class="overlap">' + menu + ' → ' + rekt + '</a>');

@@ -46,7 +46,17 @@ canvas {
 	/*border: 0.5px solid #bbb;*/
 	border-radius: 2px;
 }
-canvas#main {
+#layers {
+	position: relative;
+}
+#layers canvas {
+	position: absolute;
+	left: 0; top: 0;
+}
+#layers canvas:not(:first-of-type) {
+	background: none;
+}
+#layers, #layers canvas {
 	width: 512px;
 	height: 384px;
 }
