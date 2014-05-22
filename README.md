@@ -1,1 +1,1 @@
-Demo: http://ophir.li/coords/coords.html
+Demo: http://hftf.github.io/coords/coords.html
