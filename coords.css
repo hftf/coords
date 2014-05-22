@@ -122,9 +122,12 @@ canvas {
 .overlap {
 	display: inline-block;
 	min-width: 12em;
-	color: inherit;
-	text-decoration: inherit;
 }
-.overlap:hover {
+
+a:link, a:visited {
+	color: #24b;
+	text-decoration: none;
+}
+a:hover {
 	text-decoration: underline;
 }
