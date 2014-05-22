@@ -113,7 +113,7 @@ function draw() {
 
 	var grid = document.getElementById('grid');
 	var grid_ctx = grid.getContext('2d');
-	grid_ctx.strokeStyle = grid_ctx.fillStyle = '#aaa';
+	grid_ctx.strokeStyle = grid_ctx.fillStyle = '#888';
 	grid_ctx.lineWidth = 1;
 	grid_ctx.font = '22px Alto Pro';
 	for (var x = 64; x <= cw; x += 64) {
@@ -143,14 +143,12 @@ function draw() {
 		var s = '';
 		var r = mouse2coords(e);
 
-		if (r.x >= 0 || r.y >= 0) {
+		if (r.x >= 0 && r.y >= 0) {
 			var d = main_ctx.getImageData(~~r.x, ~~r.y, 1, 1).data;
-
-			if (d[3] !== 0)
-				s = r.fx + ',' + r.fy;
+			span.innerHTML = r.fx + ',' + r.fy;
+			span.className = (d[3] !== 0) ? 'works' : '';
 		}
 
-		span.innerHTML = s;
 	};
 	main.onclick = function(e) {
 		var r = mouse2coords(e), rekt, inside, insides = [];
