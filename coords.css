@@ -45,27 +45,27 @@ section {
 	outline: none;
 }
 
-canvas {
-	width: 128px;
-	height: 96px;
-}
-canvas, #layers {
+.layers {
 	background: #e6e6e6;
 	/*border: 0.5px solid #bbb;*/
 	border-radius: 2px;
-}
-#layers {
 	position: relative;
 }
-#layers canvas {
+.layers canvas, .layers img {
 	position: absolute;
 	left: 0; top: 0;
-	background: none;
 }
-#layers, #layers canvas {
+.menu-heading .layers, .menu-heading .layers canvas, .menu-heading .layers img {
+	width: 128px;
+	height: 96px;
+}
+.then .layers, .then .layers canvas {
 	width: 512px;
 	height: 384px;
 }
+.menu-heading .layers:hover canvas { opacity: 0.75; }
+.menu-heading .layers img { opacity: 0; }
+.menu-heading .layers:hover img { opacity: 1; }
 
 .menu {
 	margin: 4em 0;

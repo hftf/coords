@@ -241,7 +241,12 @@ function draw_menu(menu) {
 	var c = new_canvas();
 	var ctx = c.getContext('2d');
 	ctx.globalCompositeOperation = 'dest-over';
-	div.appendChild(c);
+
+	var layers = document.createElement('div');
+	layers.setAttribute('class', 'layers');
+	layers.appendChild(c);
+	layers.insertAdjacentHTML('afterbegin', '<img src="screens/' + menu + '.png">');
+	div.appendChild(layers);
 	section.appendChild(div);
 
 	var div2 = document.createElement('div');
