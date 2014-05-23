@@ -136,5 +136,9 @@ body.grid-disabled #grid {
 	display: none;
 }
 body.rekt-small-disabled .rekt small {
+	width: 1.5em;
+	height: 1.5em;
+}
+body.rekt-small-disabled .rekt small > span {
 	display: none;
 }

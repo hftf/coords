@@ -276,7 +276,7 @@ function draw_rekt(rekt, parent, parent_ctx) {
 	div.insertAdjacentHTML('beforeend',
 		'<label for="' + parent + rekt + '">' +
 		'<strong>' + rekt + '</strong>' +
-		'<small style="background: ' + color + ';">' + format_x1y1.apply(null, coords[menu][rekt]) + '</small>' +
+		'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, coords[menu][rekt]) + '</span></small>' +
 		'</label>');
 
 	parent_ctx.fillStyle = color;
