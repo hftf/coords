@@ -107,13 +107,23 @@ function draw() {
 	for (var i in indeterminates)
 		indeterminates[i].indeterminate = true;
 	var key_checkboxes = document.getElementsByClassName('noclick');
-	for (var i in key_checkboxes) {
-		console.log(i);
+	for (var i in key_checkboxes)
 		key_checkboxes[i].onclick = function() { return false; };
-	}
+
 	document.getElementById('example').onclick = example;
 	document.getElementById('export').onclick = function() { window.prompt('Please copy the text below.', serialize()); };
 	document.getElementById('import').onclick = function() { unserialize(window.prompt('Please paste your exported configuration below.', '')); };
+
+	var prefs_chekboxes = document.querySelectorAll('#prefs input');
+	for (var i = 0; i < prefs_chekboxes.length; i ++) {
+		var el = prefs_chekboxes[i];
+		el.onclick = function() {
+			window.localStorage[this.checked ? 'setItem' : 'removeItem'](this.id, 'true');
+			document.body.classList[this.checked ? 'remove' : 'add'](this.id);
+		};
+		el.checked = window.localStorage.getItem(el.id) !== null;
+		document.body.classList[el.checked ? 'remove' : 'add'](el.id);
+	}
 
 	var grid = document.getElementById('grid');
 	var grid_ctx = grid.getContext('2d');

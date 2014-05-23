@@ -131,3 +131,10 @@ a:link, a:visited {
 a:hover {
 	text-decoration: underline;
 }
+
+body.grid-disabled #grid {
+	display: none;
+}
+body.rekt-small-disabled .rekt small {
+	display: none;
+}
