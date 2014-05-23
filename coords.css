@@ -48,6 +48,8 @@ section {
 canvas {
 	width: 128px;
 	height: 96px;
+}
+canvas, #layers {
 	background: #e6e6e6;
 	/*border: 0.5px solid #bbb;*/
 	border-radius: 2px;
@@ -58,8 +60,6 @@ canvas {
 #layers canvas {
 	position: absolute;
 	left: 0; top: 0;
-}
-#layers canvas:not(:first-of-type) {
 	background: none;
 }
 #layers, #layers canvas {
