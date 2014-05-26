@@ -1,6 +1,6 @@
 var bounds =             [  0,   0,   255, 191];
 var coords = {
-	/* BATTLE */
+"Battle": {
 	"Battle": {
 		"Fight":         [  0,  23,   253, 142],
 		"Bag":           [  0, 143,    78, 191],
@@ -75,10 +75,10 @@ var coords = {
 		"Slot 4":        [127, 167,   165, 181],
 		"Cancel":        [215, 151,   253, 189],
 	},
-
-	/* PC */
-
-	/* Overworld */
+},
+"PC": {
+},
+"Overworld": {
 	"Overworld": {
 		"X":             [  7,   0,    158,  14],
 		"Pokédex":       [ 15,  21,     74,  52],
@@ -119,8 +119,8 @@ var coords = {
 		"Move":          [ 95, 159,    189, 189],
 		"Cancel":        [191, 167,    253, 189],
 	},
-
-	/* Misc (nicknames, Pokéathlon, etc.) */
+},
+"Misc.": { /* (nicknames, Pokéathlon, etc.) */
 	"Mart": {
 		"Buy":           [  2,  26,    249,  66],
 		"Sell":          [  2,  73,    249, 113],
@@ -137,5 +137,5 @@ var coords = {
 		"Next":          [ 39, 167,     77, 189],
 		"Cancel":        [191, 167,    253, 189],
 	},
-
+},
 };

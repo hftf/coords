@@ -171,13 +171,15 @@ function draw() {
 		span2.innerHTML = r.fx + ',' + r.fy;
 		span2.parentNode.parentNode.style.display = 'block';
 
-		for (menu in coords) {
-			for (rekt in coords[menu]) {
-				x1y1 = coords[menu][rekt];
-				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
-				if (inside) {
-					input = document.getElementById(menu + rekt);
-					gathered[input.dataset.state].push('<a href="#' + menu + rekt + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
+		for (category in coords) {
+			for (menu in coords[category]) {
+				for (rekt in coords[category][menu]) {
+					x1y1 = coords[category][menu][rekt];
+					inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
+					if (inside) {
+						input = document.getElementById(menu + rekt);
+						gathered[input.dataset.state].push('<a href="#' + menu + rekt + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
+					}
 				}
 			}
 		}
@@ -189,8 +191,8 @@ function draw() {
 	};
 
 	b = document.getElementById('b');
-	for (menu in coords) {
-		var child = draw_menu(menu);
+	for (category in coords) {
+		var child = draw_category(category);
 		b.appendChild(child);
 	}
 
@@ -201,24 +203,36 @@ function recomposite_main() {
 	var gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 	for (var i = 0; i < all_inputs.length; i ++) {
 		var input = all_inputs[i];
-		gathered[input.dataset.state].push([input.dataset.id, input.dataset.parent]);
+		gathered[input.dataset.state].push([input.dataset.id, input.dataset.parent, input.dataset.grandparent]);
 	}
 
 	main_ctx.clearRect(0, 0, cw, ch);
 	main_ctx.globalAlpha = 0.4;
 	for (var i = 0; i < gathered.checked.length; i ++) {
 		var rekt = gathered.checked[i];
-		var xywh = to_xywh.apply(null, coords[rekt[1]][rekt[0]]);
+		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]]);
 		main_ctx.fillRect.apply(main_ctx, xywh);
 	}
 	for (var i = 0; i < gathered.indeterminate.length; i ++) {
 		var rekt = gathered.indeterminate[i];
-		var xywh = to_xywh.apply(null, coords[rekt[1]][rekt[0]]);
+		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]]);
 		main_ctx.clearRect.apply(main_ctx, xywh);
 	}
 }
 
-function draw_menu(menu) {
+function draw_category(category) {
+	var div = document.createElement('div');
+	div.setAttribute('class', 'category');
+	var h = document.createElement('h2');
+	h.innerHTML = '<strong>' + category + '</strong> screens';
+	div.appendChild(h);
+	for (menu in coords[category]) {
+		div.appendChild(draw_menu(menu, category));
+	}
+	return div;
+}
+
+function draw_menu(menu, parent) {
 	// Heading
 	var section = document.createElement('div');
 	section.setAttribute('class', 'menu');
@@ -253,8 +267,8 @@ function draw_menu(menu) {
 	div2.setAttribute('class', 'menu-list');
 	var ul = document.createElement('ul');
 
-	for (rekt in coords[menu]) {
-		var child_c = draw_rekt(rekt, menu, ctx);
+	for (rekt in coords[category][menu]) {
+		var child_c = draw_rekt(rekt, menu, ctx, parent);
 		ul.appendChild(child_c);
 	}
 
@@ -263,7 +277,7 @@ function draw_menu(menu) {
 	return section;
 }
 
-function draw_rekt(rekt, parent, parent_ctx) {
+function draw_rekt(rekt, parent, parent_ctx, grandparent) {
 	// Heading
 	var div = document.createElement('li');
 	div.setAttribute('class', 'rekt');
@@ -273,6 +287,7 @@ function draw_rekt(rekt, parent, parent_ctx) {
 	checkbox.setAttribute('id', parent + rekt);
 	checkbox.setAttribute('data-id', rekt);
 	checkbox.setAttribute('data-parent', parent);
+	checkbox.setAttribute('data-grandparent', grandparent);
 	checkbox.setAttribute('data-state', 'unchecked');
 	checkbox.onclick = rotate_state;
 	div.appendChild(checkbox);
@@ -281,11 +296,11 @@ function draw_rekt(rekt, parent, parent_ctx) {
 	div.insertAdjacentHTML('beforeend',
 		'<label for="' + parent + rekt + '">' +
 		'<strong>' + rekt + '</strong>' +
-		'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, coords[menu][rekt]) + '</span></small>' +
+		'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, coords[category][menu][rekt]) + '</span></small>' +
 		'</label>');
 
 	parent_ctx.fillStyle = color;
-	var xywh = to_xywh.apply(null, coords[menu][rekt]);
+	var xywh = to_xywh.apply(null, coords[category][menu][rekt]);
 	parent_ctx.fillRect.apply(parent_ctx, xywh);
 
 	return div;

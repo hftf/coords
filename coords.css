@@ -67,8 +67,15 @@ section {
 .menu-heading .layers img { opacity: 0; }
 .menu-heading .layers:hover img { opacity: 1; }
 
+.category h2 {
+	margin-top: 2em;
+	border-left: 6px solid #bbb;
+	padding-left: 0.5em;
+	font-weight: normal;
+}
+
 .menu {
-	margin: 4em 0;
+	margin: 0 0 4em;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 }
