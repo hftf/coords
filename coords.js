@@ -160,7 +160,7 @@ function draw() {
 		if (r.x >= 0 && r.y >= 0) {
 			var d = main_ctx.getImageData(~~r.x, ~~r.y, 1, 1).data;
 			span.innerHTML = r.fx + ',' + r.fy;
-			span.className = (d[3] !== 0) ? 'works' : '';
+			span.style.backgroundColor = 'rgba(' + d[0] + ',' + d[1] + ',' + d[2] + ',' + (d[3]/255) + ')';
 		}
 
 	};
