@@ -190,11 +190,15 @@ function draw() {
 		}
 	};
 
-	b = document.getElementById('b');
+	var b = document.getElementById('b');
+	var toc = document.getElementById('toc');
+	var jumps = [];
 	for (category in coords) {
-		var child = draw_category(category);
-		b.appendChild(child);
+		var returned = draw_category(category);
+		b.appendChild(returned[0]);
+		jumps.push(returned[1]);
 	}
+	toc.insertAdjacentHTML('beforeend', jumps.join(' · '));
 
 	all_inputs = document.querySelectorAll('.menu-list input');
 }
@@ -223,13 +227,17 @@ function recomposite_main() {
 function draw_category(category) {
 	var div = document.createElement('div');
 	div.setAttribute('class', 'category');
+	var id = 'category-' + category;
+	div.setAttribute('id', id);
+	var a = '<a href="#' + id + '">' + category + '</a>';
+
 	var h = document.createElement('h2');
 	h.innerHTML = '<strong>' + category + '</strong> screens';
 	div.appendChild(h);
 	for (menu in coords[category]) {
 		div.appendChild(draw_menu(menu, category));
 	}
-	return div;
+	return [div, a];
 }
 
 function draw_menu(menu, parent) {
