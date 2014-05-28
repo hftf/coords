@@ -77,6 +77,13 @@ var coords = {
 	},
 },
 "PC": {
+	"Misc": {
+		"Release":        [167, 135,  253, 157],
+		"Release No":     [199, 127,  246, 158],
+		"Release Yes":    [199,  95,  246, 126],
+		"See ya":         [130, 122,  250, 161],
+		"Quit all PCs":   [  2, 147,  249, 186],
+	},
 },
 "Overworld": {
 	"Overworld": {
@@ -137,5 +144,16 @@ var coords = {
 		"Next":          [ 39, 167,     77, 189],
 		"Cancel":        [191, 167,    253, 189],
 	},
+	"Teach TM (bag)": {
+		// Teach ___ to a Pokémon?
+		"Teach to? Yes": [199,  47,  246, 78],
+		"Teach to? No":  [199,  79,  246,110],
+		// Should a move be replaced with ___?
+		"Should? Yes":   [199,  80,  246,110], // TODO fix 80
+		"Should? No":    [199, 111,  246,142],
+		"Move 3":        [  7,  70,  125,101], // TODO fix 70
+		"Move 4":        [  7, 102,  125,133],
+		"Move 5":        [  7, 151,  125,181],
+	}
 },
 };
