@@ -115,12 +115,13 @@ function draw() {
 	document.getElementById('import').onclick = function() { unserialize(window.prompt('Please paste your exported configuration below.', '')); };
 
 	var prefs_chekboxes = document.querySelectorAll('#prefs input');
+	var click_f = function() {
+		window.localStorage[this.checked ? 'setItem' : 'removeItem'](this.id, 'true');
+		document.body.classList[this.checked ? 'remove' : 'add'](this.id);
+	};
 	for (var i = 0; i < prefs_chekboxes.length; i ++) {
 		var el = prefs_chekboxes[i];
-		el.onclick = function() {
-			window.localStorage[this.checked ? 'setItem' : 'removeItem'](this.id, 'true');
-			document.body.classList[this.checked ? 'remove' : 'add'](this.id);
-		};
+		el.onclick = click_f;
 		el.checked = window.localStorage.getItem(el.id) !== null;
 		document.body.classList[el.checked ? 'remove' : 'add'](el.id);
 	}
