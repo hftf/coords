@@ -11,10 +11,14 @@
 </head>
 <body>
 <ul>
-<li id="1"><input id="i1" type="checkbox"> <label for="i1">Item 1</label></li>
+<li id="1"><input id="i1" class="parent" type="checkbox"> <label for="i1">Item 1</label>
+<ul>
+<li id="1.1"><input id="i1.1" type="checkbox" data-parent="i1"> <label for="i1.1">Item 1.1</label></li>
+<li id="1.2"><input id="i1.2" type="checkbox" data-parent="i1"> <label for="i1.2">Item 1.2</label></li>
+</ul>
+</li>
 <li id="2"><input id="i2" type="checkbox"> <label for="i2">Item 2</label></li>
 <li id="3"><input id="i3" type="checkbox"> <label for="i3">Item 3</label></li>
-<li id="4"><input id="i4" type="checkbox"> <label for="i4">Item 4</label></li>
 </ul>
 </body>
 </html>

@@ -95,9 +95,20 @@ var State = (function() {
 	_State.rotateState = (function(_this) { return function(e) {
 		var currentState = this.dataset.state || 'unchecked';
 
-		var r = _this.setState(Box.properties[currentState]['next'])(this.id);
+		_this.setState(Box.properties[currentState]['next'])(this.id);
 		_this.replaceState();
-		return r;
+	}; })(_State);
+	_State.rotateStates = (function(_this) { return function(e) {
+		var currentState = this.dataset.state || 'unchecked',
+			state = Box.properties[currentState]['next'],
+			setState = _this.setState(state);
+
+		setState(this.id);
+		var children = document.querySelectorAll('input[data-parent="' + this.id + '"]');//[data-grandparent="' + this.dataset.parent + '"]');
+		for (var i = 0; i < children.length; i ++)
+			setState(children[i].id);
+
+		_this.replaceState();
 	}; })(_State);
 	for (var state in Box.properties)
 		_State['set' + state.charAt(0).toUpperCase() + state.slice(1)] = _State.setState(state);
@@ -106,8 +117,12 @@ var State = (function() {
 
 window.onload = function() {
 	var state = State.setAllFromUrl();
-	var inputs = document.querySelectorAll('input');
+	var inputs = document.querySelectorAll('input:not(.parent)');
 	for (var i in inputs) {
 		inputs[i].onclick = State.rotateState;
+	}
+	inputs = document.querySelectorAll('input.parent');
+	for (var i in inputs) {
+		inputs[i].onclick = State.rotateStates;
 	}
 }
