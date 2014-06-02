@@ -40,9 +40,9 @@ var State = (function() {
 				window.location.search = '?black';
 
 			// '?hg;x,y+a,b,c-d,e,f'
-			//                      ? hg           + a,b,c       - d,e,f       ; x,y
-			//                      - --------     - ------      - ------      - -------
-			var m = search.match(/^\?(hg|black)(?:\+([\w,]+))?(?:-([\w,]+))?(?:;(\d+,\d+))?$/);
+			//                      ? hg           + a,b,c        - d,e,f        ; x,y
+			//                      - --------     - -------      - -------      - -------
+			var m = search.match(/^\?(hg|black)(?:\+([\w,.]+))?(?:-([\w,.]+))?(?:;(\d+,\d+))?$/);
 
 			if (!m)
 				throw 'Invalid query string: ' + search;
