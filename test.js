@@ -76,8 +76,8 @@ var State = (function() {
 					throw "No element exists with id '" + id + "'";
 
 				var currentState = el.dataset.state || 'unchecked';
-				if (currentState === state)
-					throw "Element with id '" + id + "' is already " + state;
+				// if (currentState === state)
+				//	throw "Element with id '" + id + "' is already " + state;
 
 				if (currentState in this.state)
 					if (id in this.state[currentState])
