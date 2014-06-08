@@ -77,7 +77,7 @@ var coords = {
 	},
 },
 "PC": {
-	"Misc": {
+	"PC Misc": {
 		"Release":        [167, 135,  253, 157],
 		"Release No":     [199, 127,  246, 158],
 		"Release Yes":    [199,  95,  246, 126],
