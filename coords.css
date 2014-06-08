@@ -60,9 +60,8 @@ section {
 	width: 512px;
 	height: 384px;
 }
-.menu-heading .layers:hover canvas { opacity: 0.75; }
-.menu-heading .layers img { opacity: 0; }
-.menu-heading .layers:hover img { opacity: 1; }
+.menu-heading .layers canvas { opacity: 0.75; }
+.menu-heading .layers img { opacity: 0.5; }
 
 .category h2 {
 	margin-top: 2em;

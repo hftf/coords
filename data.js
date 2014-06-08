@@ -126,6 +126,15 @@ var coords = {
 		"Move":          [ 95, 159,    189, 189],
 		"Cancel":        [191, 167,    253, 189],
 	},
+	"OW Pokémon": {
+		"Summary":       [127,  23,    255,  54],
+		"Switch":        [127,  55,    255,  96],
+		"Item":          [127,  87,    255, 118],
+		"HM Move 1":     [  0,  15,    126,  46],
+		"HM Move 2":     [  0,  47,    126,  78],
+		"HM Move 3":     [  0,  79,    126, 110],
+		"HM Move 4":     [  0, 111,    126, 142],
+	},
 },
 "Misc.": { /* (nicknames, Pokéathlon, etc.) */
 	"Mart": {
@@ -146,18 +155,18 @@ var coords = {
 	},
 	"Teach Dialog": {
 		// Teach ___ to a Pokémon?
-		"Teach to? Yes": [199,  47,  246, 78],
-		"Teach to? No":  [199,  79,  246,110],
+		"Teach to? Yes": [199,  47,    246,  78],
+		"Teach to? No":  [199,  79,    246, 110],
 		// Should a move be replaced with ___?
-		"Should? Yes":   [199,  80,  246,110], // TODO fix 80
-		"Should? No":    [199, 111,  246,142],
+		"Should? Yes":   [199,  80,    246, 110], // TODO fix 80
+		"Should? No":    [199, 111,    246, 142],
 	},
 	"Teach Move": {
-		"Move 1":        [  7,  7,   125, 37],
-		"Move 2":        [  7,  39,  125, 69],
-		"Move 3":        [  7,  71,  125,101],
-		"Move 4":        [  7, 103,  125,133],
-		"Forget":        [  7, 151,  125,181],
+		"Move 1":        [  7,   7,    125,  37],
+		"Move 2":        [  7,  39,    125,  69],
+		"Move 3":        [  7,  71,    125, 101],
+		"Move 4":        [  7, 103,    125, 133],
+		"Forget":        [  7, 151,    125, 181],
 	},
 	"Fly Jotho": {
 	},
