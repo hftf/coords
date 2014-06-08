@@ -89,8 +89,7 @@ section {
 	margin: 0 0 0.5em;
 }
 .menu-heading h3 input {
-	position: absolute;
-	left: 0;
+	float: left;
 }
 .menu-list {
 	width: 20em;
