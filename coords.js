@@ -268,7 +268,7 @@ function draw_menu(menu, parent) {
 	var layers = document.createElement('div');
 	layers.setAttribute('class', 'layers');
 	layers.appendChild(c);
-	layers.insertAdjacentHTML('afterbegin', '<img src="screens/' + menu + '.png">');
+	layers.insertAdjacentHTML('afterbegin', '<img src="screens/' + parent + '/' + menu + '.png">');
 	div.appendChild(layers);
 	section.appendChild(div);
 

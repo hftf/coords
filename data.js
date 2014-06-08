@@ -77,7 +77,7 @@ var coords = {
 	},
 },
 "PC": {
-	"PC Misc": {
+	"Misc": {
 		"Release":        [167, 135,  253, 157],
 		"Release No":     [199, 127,  246, 158],
 		"Release Yes":    [199,  95,  246, 126],
@@ -100,7 +100,7 @@ var coords = {
 		"Running shoes": [183,  85,    253, 132],
 		"A":             [167, 143,    253, 186],
 	},
-	"OW Bag": {
+	"Bag": {
 		"Items":         [  0,   0,     29,  29],
 		"Medicine":      [ 31,   0,     61,  29],
 		"Balls":         [ 63,   0,     93,  29],
@@ -119,14 +119,14 @@ var coords = {
 		"Next":          [ 39, 167,     77, 189],
 		"Cancel":        [191, 167,    253, 189],
 	},
-	"OW Bag item": {
+	"Bag item": {
 		"Use":           [  0, 127,     91, 157], // "Walk" when on bike
 		"Trash":         [ 95, 127,    189, 157], // "Register" or "Deselect" in last pocket
 		"Give":          [  0, 159,     91, 189],
 		"Move":          [ 95, 159,    189, 189],
 		"Cancel":        [191, 167,    253, 189],
 	},
-	"OW Pokémon": {
+	"Pokémon": {
 		"Summary":       [127,  23,    255,  54],
 		"Switch":        [127,  55,    255,  86],
 		"Item":          [127,  87,    255, 118],
@@ -137,14 +137,14 @@ var coords = {
 	},
 },
 "Pokégear": {
-	"PG Settings": {
+	"Settings": {
 		"Settings":      [  7,  160,    54, 191],
 		"Radio":         [ 55,  160,   102, 191],
 		"Map":           [103,  160,   150, 191],
 		"Phone":         [151,  160,   198, 191],
 		"Exit":          [205,  160,   252, 191],
 	},
-	"PG Phone": {
+	"Phone": {
 		"Contact 1":     [  7,   7,    222,  30],
 		"Contact 2":     [  7,  31,    222,  54],
 		"Contact 3":     [  7,  55,    222,  78],
