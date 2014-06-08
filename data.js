@@ -144,16 +144,20 @@ var coords = {
 		"Next":          [ 39, 167,     77, 189],
 		"Cancel":        [191, 167,    253, 189],
 	},
-	"Teach TM (bag)": {
+	"Teach Dialog": {
 		// Teach ___ to a Pokémon?
 		"Teach to? Yes": [199,  47,  246, 78],
 		"Teach to? No":  [199,  79,  246,110],
 		// Should a move be replaced with ___?
 		"Should? Yes":   [199,  80,  246,110], // TODO fix 80
 		"Should? No":    [199, 111,  246,142],
+	},
+	"Teach Move": {
+		"Move 1":        [  7,  6,   125, 37],
+		"Move 2":        [  7,  38,  125, 69],
 		"Move 3":        [  7,  70,  125,101], // TODO fix 70
 		"Move 4":        [  7, 102,  125,133],
-		"Move 5":        [  7, 151,  125,181],
+		// "Move 5":        [  7, 151,  125,181],
 	}
 },
 };
