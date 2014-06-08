@@ -190,9 +190,5 @@ var coords = {
 		"Move 4":        [  7, 103,    125, 133],
 		"Forget":        [  7, 151,    125, 181],
 	},
-	"Fly Johto": {
-	},
-	"Fly Kanto": {
-	},
 },
 };
