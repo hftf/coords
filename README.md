@@ -1,1 +1,1 @@
-Demo: http://hftf.github.io/coords/coords.html
+Demo: http://hftf.github.io/coords/
