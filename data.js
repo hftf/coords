@@ -152,6 +152,8 @@ var coords = {
 		"Scroll Up":     [223,   7,    246,  78],
 		"Scroll Down":   [223,  79,    246, 150],
 		"Call":          [111,  79,    238,  94],
+		"Sort":          [111, 103,    238, 118],
+		"Quit":          [111, 127,    238, 142],
 	},
 },
 "Misc.": { /* (nicknames, Pokéathlon, etc.) */
