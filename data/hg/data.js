@@ -1,3 +1,4 @@
+var game = 'hg';
 var bounds =             [  0,   0,   255, 191];
 var coords = {
 "Battle": {
