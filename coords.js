@@ -62,7 +62,7 @@ function reset_all(state) {
 }
 
 function set_states(e) {
-	var children = document.querySelectorAll('input[data-parent="' + this.id + '"]');
+	var children = document.querySelectorAll('input[data-parent="' + this.dataset.id + '"][data-grandparent="' + this.dataset.parent + '"]');
 	var state = next_state[this.dataset.state];
 	set_state(this, state);
 	for (var i = 0; i < children.length; i ++)
@@ -178,7 +178,7 @@ function draw() {
 					x1y1 = coords[category][menu][rekt];
 					inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
 					if (inside) {
-						input = document.getElementById(menu + rekt);
+						input = document.getElementById(category + menu + rekt);
 						gathered[input.dataset.state].push('<a href="#' + menu + rekt + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
 					}
 				}
@@ -250,12 +250,15 @@ function draw_menu(menu, parent) {
 	var h = document.createElement('h3');
 
 	var checkbox = document.createElement('input');
+    var checkbox_id = parent + menu;
 	checkbox.setAttribute('type', 'checkbox');
-	checkbox.setAttribute('id', menu);
+	checkbox.setAttribute('id', checkbox_id);
+	checkbox.setAttribute('data-id', menu);
+	checkbox.setAttribute('data-parent', parent);
 	checkbox.setAttribute('data-state', 'unchecked');
 	checkbox.onclick = set_states;
 	h.appendChild(checkbox);
-	h.insertAdjacentHTML('beforeend', '<label for="' + menu + '">' + menu + '</label>');
+	h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + '</label>');
 	div.appendChild(h);
 
 	// Reset
@@ -292,8 +295,9 @@ function draw_rekt(rekt, parent, parent_ctx, grandparent) {
 	div.setAttribute('class', 'rekt');
 
 	var checkbox = document.createElement('input');
+    var checkbox_id = grandparent + parent + rekt;
 	checkbox.setAttribute('type', 'checkbox');
-	checkbox.setAttribute('id', parent + rekt);
+	checkbox.setAttribute('id', checkbox_id);
 	checkbox.setAttribute('data-id', rekt);
 	checkbox.setAttribute('data-parent', parent);
 	checkbox.setAttribute('data-grandparent', grandparent);
@@ -303,7 +307,7 @@ function draw_rekt(rekt, parent, parent_ctx, grandparent) {
 
 	var color = palette[current_color ++];
 	div.insertAdjacentHTML('beforeend',
-		'<label for="' + parent + rekt + '">' +
+		'<label for="' + checkbox_id + '">' +
 		'<strong>' + rekt + '</strong>' +
 		'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, coords[category][menu][rekt]) + '</span></small>' +
 		'</label>');
