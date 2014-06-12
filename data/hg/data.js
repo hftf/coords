@@ -159,7 +159,7 @@ var coords = {
 		"Quit":          [111, 127,    238, 142],
 	},
 },
-"Misc.": { /* (nicknames, Pokéathlon, etc.) */
+"Misc": { /* (nicknames, Pokéathlon, etc.) */
 	"Mart": {
 		"Buy":           [  2,  26,    249,  66],
 		"Sell":          [  2,  73,    249, 113],
