@@ -307,6 +307,9 @@ function draw_rekt(rekt, parent, parent_ctx, grandparent) {
 	div.appendChild(checkbox);
 
 	var color = palette[current_color ++];
+	if (current_color >= palette.length)
+		current_color = 0;
+
 	div.insertAdjacentHTML('beforeend',
 		'<label for="' + checkbox_id + '">' +
 		'<strong>' + rekt + '</strong>' +
