@@ -178,8 +178,9 @@ function draw() {
 					x1y1 = coords[category][menu][rekt];
 					inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
 					if (inside) {
-						input = document.getElementById(category + menu + rekt);
-						gathered[input.dataset.state].push('<a href="#' + menu + rekt + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
+						var id = category + menu + rekt;
+						input = document.getElementById(id);
+						gathered[input.dataset.state].push('<a href="#' + id + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
 					}
 				}
 			}
