@@ -250,7 +250,7 @@ function draw_menu(menu, parent) {
 	var h = document.createElement('h3');
 
 	var checkbox = document.createElement('input');
-    var checkbox_id = parent + menu;
+	var checkbox_id = parent + menu;
 	checkbox.setAttribute('type', 'checkbox');
 	checkbox.setAttribute('id', checkbox_id);
 	checkbox.setAttribute('data-id', menu);
@@ -295,7 +295,7 @@ function draw_rekt(rekt, parent, parent_ctx, grandparent) {
 	div.setAttribute('class', 'rekt');
 
 	var checkbox = document.createElement('input');
-    var checkbox_id = grandparent + parent + rekt;
+	var checkbox_id = grandparent + parent + rekt;
 	checkbox.setAttribute('type', 'checkbox');
 	checkbox.setAttribute('id', checkbox_id);
 	checkbox.setAttribute('data-id', rekt);
