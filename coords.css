@@ -43,6 +43,19 @@ section {
 	font: inherit;
 	width: 4em;
 }
+#coords2.valid {
+	border-color: #ea5;
+	outline-color: #ea5;
+}
+#coords2.invalid {
+	border-color: #d55;
+	outline-color: #d55;
+}
+#coords2-errors {
+	display: none;
+	color: #d55;
+	font-weight: bold;
+}
 
 #key input {
 	margin-right: 1.5em;

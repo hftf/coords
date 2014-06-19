@@ -133,11 +133,17 @@ function mouse2coords(e) {
 
 function text2coords(s) {
 	var m = s.match(/^(\d+),(\d+)$/);
-	if (!m) return;
+	if (!m)
+		throw 'Invalid coordinate syntax.';
+
 	var fx = ~~m[1],
 		fy = ~~m[2],
 		x = fx * 2,
 		y = fy * 2;
+	if (fx < bounds[0] || fx > bounds[2] || fy < bounds[1] || fy > bounds[3])
+		throw 'Coordinate out of bounds. Bounds are from ' +
+			bounds[0] + ',' + bounds[1] + ' to ' + bounds[2] + ',' + bounds[3] + '.';
+
 	return { x: x, y: y, fx: fx, fy: fy };
 }
 
@@ -202,13 +208,25 @@ function draw() {
 		}
 
 	};
+	var span2 = document.getElementById('coords2'),
+		span2_errors = document.getElementById('coords2-errors');
+
 	main.onclick = function(e) {
 		list_overlaps(mouse2coords(e));
+		span2.className = '';
+		span2_errors.style.display = 'none';
 	};
-	
-	var span2 = document.getElementById('coords2');
 	span2.onchange = function(e) {
-		list_overlaps(text2coords(span2.value));
+		try {
+			list_overlaps(text2coords(span2.value));
+			span2.className = 'valid';
+			span2_errors.style.display = 'none';
+		}
+		catch (err) {
+			span2.className = 'invalid';
+			span2_errors.style.display = 'block';
+			span2_errors.innerHTML = err;
+		}
 	};
 
 	var b = document.getElementById('b');
