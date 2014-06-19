@@ -13,6 +13,8 @@ var coords = {
 		"Attack 2":         [128,  31,   255,  79],
 		"Attack 3":         [  0,  80,   127, 127],
 		"Attack 4":         [128,  80,   255, 127],
+		"Rotate Left":      [  0, 151,    79, 191],
+		"Rotate Right":     [ 80, 151,   159, 191],
 		"Cancel":           [175, 143,   255, 191],
 	},
 	"Double battle": {
