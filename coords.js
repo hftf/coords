@@ -216,7 +216,7 @@ function draw() {
 		span2.className = '';
 		span2_errors.style.display = 'none';
 	};
-	span2.onchange = function(e) {
+	var update_overlaps = function() {
 		try {
 			list_overlaps(text2coords(span2.value));
 			span2.className = 'valid';
@@ -228,6 +228,7 @@ function draw() {
 			span2_errors.innerHTML = err;
 		}
 	};
+	span2.onchange = span2.onkeyup = update_overlaps;
 
 	var b = document.getElementById('b');
 	var toc = document.getElementById('toc');
