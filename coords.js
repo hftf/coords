@@ -90,11 +90,13 @@ function set_state(el, state) {
 }
 
 function list_overlaps(r) {
-	var span2 = document.getElementById('coords2'), rekt, inside, input,
+	var span2 = document.getElementById('coords2'),
+		overlaps = document.getElementById('overlaps'),
+		rekt, inside, input,
 		gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 
-	span2.innerHTML = r.fx + ',' + r.fy;
-	span2.parentNode.parentNode.style.display = 'block';
+	span2.value = r.fx + ',' + r.fy;
+	overlaps.style.display = 'block';
 
 	for (category in coords) {
 		for (menu in coords[category]) {
@@ -126,6 +128,16 @@ function mouse2coords(e) {
 		fx = Math.floor(x / 2),
 		fy = Math.floor(y / 2);
 
+	return { x: x, y: y, fx: fx, fy: fy };
+}
+
+function text2coords(s) {
+	var m = s.match(/^(\d+),(\d+)$/);
+	if (!m) return;
+	var fx = ~~m[1],
+		fy = ~~m[2],
+		x = fx * 2,
+		y = fy * 2;
 	return { x: x, y: y, fx: fx, fy: fy };
 }
 
@@ -192,6 +204,11 @@ function draw() {
 	};
 	main.onclick = function(e) {
 		list_overlaps(mouse2coords(e));
+	};
+	
+	var span2 = document.getElementById('coords2');
+	span2.onchange = function(e) {
+		list_overlaps(text2coords(span2.value));
 	};
 
 	var b = document.getElementById('b');
