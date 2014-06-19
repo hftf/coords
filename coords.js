@@ -89,6 +89,33 @@ function set_state(el, state) {
 	recomposite_main();
 }
 
+function list_overlaps(r) {
+	var span2 = document.getElementById('coords2'), rekt, inside, input,
+		gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
+
+	span2.innerHTML = r.fx + ',' + r.fy;
+	span2.parentNode.parentNode.style.display = 'block';
+
+	for (category in coords) {
+		for (menu in coords[category]) {
+			for (rekt in coords[category][menu]) {
+				x1y1 = coords[category][menu][rekt];
+				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
+				if (inside) {
+					var id = category + menu + rekt;
+					input = document.getElementById(id);
+					gathered[input.dataset.state].push('<a href="#' + id + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
+				}
+			}
+		}
+	}
+	for (var i in gathered) {
+		var el = document.getElementById('overlaps-' + i);
+		el.innerHTML = gathered[i].join('');
+		el.parentNode.style.display = (gathered[i].length === 0) ? 'none' : 'block';
+	}
+}
+
 function format_x1y1(x1, y1, x2, y2) {
 	return '↖ ' + x1 + ',' + y1 + '<br />↘ ' + x2 + ',' + y2;
 }
@@ -152,8 +179,6 @@ function draw() {
 
 	// Click and hover handlers for main canvas
 	var span = document.getElementById('coords');
-	var span2 = document.getElementById('coords2');
-	var overlaps = document.getElementById('overlaps');
 	main.onmousemove = function(e) {
 		var s = '';
 		var r = mouse2coords(e);
@@ -166,30 +191,7 @@ function draw() {
 
 	};
 	main.onclick = function(e) {
-		var r = mouse2coords(e), rekt, inside, input,
-			gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
-
-		span2.innerHTML = r.fx + ',' + r.fy;
-		span2.parentNode.parentNode.style.display = 'block';
-
-		for (category in coords) {
-			for (menu in coords[category]) {
-				for (rekt in coords[category][menu]) {
-					x1y1 = coords[category][menu][rekt];
-					inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
-					if (inside) {
-						var id = category + menu + rekt;
-						input = document.getElementById(id);
-						gathered[input.dataset.state].push('<a href="#' + id + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
-					}
-				}
-			}
-		}
-		for (var i in gathered) {
-			var el = document.getElementById('overlaps-' + i);
-			el.innerHTML = gathered[i].join('');
-			el.parentNode.style.display = (gathered[i].length === 0) ? 'none' : 'block';
-		}
+		list_overlaps(mouse2coords(e));
 	};
 
 	var b = document.getElementById('b');
