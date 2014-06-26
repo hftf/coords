@@ -26,34 +26,6 @@ function rotate_state(e) {
 	set_state(this, next_state[this.dataset.state]);
 }
 
-function example() {
-	reset_all();
-	for (var i = 1; i <= 4; i ++)
-		set_state(document.getElementById('FightAttack ' + i), 'checked');
-	for (var i = 1; i <= 6; i ++)
-		set_state(document.getElementById('PocketItem ' + i), 'indeterminate');
-	return false;
-}
-
-var encode = { 'unchecked': 0, 'checked': 1, 'indeterminate': 2 };
-var decode = { 0: 'unchecked', 1: 'checked', 2: 'indeterminate' };
-function serialize() {
-	var x = {};
-	var l = document.querySelectorAll('.menu input')
-	for (var i = 0; i < l.length; i ++) {
-		var v = l[i], u = encode[v.dataset.state];
-		if(u !== 0)
-			x[v.id] = u;
-	}
-	return JSON.stringify(x);
-}
-function unserialize(s) {
-	reset_all();
-	var x = JSON.parse(s);
-	for (var i in x)
-		set_state(document.getElementById(i), decode[x[i]]);
-}
-
 function reset_all(state) {
 	var state = state || 'unchecked';
 	var inputs = document.querySelectorAll('.menu input');
@@ -154,10 +126,6 @@ function draw() {
 	var key_checkboxes = document.getElementsByClassName('noclick');
 	for (var i in key_checkboxes)
 		key_checkboxes[i].onclick = function() { return false; };
-
-	document.getElementById('example').onclick = example;
-	document.getElementById('export').onclick = function() { window.prompt('Please copy the text below.', serialize()); };
-	document.getElementById('import').onclick = function() { unserialize(window.prompt('Please paste your exported configuration below.', '')); };
 
 	var prefs_chekboxes = document.querySelectorAll('#prefs input');
 	var click_f = function() {
