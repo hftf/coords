@@ -1,9 +1,7 @@
 var Box = {
-	properties: {
-		'checked':       { 'next': 'indeterminate', 'checked': true,  'indeterminate': false, },
-		'indeterminate': { 'next': 'unchecked',     'checked': false, 'indeterminate': true,  },
-		'unchecked':     { 'next': 'checked',       'checked': false, 'indeterminate': false, },
-	},
+	checked:       { next: 'indeterminate', checked: true,  indeterminate: false, },
+	indeterminate: { next: 'unchecked',     checked: false, indeterminate: true,  },
+	unchecked:     { next: 'checked',       checked: false, indeterminate: false, },
 };
 
 var State = (function() {
@@ -68,7 +66,7 @@ var State = (function() {
 			this.state.coords = coords;
 		},
 		setState: function(state) {
-			if (!(state in Box.properties))
+			if (!(state in Box))
 				throw "Invalid state '" + state + "'";
 
 			return function(id) {
@@ -88,21 +86,21 @@ var State = (function() {
 					this.state[state][id] = true;
 
 				el.dataset.state = state;
-				el.checked = Box.properties[state].checked;
-				el.indeterminate = Box.properties[state].indeterminate;
+				el.checked = Box[state].checked;
+				el.indeterminate = Box[state].indeterminate;
 			}.bind(this);
 		},
 	};
 	_State.rotateState = (function(_this) { return function(e) {
 		var currentState = this.dataset.state || 'unchecked';
 
-		_this.setState(Box.properties[currentState]['next'])(this.id);
+		_this.setState(Box[currentState]['next'])(this.id);
 		_this.replaceState();
 		recomposite_main();
 	}; })(_State);
 	_State.rotateStates = (function(_this) { return function(e) {
 		var currentState = this.dataset.state || 'unchecked',
-			state = Box.properties[currentState]['next'],
+			state = Box[currentState]['next'],
 			setState = _this.setState(state);
 
 		setState(this.id);
@@ -113,7 +111,7 @@ var State = (function() {
 		_this.replaceState();
 		recomposite_main();
 	}; })(_State);
-	for (var state in Box.properties)
+	for (var state in Box)
 		_State['set' + state.charAt(0).toUpperCase() + state.slice(1)] = _State.setState(state);
 	return _State;
 })();
