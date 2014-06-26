@@ -59,6 +59,7 @@ var State = (function() {
 			this.setCoords(state.coords);
 			state.checked.map(this.setState('checked'));
 			state.indeterminate.map(this.setState('indeterminate'));
+			recomposite_main();
 		},
 		setGame: function(game) {
 			this.state.game = game;
@@ -97,6 +98,7 @@ var State = (function() {
 
 		_this.setState(Box.properties[currentState]['next'])(this.id);
 		_this.replaceState();
+		recomposite_main();
 	}; })(_State);
 	_State.rotateStates = (function(_this) { return function(e) {
 		var currentState = this.dataset.state || 'unchecked',
@@ -109,11 +111,13 @@ var State = (function() {
 			setState(children[i].id);
 
 		_this.replaceState();
+		recomposite_main();
 	}; })(_State);
 	for (var state in Box.properties)
 		_State['set' + state.charAt(0).toUpperCase() + state.slice(1)] = _State.setState(state);
 	return _State;
 })();
+function recomposite_main(){}
 
 window.onload = function() {
 	var state = State.setAllFromUrl();
