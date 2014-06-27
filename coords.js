@@ -62,7 +62,7 @@ function set_state(el, state) {
 }
 
 function list_overlaps(r) {
-	var span2 = document.getElementById('coords2'),
+	var span2 = document.getElementById('coords-click'),
 		overlaps = document.getElementById('overlaps'),
 		rekt, inside, input,
 		gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
@@ -164,7 +164,7 @@ function draw() {
 	main_ctx.fillStyle = '#7af';
 
 	// Click and hover handlers for main canvas
-	var span = document.getElementById('coords');
+	var span = document.getElementById('coords-hover');
 	main.onmousemove = function(e) {
 		var s = '';
 		var r = mouse2coords(e);
@@ -176,8 +176,8 @@ function draw() {
 		}
 
 	};
-	var span2 = document.getElementById('coords2'),
-		span2_errors = document.getElementById('coords2-errors');
+	var span2 = document.getElementById('coords-click'),
+		span2_errors = document.getElementById('coords-click-errors');
 
 	main.onclick = function(e) {
 		list_overlaps(mouse2coords(e));

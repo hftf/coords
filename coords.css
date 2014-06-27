@@ -33,25 +33,25 @@ section {
 	height: 100%;
 	overflow-y: auto;
 }
-#coords {
+#coords-hover {
 	padding: 0.1em 0.3em;
 }
-#coords2 {
+#coords-click {
 	margin: 0 0.1em;
 	padding: 0 0.3em;
 	border: 1px solid #aaa;
 	font: inherit;
 	width: 4em;
 }
-#coords2.valid {
+#coords-click.valid {
 	border-color: #ea5;
 	outline-color: #ea5;
 }
-#coords2.invalid {
+#coords-click.invalid {
 	border-color: #d55;
 	outline-color: #d55;
 }
-#coords2-errors {
+#coords-click-errors {
 	display: none;
 	color: #d55;
 	font-weight: bold;
