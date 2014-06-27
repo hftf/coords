@@ -31,7 +31,7 @@ var State = (function() {
 		},
 
 		setAllFromUrl: function(search) {
-			return this.setAll(this._url2state(search || window.location.search));
+			return this.setAll(this._url2state(search || decodeURIComponent(window.location.search)));
 		},
 		_url2state: function(search) {
 			if (search === '')
