@@ -17,48 +17,11 @@ function new_canvas() {
 
 function to_xywh(x1, y1, x2, y2) { return [x1, y1, x2 - x1 + 1, y2 - y1 + 1]; }
 
-var next_state = {
-	'unchecked': 'checked',
-	'checked': 'indeterminate',
-	'indeterminate': 'unchecked',
-}
-function rotate_state(e) {
-	set_state(this, next_state[this.dataset.state]);
-}
-
 function reset_all(state) {
 	var state = state || 'unchecked';
 	var inputs = document.querySelectorAll('.menu input');
 	for (var i = 0; i < inputs.length; i ++)
 		set_state(inputs[i], state);
-}
-
-function set_states(e) {
-	var children = document.querySelectorAll('input[data-parent="' + this.dataset.id + '"][data-grandparent="' + this.dataset.parent + '"]');
-	var state = next_state[this.dataset.state];
-	set_state(this, state);
-	for (var i = 0; i < children.length; i ++)
-		set_state(children[i], state);
-}
-
-function set_state(el, state) {
-	el.dataset.state = state;
-	switch (state) {
-		case 'unchecked':
-			el.indeterminate = false;
-			el.checked = false;
-			break;
-		case 'checked':
-			el.indeterminate = false;
-			el.checked = true;
-			break;
-		case 'indeterminate':
-			el.indeterminate = true;
-			el.checked = false;
-			break;
-	}
-
-	recomposite_main();
 }
 
 function list_overlaps(r) {
