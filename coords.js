@@ -21,7 +21,7 @@ function reset_all(state) {
 	var state = state || 'unchecked';
 	var inputs = document.querySelectorAll('.menu input');
 	for (var i = 0; i < inputs.length; i ++)
-		set_state(inputs[i], state);
+		State.setState(state)(inputs[i].id);
 }
 
 function list_overlaps(r) {
