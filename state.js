@@ -57,7 +57,6 @@ var State = (function() {
 			this.setCoords(state.coords);
 			state.checked.map(this.setState('checked'));
 			state.indeterminate.map(this.setState('indeterminate'));
-			recomposite_main();
 		},
 		setGame: function(game) {
 			this.state.game = game;
@@ -115,16 +114,18 @@ var State = (function() {
 		_State['set' + state.charAt(0).toUpperCase() + state.slice(1)] = _State.setState(state);
 	return _State;
 })();
-function recomposite_main(){}
 
 window.onload = function() {
-	var state = State.setAllFromUrl();
-	var inputs = document.querySelectorAll('input:not(.parent)');
+	Load.all();
+	State.setAllFromUrl();
+	var inputs = document.querySelectorAll('.menu-list input');
 	for (var i in inputs) {
 		inputs[i].onclick = State.rotateState;
 	}
-	inputs = document.querySelectorAll('input.parent');
+	inputs = document.querySelectorAll('.menu-heading input');
 	for (var i in inputs) {
 		inputs[i].onclick = State.rotateStates;
 	}
+	draw();
+	recomposite_main();
 }

@@ -108,7 +108,3 @@ function recomposite_main() {
 		main_ctx.clearRect.apply(main_ctx, xywh);
 	}
 }
-
-
-
-window.onload = draw;
