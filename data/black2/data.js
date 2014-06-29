@@ -1,4 +1,4 @@
-var game = 'black';
+var game = 'black2';
 var bounds =                [  0,   0,   255, 191];
 var coords = {
 "Battle": {
