@@ -3,9 +3,12 @@
 <head>
 	<meta charset="utf-8" />
 	<title></title>
-	<script src="data/black/data.js"></script>
-	<script src="coords.js"></script>
 	<link rel="stylesheet" type="text/css" href="coords.css" />
+	<script src="data/black/data.js"></script>
+	<script src="state.js"></script>
+	<script src="draw.js"></script>
+	<script src="load.js"></script>
+	<script src="coords.js"></script>
 </head>
 <body class="rekt-small-disabled grid-disabled">
 <section class="if">
@@ -13,9 +16,10 @@
 
 <aside>
 <p><strong>Check</strong> the boxes below to select constraints.
+	<!-- TODO add example URL -->
 	<a href="#" id="example">Example: Fight but avoid items</a><br />
 	As you click, the blue regions update, satisfying the constraints.</p>
-<p>You can also <a href="#" id="export">export</a> and <a href="#" id="import">import</a> your configuration.
+<p>You can share your configuration by copying the URL.
 	<a href="#" onclick="reset_all(); return false">Reset all checkboxes?</a></p>
 </aside>
 
@@ -45,7 +49,7 @@
 </section><!--
 
 --><section class="then">
-<h2>…then I can use these coordinates: <span id="coords"></span></h2>
+<h2>…then I can use these coordinates: <span id="coords-hover"></span></h2>
 
 <p>
 <strong>Click</strong> below for a list of buttons triggered by the clicked coordinate.<br />
@@ -58,8 +62,8 @@
 <canvas id="main" width="512" height="384"></canvas>
 </div>
 
-<p><strong><input type="text" id="coords2" /></strong> clicks these buttons:</p>
-<p id="coords2-errors"></p>
+<p><strong><input type="text" id="coords-click" /></strong> clicks these buttons:</p>
+<p id="coords-click-errors"></p>
 <div id="overlaps" style="display: none;">
 <p><input type="checkbox" class="noclick"  checked /> I want to click this button<br /><span id="overlaps-checked"></span></p>
 <p><input type="checkbox" class="noclick ind"      /> I want to avoid clicking this button<br /><span id="overlaps-indeterminate"></span></p>
