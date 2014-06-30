@@ -169,8 +169,9 @@ var coords = {
 		"Quit":             [151, 168,   255, 191],
 	},
 	"Pokémon Item": {
-		"Give":             [151, 119,   255, 143], // "Read" when holding mail
-		"Take":             [151, 144,   255, 167],
+		"Give":             [151,  95,   255, 119], // "Read" when holding mail
+		"Take":             [151, 120,   255, 143],
+		"Move":             [151, 144,   255, 167],
 		"Quit":             [151, 168,   255, 191],
 	},
 	"Options": {
