@@ -29,7 +29,7 @@ var Draw = (function() {
 			var checkbox_id = parent + menu;
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
-			checkbox.setAttribute('data-id', menu);
+			checkbox.setAttribute('data-self', menu);
 			checkbox.setAttribute('data-parent', parent);
 			checkbox.setAttribute('data-state', 'unchecked');
 			h.appendChild(checkbox);
@@ -72,7 +72,7 @@ var Draw = (function() {
 			var checkbox_id = grandparent + parent + rekt;
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
-			checkbox.setAttribute('data-id', rekt);
+			checkbox.setAttribute('data-self', rekt);
 			checkbox.setAttribute('data-parent', parent);
 			checkbox.setAttribute('data-grandparent', grandparent);
 			checkbox.setAttribute('data-state', 'unchecked');

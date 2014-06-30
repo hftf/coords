@@ -92,7 +92,7 @@ function recomposite_main() {
 	var gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 	for (var i = 0; i < all_inputs.length; i ++) {
 		var input = all_inputs[i];
-		gathered[input.dataset.state].push([input.dataset.id, input.dataset.parent, input.dataset.grandparent]);
+		gathered[input.dataset.state].push([input.dataset.self, input.dataset.parent, input.dataset.grandparent]);
 	}
 
 	main_ctx.clearRect(0, 0, cw, ch);

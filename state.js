@@ -103,7 +103,7 @@ var State = (function() {
 			setState = _this.setState(state);
 
 		setState(this.id);
-		var children = document.querySelectorAll('input[data-parent="' + this.dataset.id + '"][data-grandparent="' + this.dataset.parent + '"]');
+		var children = document.querySelectorAll('input[data-parent="' + this.dataset.self + '"][data-grandparent="' + this.dataset.parent + '"]');
 		for (var i = 0; i < children.length; i ++)
 			setState(children[i].id);
 
