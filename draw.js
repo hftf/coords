@@ -1,9 +1,12 @@
 var Draw = (function() {
 	var _Draw = {
+		_joinIds: function() {
+			return Array.prototype.join.call(arguments, '');
+		},
 		category: function(category) {
 			var div = document.createElement('div'),
 				h = document.createElement('h2'),
-				id = 'category-' + category;
+				id = coords[category].id;
 
 			h.innerHTML = '<strong>' + category + '</strong> screens';
 
@@ -12,7 +15,8 @@ var Draw = (function() {
 			div.appendChild(h);
 
 			for (menu in coords[category])
-				div.appendChild(this.menu(menu, category));
+				if (menu !== 'id')
+					div.appendChild(this.menu(menu, category));
 
 			var a = '<a href="#' + id + '">' + category + '</a>';
 			return [div, a];
@@ -26,7 +30,7 @@ var Draw = (function() {
 			div.setAttribute('class', 'menu-heading');
 
 			var checkbox = document.createElement('input');
-			var checkbox_id = parent + menu;
+			var checkbox_id = this._joinIds(coords[parent].id, coords[parent][menu].id);
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
 			checkbox.setAttribute('data-self', menu);
@@ -55,8 +59,10 @@ var Draw = (function() {
 			var ul = document.createElement('ul');
 
 			for (rekt in coords[category][menu]) {
-				var child_c = this.rekt(rekt, menu, ctx, parent);
-				ul.appendChild(child_c);
+				if (rekt !== 'id') {
+					var child_c = this.rekt(rekt, menu, ctx, parent);
+					ul.appendChild(child_c);
+				}
 			}
 
 			div2.appendChild(ul);
@@ -69,7 +75,7 @@ var Draw = (function() {
 			div.setAttribute('class', 'rekt');
 
 			var checkbox = document.createElement('input');
-			var checkbox_id = grandparent + parent + rekt;
+			var checkbox_id = this._joinIds(coords[grandparent].id, coords[grandparent][parent].id, rekt);
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
 			checkbox.setAttribute('data-self', rekt);

@@ -35,11 +35,13 @@ function list_overlaps(r) {
 
 	for (category in coords) {
 		for (menu in coords[category]) {
+			if (menu === 'id') continue;
 			for (rekt in coords[category][menu]) {
+				if (rekt === 'id') continue;
 				x1y1 = coords[category][menu][rekt].coords;
 				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
 				if (inside) {
-					var id = category + menu + rekt;
+					var id = Draw._joinIds(coords[category].id, coords[category][menu].id, rekt);
 					input = document.getElementById(id);
 					gathered[input.dataset.state].push('<a href="#' + id + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
 				}
