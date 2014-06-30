@@ -85,11 +85,11 @@ var Draw = (function() {
 			div.insertAdjacentHTML('beforeend',
 				'<label for="' + checkbox_id + '">' +
 				'<strong>' + rekt + '</strong>' +
-				'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, coords[category][menu][rekt]) + '</span></small>' +
+				'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, coords[category][menu][rekt].coords) + '</span></small>' +
 				'</label>');
 
 			parent_ctx.fillStyle = color;
-			var xywh = to_xywh.apply(null, coords[category][menu][rekt]);
+			var xywh = to_xywh.apply(null, coords[category][menu][rekt].coords);
 			parent_ctx.fillRect.apply(parent_ctx, xywh);
 
 			return div;

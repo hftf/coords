@@ -36,7 +36,7 @@ function list_overlaps(r) {
 	for (category in coords) {
 		for (menu in coords[category]) {
 			for (rekt in coords[category][menu]) {
-				x1y1 = coords[category][menu][rekt];
+				x1y1 = coords[category][menu][rekt].coords;
 				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
 				if (inside) {
 					var id = category + menu + rekt;
@@ -99,12 +99,12 @@ function recomposite_main() {
 	main_ctx.globalAlpha = 0.4;
 	for (var i = 0; i < gathered.checked.length; i ++) {
 		var rekt = gathered.checked[i];
-		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]]);
+		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords);
 		main_ctx.fillRect.apply(main_ctx, xywh);
 	}
 	for (var i = 0; i < gathered.indeterminate.length; i ++) {
 		var rekt = gathered.indeterminate[i];
-		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]]);
+		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords);
 		main_ctx.clearRect.apply(main_ctx, xywh);
 	}
 }
