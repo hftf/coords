@@ -117,7 +117,14 @@ var State = (function() {
 
 window.onload = function() {
 	Load.all();
-	State.setAllFromUrl();
+	try {
+		State.setAllFromUrl();
+	}
+	catch (e) {
+		// TODO display error to user?
+		console.error(e);
+	}
+
 	var inputs = document.querySelectorAll('.menu-list input');
 	for (var i in inputs) {
 		inputs[i].onclick = State.rotateState;
