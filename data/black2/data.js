@@ -94,7 +94,7 @@ var coords = {
 "Overworld": {
 	"id": "o",
 	"Overworld": {
-		"id": "o",
+		"id": "a",
 		"Pokémon":          { "id": "p", "coords": [  7,  23,   119,  63] },
 		"Pokédex":          { "id": "d", "coords": [135,  23,   247,  63] },
 		"Bag":              { "id": "b", "coords": [  7,  71,   119, 111] },
@@ -206,6 +206,7 @@ var coords = {
 		"Quit":             { "id": "q", "coords": [151, 168,   255, 191] },
 	},
 	"Options": {
+		"id": "o",
 		"Speed Slow":       { "id": "s", "coords": [111,  23,   159,  47] },
 		"Speed Mid":        { "id": "m", "coords": [160,  23,   207,  47] },
 		"Speed Fast":       { "id": "f", "coords": [208,  23,   255,  47] },
