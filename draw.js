@@ -1,6 +1,9 @@
 var Draw = (function() {
 	var _Draw = {
 		_joinIds: function() {
+			for (var i = 0, prev = coords; i < arguments.length; i ++)
+				arguments[i] = (prev = prev[arguments[i]]).id;
+
 			return Array.prototype.join.call(arguments, '');
 		},
 		category: function(category) {
@@ -30,7 +33,7 @@ var Draw = (function() {
 			div.setAttribute('class', 'menu-heading');
 
 			var checkbox = document.createElement('input');
-			var checkbox_id = this._joinIds(coords[parent].id, coords[parent][menu].id);
+			var checkbox_id = this._joinIds(parent, menu);
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
 			checkbox.setAttribute('data-self', menu);
@@ -75,7 +78,7 @@ var Draw = (function() {
 			div.setAttribute('class', 'rekt');
 
 			var checkbox = document.createElement('input');
-			var checkbox_id = this._joinIds(coords[grandparent].id, coords[grandparent][parent].id, coords[grandparent][parent][rekt].id);
+			var checkbox_id = this._joinIds(grandparent, parent, rekt);
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
 			checkbox.setAttribute('data-self', rekt);

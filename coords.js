@@ -41,7 +41,7 @@ function list_overlaps(r) {
 				x1y1 = coords[category][menu][rekt].coords;
 				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
 				if (inside) {
-					var id = Draw._joinIds(coords[category].id, coords[category][menu].id, coords[category][menu][rekt].id);
+					var id = Draw._joinIds(category, menu, rekt);
 					input = document.getElementById(id);
 					gathered[input.dataset.state].push('<a href="#' + id + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
 				}
