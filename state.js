@@ -42,12 +42,12 @@ var State = (function() {
 		},
 		_url2state: function(search) {
 			if (search === '')
-				window.location.search = '?black';
+				window.location.search = '?' + this.state.game;
 
 			// '?hg;x,y+a,b,c-d,e,f'
 			//                      ? hg           + a,b,c           - d,e,f         ; x,y
 			//                      - --------     - ---------       - --------      - -------
-			var m = search.match(/^\?(hg|black)(?:\+([\wé,. ]+))?(?:-([\wé,. ]+))?(?:;(\d+,\d+))?$/);
+			var m = search.match(/^\?(\w+)(?:\+([\wé,. ]+))?(?:-([\wé,. ]+))?(?:;(\d+,\d+))?$/);
 
 			if (!m)
 				throw 'Invalid query string: ' + search;
