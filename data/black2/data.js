@@ -220,8 +220,8 @@ var coords = {
 		"IR No Save":       { "id": "d", "coords": [184, 120,   255, 143] },
 		"Register":         { "id": "r", "coords": [ 47, 171,    71, 191] },
 		"Quit":             { "id": "q", "coords": [ 79, 167,   103, 191] },
-		"Confirm":          { "id": "c", "coords": [111, 167,   183, 191] },
-		"Cancel":           { "id": "x", "coords": [184, 167,   255, 191] },
+		"Confirm":          { "id": "u", "coords": [111, 167,   183, 191] },
+		"Cancel":           { "id": "x", "coords": [184, 167,   255, 191] }, // Button label is actually "Quit"
 		"Save Yes":         { "id": "y", "coords": [151,  47,   255,  71] },
 		"Save No":          { "id": "n", "coords": [151,  72,   255,  95] },
 	},
