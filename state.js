@@ -7,7 +7,7 @@ var Box = {
 var State = (function() {
 	var _State = {
 		state: {
-			game: undefined,
+			game: game,
 			coords: [],
 			checked: {},
 			indeterminate: {},

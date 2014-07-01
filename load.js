@@ -25,6 +25,17 @@ var Load = (function() {
 				document.body.classList[el.checked ? 'remove' : 'add'](el.id);
 			}
 		},
+		example: function () {
+			var state = { checked: {}, indeterminate: {} }, i;
+
+			for (i = 1; i <= 4; i ++)
+				state.checked['bf' + i] = true;
+			for (i = 1; i <= 6; i ++)
+				state.indeterminate['bq' + i] = true;
+
+			var url = State.getUrl(state);
+			document.getElementById('example').href = url;
+		},
 
 		grid: function() {
 			var grid = document.getElementById('grid');
@@ -101,6 +112,7 @@ var Load = (function() {
 			this.indeterminates();
 			this.unclickables();
 			this.preferences();
+			this.example();
 
 			this.grid();
 			this.main_handlers();
