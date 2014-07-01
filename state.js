@@ -7,7 +7,7 @@ var Box = {
 var State = (function() {
 	var _State = {
 		state: {
-			game: undefined,
+			game: game,
 			coords: [],
 			checked: {},
 			indeterminate: {},
@@ -16,11 +16,18 @@ var State = (function() {
 		replaceState: function() {
 			window.history.replaceState(this.state, null, this.getUrl() + window.location.hash);
 		},
-		getUrl: function() {
-			return '?' + [                  this.state.game,
-				this._join('+', Object.keys(this.state.checked).sort()),
-				this._join('-', Object.keys(this.state.indeterminate).sort()),
-				this._join(';',             this.state.coords),
+		getUrl: function(state) {
+			if (state === undefined)
+				state = this.state;
+			else
+				for (var i in this.state)
+					if (state[i] === undefined)
+						state[i] = this.state[i];
+
+			return '?' + [                  state.game,
+				this._join('+', Object.keys(state.checked).sort()),
+				this._join('-', Object.keys(state.indeterminate).sort()),
+				this._join(';',             state.coords),
 			].join('');
 		},
 		_split: function(s) {
@@ -103,7 +110,7 @@ var State = (function() {
 			setState = _this.setState(state);
 
 		setState(this.id);
-		var children = document.querySelectorAll('input[data-parent="' + this.dataset.id + '"][data-grandparent="' + this.dataset.parent + '"]');
+		var children = document.querySelectorAll('input[data-parent="' + this.dataset.self + '"][data-grandparent="' + this.dataset.parent + '"]');
 		for (var i = 0; i < children.length; i ++)
 			setState(children[i].id);
 
@@ -117,7 +124,14 @@ var State = (function() {
 
 window.onload = function() {
 	Load.all();
-	State.setAllFromUrl();
+	try {
+		State.setAllFromUrl();
+	}
+	catch (e) {
+		// TODO display error to user?
+		console.error(e);
+	}
+
 	var inputs = document.querySelectorAll('.menu-list input');
 	for (var i in inputs) {
 		inputs[i].onclick = State.rotateState;

@@ -35,11 +35,13 @@ function list_overlaps(r) {
 
 	for (category in coords) {
 		for (menu in coords[category]) {
+			if (menu === 'id') continue;
 			for (rekt in coords[category][menu]) {
-				x1y1 = coords[category][menu][rekt];
+				if (rekt === 'id') continue;
+				x1y1 = coords[category][menu][rekt].coords;
 				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
 				if (inside) {
-					var id = category + menu + rekt;
+					var id = Draw._joinIds(coords[category].id, coords[category][menu].id, coords[category][menu][rekt].id);
 					input = document.getElementById(id);
 					gathered[input.dataset.state].push('<a href="#' + id + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
 				}
@@ -92,19 +94,19 @@ function recomposite_main() {
 	var gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 	for (var i = 0; i < all_inputs.length; i ++) {
 		var input = all_inputs[i];
-		gathered[input.dataset.state].push([input.dataset.id, input.dataset.parent, input.dataset.grandparent]);
+		gathered[input.dataset.state].push([input.dataset.self, input.dataset.parent, input.dataset.grandparent]);
 	}
 
 	main_ctx.clearRect(0, 0, cw, ch);
 	main_ctx.globalAlpha = 0.4;
 	for (var i = 0; i < gathered.checked.length; i ++) {
 		var rekt = gathered.checked[i];
-		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]]);
+		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords);
 		main_ctx.fillRect.apply(main_ctx, xywh);
 	}
 	for (var i = 0; i < gathered.indeterminate.length; i ++) {
 		var rekt = gathered.indeterminate[i];
-		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]]);
+		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords);
 		main_ctx.clearRect.apply(main_ctx, xywh);
 	}
 }
