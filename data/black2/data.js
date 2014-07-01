@@ -1,5 +1,12 @@
 var game = 'black2';
 var bounds =                [  0,   0,   255, 191];
+var ref_key = {
+	"\\w{3}":	"ID of button",
+	"END":		"End of flow",
+	"NEW":		"Unimplemented (TODO)",
+	"   ":		"Unknown (FIXME)",
+};
+
 var coords = {
 "Battle": {
 	"id": "b",
