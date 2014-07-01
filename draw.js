@@ -75,7 +75,7 @@ var Draw = (function() {
 			div.setAttribute('class', 'rekt');
 
 			var checkbox = document.createElement('input');
-			var checkbox_id = this._joinIds(coords[grandparent].id, coords[grandparent][parent].id, rekt);
+			var checkbox_id = this._joinIds(coords[grandparent].id, coords[grandparent][parent].id, coords[grandparent][parent][rekt].id);
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
 			checkbox.setAttribute('data-self', rekt);
