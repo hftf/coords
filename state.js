@@ -16,11 +16,18 @@ var State = (function() {
 		replaceState: function() {
 			window.history.replaceState(this.state, null, this.getUrl() + window.location.hash);
 		},
-		getUrl: function() {
-			return '?' + [                  this.state.game,
-				this._join('+', Object.keys(this.state.checked).sort()),
-				this._join('-', Object.keys(this.state.indeterminate).sort()),
-				this._join(';',             this.state.coords),
+		getUrl: function(state) {
+			if (state === undefined)
+				state = this.state;
+			else
+				for (var i in this.state)
+					if (state[i] === undefined)
+						state[i] = this.state[i];
+
+			return '?' + [                  state.game,
+				this._join('+', Object.keys(state.checked).sort()),
+				this._join('-', Object.keys(state.indeterminate).sort()),
+				this._join(';',             state.coords),
 			].join('');
 		},
 		_split: function(s) {
