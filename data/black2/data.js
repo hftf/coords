@@ -155,7 +155,7 @@ var coords = {
 		"Free space":       { "id": "f", "coords": [151, 144,   255, 167] },
 		"Cancel":           { "id": "x", "coords": [151, 168,   255, 191] },
 	},
-	"TM Teach": {
+	"TM teach": {
 		"id": "l",
 		"Move 1":           { "id": "1", "coords": [  7,  15,   143,  47] },
 		"Move 2":           { "id": "2", "coords": [  7,  48,   143,  80] },
