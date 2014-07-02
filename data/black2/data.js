@@ -23,8 +23,17 @@ var coords = {
 		"Attack 2":         { "id": "2", "coords": [128,  31,   255,  79], "ref": "bd"  },
 		"Attack 3":         { "id": "3", "coords": [  0,  80,   127, 127], "ref": "bd"  },
 		"Attack 4":         { "id": "4", "coords": [128,  80,   255, 127], "ref": "bd"  },
-		"Rotate Left":      { "id": "j", "coords": [  0, 151,    79, 191], "ref": "   " },
-		"Rotate Right":     { "id": "k", "coords": [ 80, 151,   159, 191], "ref": "   " },
+		"Shift":            { "id": "s", "coords": [  0, 143,    79, 191], "ref": "END" }, // Triple battle
+		"Cancel":           { "id": "x", "coords": [175, 143,   255, 191], "ref": "bb"  },
+	},
+	"Rotation battle": {
+		"id": "r",
+		"Attack 1":         { "id": "1", "coords": [  0,  31,   127,  79], "ref": "bt"  },
+		"Attack 2":         { "id": "2", "coords": [128,  31,   255,  79], "ref": "bt"  },
+		"Attack 3":         { "id": "3", "coords": [  0,  80,   127, 127], "ref": "bt"  },
+		"Attack 4":         { "id": "4", "coords": [128,  80,   255, 127], "ref": "bt"  },
+		"Rotate Left":      { "id": "j", "coords": [  0, 151,    79, 191], "ref": "END" },
+		"Rotate Right":     { "id": "k", "coords": [ 80, 151,   159, 191], "ref": "END" },
 		"Cancel":           { "id": "x", "coords": [175, 143,   255, 191], "ref": "bb"  },
 	},
 	"Double battle": {
@@ -34,6 +43,16 @@ var coords = {
 		"Ally 1":           { "id": "a", "coords": [  0,  88,   126, 127], "ref": "END" },
 		"Ally 2":           { "id": "b", "coords": [127,  88,   255, 127], "ref": "END" },
 		"Cancel":           { "id": "x", "coords": [175, 143,   255, 191], "ref": "bf"  },
+	},
+	"Triple battle": {
+		"id": "t",
+		"Foe 1":            { "id": "1", "coords": [  7,  31,    86,  87], "ref": "END" },
+		"Foe 2":            { "id": "2", "coords": [ 87,  31,   166,  87], "ref": "END" },
+		"Foe 3":            { "id": "3", "coords": [167,  31,   247,  87], "ref": "END" },
+		"Ally 1":           { "id": "a", "coords": [  7,  88,    87, 127], "ref": "END" },
+		"Ally 2":           { "id": "b", "coords": [ 88,  88,   167, 127], "ref": "END" },
+		"Ally 3":           { "id": "c", "coords": [168,  88,   247, 127], "ref": "END" },
+		"Cancel":           { "id": "x", "coords": [175, 143,   255, 191], "ref": "br"  },
 	},
 	"Bag": {
 		"id": "g",
