@@ -227,10 +227,13 @@ var coords = {
 		"IR No Save":       { "id": "d", "coords": [184, 120,   255, 143], "ref": "   " },
 		"Register":         { "id": "r", "coords": [ 47, 171,    71, 191], "ref": "   " },
 		"Quit":             { "id": "q", "coords": [ 79, 167,   103, 191], "ref": "   " },
-		"Confirm":          { "id": "u", "coords": [111, 167,   183, 191], "ref": "   " },
-		"Cancel":           { "id": "x", "coords": [184, 167,   255, 191], "ref": "   " }, // Button label is actually "Quit"
-		"Save Yes":         { "id": "y", "coords": [151,  47,   255,  71], "ref": "   " },
-		"Save No":          { "id": "n", "coords": [151,  72,   255,  95], "ref": "   " },
+		"Confirm":          { "id": "u", "coords": [111, 167,   183, 191], "ref": "END" },
+		"Cancel":           { "id": "x", "coords": [184, 167,   255, 191], "ref": "oO"  }, // Button label is actually "Quit"
+	},
+	"Options save": {
+		"id": "O",
+		"Save Yes":         { "id": "y", "coords": [151,  47,   255,  71], "ref": "END" },
+		"Save No":          { "id": "n", "coords": [151,  72,   255,  95], "ref": "END" },
 	},
 },
 "C-Gear": {
@@ -409,9 +412,12 @@ var coords = {
 		"Snivy":            { "id": "A", "coords": [ 33,  63,    85, 115], "ref": "   " },
 		"Tepig":            { "id": "B", "coords": [102,  63,   153, 115], "ref": "   " },
 		"Oshawott":         { "id": "C", "coords": [173,  63,   225, 115], "ref": "   " },
-		"Pick":             { "id": "p", "coords": [ 71, 167,   182, 191], "ref": "   " },
-		"Pick Yes":         { "id": "y", "coords": [183,  87,   255, 111], "ref": "   " },
-		"Pick No":          { "id": "x", "coords": [183, 112,   255, 135], "ref": "   " },
+		"Pick":             { "id": "p", "coords": [ 71, 167,   182, 191], "ref": "zS"  },
+	},
+	"Starters pick": {
+		"id": "S",
+		"Pick Yes":         { "id": "y", "coords": [183,  87,   255, 111], "ref": "END" },
+		"Pick No":          { "id": "x", "coords": [183, 112,   255, 135], "ref": "zs"  },
 	},
 },
 };
