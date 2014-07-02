@@ -23,8 +23,9 @@ function draw() {
 					continue;
 
 				if (to === 'END' || to === 'NEW') {
-					to += '-' + rekt_id;
-					g.addNode(to, { label: '' });
+					to += '-' + menu_id;
+					if (!(to in g._nodes))
+						g.addNode(to);
 				}
 
 				if (!(from in edges))
