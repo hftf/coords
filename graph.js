@@ -17,26 +17,33 @@ function draw() {
 
 				rekt_id = Draw._joinIds(category, menu, rekt);
 				from = menu_id;
-				to = coords[category][menu][rekt].ref;
+				tos = coords[category][menu][rekt].ref;
+				//
+				if (typeof tos === 'string')
+					tos = [tos];
+				//
+				for (var i = 0; i < tos.length; i ++) {
+					var to = tos[i], edge_id = rekt_id + to;
 
-				if (to === '   ')
-					continue;
+					if (to === '   ')
+						continue;
 
-				if (to === 'END' || to === 'NEW') {
-					to += '-' + menu_id;
-					if (!(to in g._nodes))
-						g.addNode(to);
+					if (to === 'END' || to === 'NEW') {
+						to += '-' + menu_id;
+						if (!(to in g._nodes))
+							g.addNode(to);
+					}
+
+					if (to === from)
+						continue;
+
+					if (!(from in edges))
+						edges[from] = {};
+					if (!(to in edges[from]))
+						edges[from][to] = [edge_id, from, to, { label: [rekt] }];
+					else
+						edges[from][to][3].label.push(rekt);
 				}
-
-				if (to === from)
-					continue;
-
-				if (!(from in edges))
-					edges[from] = {};
-				if (!(to in edges[from]))
-					edges[from][to] = [rekt_id, from, to, { label: [rekt] }];
-				else
-					edges[from][to][3].label.push(rekt);
 			}
 		}
 	}
