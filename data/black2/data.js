@@ -228,7 +228,10 @@ var coords = {
 		"Register":         { "id": "r", "coords": [ 47, 171,    71, 191], "ref": "   " },
 		"Quit":             { "id": "q", "coords": [ 79, 167,   103, 191], "ref": "   " },
 		"Confirm":          { "id": "u", "coords": [111, 167,   183, 191], "ref": "   " },
-		"Cancel":           { "id": "x", "coords": [184, 167,   255, 191], "ref": "   " }, // Button label is actually "Quit"
+		"Cancel":           { "id": "x", "coords": [184, 167,   255, 191], "ref": "oO"  }, // Button label is actually "Quit"
+	},
+	"Options save": {
+		"id": "O",
 		"Save Yes":         { "id": "y", "coords": [151,  47,   255,  71], "ref": "   " },
 		"Save No":          { "id": "n", "coords": [151,  72,   255,  95], "ref": "   " },
 	},
