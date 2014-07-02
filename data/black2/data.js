@@ -412,7 +412,10 @@ var coords = {
 		"Snivy":            { "id": "A", "coords": [ 33,  63,    85, 115], "ref": "   " },
 		"Tepig":            { "id": "B", "coords": [102,  63,   153, 115], "ref": "   " },
 		"Oshawott":         { "id": "C", "coords": [173,  63,   225, 115], "ref": "   " },
-		"Pick":             { "id": "p", "coords": [ 71, 167,   182, 191], "ref": "   " },
+		"Pick":             { "id": "p", "coords": [ 71, 167,   182, 191], "ref": "zS"  },
+	},
+	"Starters pick": {
+		"id": "S",
 		"Pick Yes":         { "id": "y", "coords": [183,  87,   255, 111], "ref": "   " },
 		"Pick No":          { "id": "x", "coords": [183, 112,   255, 135], "ref": "   " },
 	},
