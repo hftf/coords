@@ -23,8 +23,17 @@ var coords = {
 		"Attack 2":         { "id": "2", "coords": [128,  31,   255,  79], "ref": "bd"  },
 		"Attack 3":         { "id": "3", "coords": [  0,  80,   127, 127], "ref": "bd"  },
 		"Attack 4":         { "id": "4", "coords": [128,  80,   255, 127], "ref": "bd"  },
-		"Rotate Left":      { "id": "j", "coords": [  0, 151,    79, 191], "ref": "   " },
-		"Rotate Right":     { "id": "k", "coords": [ 80, 151,   159, 191], "ref": "   " },
+		"Shift":            { "id": "s", "coords": [  0, 143,    79, 191], "ref": "END" }, // Triple battle
+		"Cancel":           { "id": "x", "coords": [175, 143,   255, 191], "ref": "bb"  },
+	},
+	"Rotation battle": {
+		"id": "r",
+		"Attack 1":         { "id": "1", "coords": [  0,  31,   127,  79], "ref": "bd"  },
+		"Attack 2":         { "id": "2", "coords": [128,  31,   255,  79], "ref": "bd"  },
+		"Attack 3":         { "id": "3", "coords": [  0,  80,   127, 127], "ref": "bd"  },
+		"Attack 4":         { "id": "4", "coords": [128,  80,   255, 127], "ref": "bd"  },
+		"Rotate Left":      { "id": "j", "coords": [  0, 151,    79, 191], "ref": "END" },
+		"Rotate Right":     { "id": "k", "coords": [ 80, 151,   159, 191], "ref": "END" },
 		"Cancel":           { "id": "x", "coords": [175, 143,   255, 191], "ref": "bb"  },
 	},
 	"Double battle": {
@@ -33,6 +42,16 @@ var coords = {
 		"Foe 2":            { "id": "2", "coords": [127,  31,   255,  87], "ref": "END" },
 		"Ally 1":           { "id": "a", "coords": [  0,  88,   126, 127], "ref": "END" },
 		"Ally 2":           { "id": "b", "coords": [127,  88,   255, 127], "ref": "END" },
+		"Cancel":           { "id": "x", "coords": [175, 143,   255, 191], "ref": "bf"  },
+	},
+	"Triple battle": {
+		"id": "t",
+		"Foe 1":            { "id": "1", "coords": [  7,  31,    86,  87], "ref": "END" },
+		"Foe 2":            { "id": "2", "coords": [ 87,  31,   166,  87], "ref": "END" },
+		"Foe 3":            { "id": "3", "coords": [167,  31,   247,  87], "ref": "END" },
+		"Ally 1":           { "id": "a", "coords": [  7,  88,    87, 127], "ref": "END" },
+		"Ally 2":           { "id": "b", "coords": [ 88,  88,   167, 127], "ref": "END" },
+		"Ally 3":           { "id": "c", "coords": [168,  88,   247, 127], "ref": "END" },
 		"Cancel":           { "id": "x", "coords": [175, 143,   255, 191], "ref": "bf"  },
 	},
 	"Bag": {
@@ -226,11 +245,14 @@ var coords = {
 		"IR Save":          { "id": "D", "coords": [111, 120,   183, 143], "ref": "   " },
 		"IR No Save":       { "id": "d", "coords": [184, 120,   255, 143], "ref": "   " },
 		"Register":         { "id": "r", "coords": [ 47, 171,    71, 191], "ref": "   " },
-		"Quit":             { "id": "q", "coords": [ 79, 167,   103, 191], "ref": "END" },
-		"Confirm":          { "id": "u", "coords": [111, 167,   183, 191], "ref": "   " },
-		"Cancel":           { "id": "x", "coords": [184, 167,   255, 191], "ref": "oa"  }, // Button label is actually "Quit"
-		"Save Yes":         { "id": "y", "coords": [151,  47,   255,  71], "ref": "   " },
-		"Save No":          { "id": "n", "coords": [151,  72,   255,  95], "ref": "   " },
+		"Quit":             { "id": "q", "coords": [ 79, 167,   103, 191], "ref": "   " },
+		"Confirm":          { "id": "u", "coords": [111, 167,   183, 191], "ref": "END" },
+		"Cancel":           { "id": "x", "coords": [184, 167,   255, 191], "ref": "oO"  }, // Button label is actually "Quit"
+	},
+	"Options save": {
+		"id": "O",
+		"Save Yes":         { "id": "y", "coords": [151,  47,   255,  71], "ref": "END" },
+		"Save No":          { "id": "n", "coords": [151,  72,   255,  95], "ref": "END" },
 	},
 },
 "C-Gear": {
@@ -409,9 +431,12 @@ var coords = {
 		"Snivy":            { "id": "A", "coords": [ 33,  63,    85, 115], "ref": "   " },
 		"Tepig":            { "id": "B", "coords": [102,  63,   153, 115], "ref": "   " },
 		"Oshawott":         { "id": "C", "coords": [173,  63,   225, 115], "ref": "   " },
-		"Pick":             { "id": "p", "coords": [ 71, 167,   182, 191], "ref": "   " },
-		"Pick Yes":         { "id": "y", "coords": [183,  87,   255, 111], "ref": "   " },
-		"Pick No":          { "id": "x", "coords": [183, 112,   255, 135], "ref": "   " },
+		"Pick":             { "id": "p", "coords": [ 71, 167,   182, 191], "ref": "zS"  },
+	},
+	"Starters pick": {
+		"id": "S",
+		"Pick Yes":         { "id": "y", "coords": [183,  87,   255, 111], "ref": "END" },
+		"Pick No":          { "id": "x", "coords": [183, 112,   255, 135], "ref": "zs"  },
 	},
 },
 };
