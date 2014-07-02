@@ -28,6 +28,9 @@ function draw() {
 						g.addNode(to);
 				}
 
+				if (to === from)
+					continue;
+
 				if (!(from in edges))
 					edges[from] = {};
 				if (!(to in edges[from]))
