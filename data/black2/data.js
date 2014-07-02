@@ -95,7 +95,7 @@ var coords = {
 		"Slot 2":           { "id": "2", "coords": [127, 151,   166, 166], "ref": "bm"  },
 		"Slot 3":           { "id": "3", "coords": [ 87, 167,   126, 182], "ref": "bm"  },
 		"Slot 4":           { "id": "4", "coords": [127, 167,   166, 182], "ref": "bm"  },
-		"Cancel":           { "id": "x", "coords": [215, 151,   255, 191], "ref": "bs"  },
+		"Cancel":           { "id": "x", "coords": [215, 151,   255, 191], "ref": "bc"  },
 	},
 },
 "Overworld": {
