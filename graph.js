@@ -61,7 +61,8 @@ function draw() {
 		svgNodes.attr("id", function(u) { return "node-" + u; });
 		return svgNodes;
 	});
-	renderer.run(g, d3.select("svg g"));
+	var layout = dagreD3.layout().rankSep(60).nodeSep(20).edgeSep(20);
+	renderer.layout(layout).run(g, d3.select("svg g"));
 }
 
 window.onload = draw;
