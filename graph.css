@@ -3,7 +3,7 @@ body {
 }
 
 .node rect {
-	stroke-width: 2px;
+	stroke-width: 1.5px;
 	stroke: #333;
 	fill: #fff;
 }
