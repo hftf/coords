@@ -18,14 +18,18 @@ function draw() {
 				rekt_id = Draw._joinIds(category, menu, rekt);
 				from = menu_id;
 				tos = coords[category][menu][rekt].ref;
-				//
+
 				if (typeof tos === 'string')
 					tos = [tos];
-				//
+
 				for (var i = 0; i < tos.length; i ++) {
 					var to = tos[i], edge_id = rekt_id + to;
 
 					if (to === '   ')
+						continue;
+
+					if ((rekt ==='Cancel' && coords[category][menu][rekt].id === 'x') ||
+						(rekt === 'Quit' && to !== 'END'))
 						continue;
 
 					if (to === 'END' || to === 'NEW') {
