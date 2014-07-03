@@ -78,15 +78,24 @@ var Load = (function() {
 				coords_click_errors = document.getElementById('coords-click-errors');
 
 			main.onclick = function(e) {
-				list_overlaps(mouse2coords(e));
+				var r = mouse2coords(e);
+				list_overlaps(r);
 				coords_click.className = '';
 				coords_click_errors.style.display = 'none';
+
+				State.setCoords([r.fx, r.fy]);
+				State.replaceState();
 			};
 			coords_click.onchange = function(e) {
+				var r;
 				try {
-					list_overlaps(text2coords(coords_click.value));
+					r = text2coords(coords_click.value);
+					list_overlaps(r);
 					coords_click.className = 'valid';
 					coords_click_errors.style.display = 'none';
+
+					State.setCoords([r.fx, r.fy]);
+					State.replaceState();
 				}
 				catch (err) {
 					coords_click.className = 'invalid';
