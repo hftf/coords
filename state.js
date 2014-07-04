@@ -56,12 +56,20 @@ var State = (function() {
 				game:                      m[1] ,      // 'hg'
 				checked:       this._split(m[2]),      // ['a', 'b', 'c']
 				indeterminate: this._split(m[3]),      // ['d', 'e', 'f']
-				coords:        this._split(m[4]),      // ['x', 'y']
+				coords:                    m[4],       // 'x,y'
 			};
 		},
 		setAll: function(state) {
 			this.setGame(state.game);
-			this.setCoords(state.coords);
+			if (state.coords !== undefined)
+				try {
+					var r = text2coords(state.coords);
+					this.setCoords([r.fx, r.fy]);
+					list_overlaps(r);
+				}
+				catch (e) {
+					console.error(e);
+				}
 			state.checked.map(this.setState('checked'));
 			state.indeterminate.map(this.setState('indeterminate'));
 		},
