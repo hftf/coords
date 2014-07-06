@@ -130,7 +130,7 @@ var State = (function() {
 	return _State;
 })();
 
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
 	Load.all();
 	try {
 		State.setAllFromUrl();
@@ -150,4 +150,4 @@ window.onload = function() {
 	}
 	draw();
 	recomposite_main();
-}
+});
