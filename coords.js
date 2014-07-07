@@ -22,6 +22,7 @@ function reset_all(state) {
 	var inputs = document.querySelectorAll('.menu input');
 	for (var i = 0; i < inputs.length; i ++)
 		State.setState(state)(inputs[i].id);
+	State.replaceState();
 }
 
 function list_overlaps(r) {
