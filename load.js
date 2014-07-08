@@ -62,8 +62,16 @@ var Load = (function() {
 			main_ctx.scale(2, 2);
 			main_ctx.fillStyle = '#7af';
 
+			var click = document.getElementById('click');
+			click_ctx = click.getContext('2d');
+			click_ctx.fillStyle = '#b66';
+			click_ctx.scale(2, 2);
+			click_ctx.clear = function() {
+				this.clearRect.apply(this, to_xywh.apply(null, bounds));
+			};
+
 			var coords_hover = document.getElementById('coords-hover');
-			main.onmousemove = function(e) {
+			click.onmousemove = function(e) {
 				var s = '';
 				var r = mouse2coords(e);
 
@@ -77,7 +85,7 @@ var Load = (function() {
 			var coords_click = document.getElementById('coords-click'),
 				coords_click_errors = document.getElementById('coords-click-errors');
 
-			main.onclick = function(e) {
+			click.onclick = function(e) {
 				var r = mouse2coords(e);
 				list_overlaps(r);
 				coords_click.className = '';

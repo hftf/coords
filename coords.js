@@ -4,7 +4,7 @@ var palette = [
 	'rgb( 88,150, 62)', 'rgb(237,185, 52)', 'rgb( 85, 78,148)', 'rgb(255,198,187)', 'rgb(128,128,  0)', 'rgb(128 , 0, 64)', 'rgb(255,255,195)'
 ];
 
-var b, current_color, all_inputs, main_ctx,
+var b, current_color, all_inputs, main_ctx, click_ctx,
 	cw = bounds[2] - bounds[0] + 1;
 	ch = bounds[3] - bounds[1] + 1;
 
@@ -28,11 +28,16 @@ function reset_all(state) {
 function list_overlaps(r) {
 	var span2 = document.getElementById('coords-click'),
 		overlaps = document.getElementById('overlaps'),
-		rekt, inside, input,
+		rekt, inside, input, x1y1,
 		gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 
 	span2.value = r.fx + ',' + r.fy;
 	overlaps.style.display = 'block';
+
+	click_ctx.clear();
+	click_ctx.fillRect(r.fx - 2, r.fy, 5, 1);
+	click_ctx.fillRect(r.fx, r.fy - 2, 1, 5);
+	click_ctx.clearRect(r.fx, r.fy, 1, 1);
 
 	for (category in coords) {
 		for (menu in coords[category]) {
