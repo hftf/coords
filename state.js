@@ -65,7 +65,6 @@ var State = (function() {
 				try {
 					var r = text2coords(state.coords);
 					this.setCoords(r);
-					list_overlaps(r);
 				}
 				catch (e) {
 					console.error(e);
@@ -82,6 +81,7 @@ var State = (function() {
 					bounds[0] + ',' + bounds[1] + ' to ' + bounds[2] + ',' + bounds[3] + '.';
 
 			this.state.coords = coords;
+			list_overlaps(coords);
 		},
 		setState: function(state) {
 			if (!(state in Box))
