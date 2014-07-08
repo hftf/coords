@@ -126,10 +126,14 @@ var Load = (function() {
 					if (r.length === 0)
 						return;
 
-					State.setCoords(r.map(function(v, i) {
-						return v + deltas[key][i];
-					}));
-					State.replaceState();
+					try {
+						State.setCoords(r.map(function(v, i) {
+							return v + deltas[key][i];
+						}));
+						State.replaceState();
+					}
+					catch (e) {
+					}
 					e.preventDefault();
 				}
 			};
