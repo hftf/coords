@@ -56,7 +56,7 @@ var Draw = (function() {
 
 			var img = document.createElement('img'),
 				src = 'data/' + game + '/screens/' + parent + '/' + menu + '.png';
-			img.onerror = this.error;
+			img.onerror = this.error.bind(div);
 			img.setAttribute('src', src);
 			layers.appendChild(img);
 
@@ -110,11 +110,9 @@ var Draw = (function() {
 			return div;
 		},
 		error: function(e) {
-			var div = this.parentNode.parentNode;
-			div.insertAdjacentHTML('beforeend',
+			this.insertAdjacentHTML('beforeend',
 				'<p class="contrib-image"><a href="https://github.com/hftf/coords/issues/42">Contribute this screen</a></p>'
 			);
-			console.log(this, e);
 		},
 	};
 
