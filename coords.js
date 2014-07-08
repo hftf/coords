@@ -59,6 +59,7 @@ function list_overlaps(r) {
 	for (category in coords) {
 		for (menu in coords[category]) {
 			if (menu === 'id') continue;
+			if ('desc' in coords[category][menu]) continue;
 			for (rekt in coords[category][menu]) {
 				if (rekt === 'id') continue;
 				x1y1 = coords[category][menu][rekt].coords;
