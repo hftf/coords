@@ -129,6 +129,7 @@ var Load = (function() {
 					State.setCoords(r.map(function(v, i) {
 						return v + deltas[key][i];
 					}));
+					State.replaceState();
 					e.preventDefault();
 				}
 			};
