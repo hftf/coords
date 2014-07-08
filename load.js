@@ -64,7 +64,7 @@ var Load = (function() {
 
 			var click = document.getElementById('click');
 			click_ctx = click.getContext('2d');
-			click_ctx.fillStyle = '#b66';
+			click_ctx.fillStyle = '#222';
 			click_ctx.scale(2, 2);
 			click_ctx.clear = function() {
 				this.clearRect.apply(this, to_xywh.apply(null, bounds));
