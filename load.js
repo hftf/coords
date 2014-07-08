@@ -122,7 +122,11 @@ var Load = (function() {
 			document.body.onkeydown = function(e) {
 				var key = e.keyCode;
 				if (key in deltas) {
-					State.setCoords(State.state.coords.map(function(v, i) {
+					var r = State.state.coords;
+					if (r.length === 0)
+						return;
+
+					State.setCoords(r.map(function(v, i) {
 						return v + deltas[key][i];
 					}));
 					e.preventDefault();
