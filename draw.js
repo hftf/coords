@@ -52,13 +52,14 @@ var Draw = (function() {
 
 			var layers = document.createElement('div');
 			layers.setAttribute('class', 'layers');
-			layers.appendChild(c);
 
 			var img = document.createElement('img'),
 				src = 'data/' + game + '/screens/' + parent + '/' + menu + '.png';
 			img.onerror = this.error.bind(div);
 			img.setAttribute('src', src);
 			layers.appendChild(img);
+
+			layers.appendChild(c);
 
 			div.appendChild(layers);
 			section.appendChild(div);
