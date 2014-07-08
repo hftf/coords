@@ -77,6 +77,10 @@ var State = (function() {
 			this.state.game = game;
 		},
 		setCoords: function(coords) {
+			if (coords[0] < bounds[0] || coords[0] > bounds[2] || coords[1] < bounds[1] || coords[1] > bounds[3])
+				throw 'Coordinate out of bounds. Bounds are from ' +
+					bounds[0] + ',' + bounds[1] + ' to ' + bounds[2] + ',' + bounds[3] + '.';
+
 			this.state.coords = coords;
 		},
 		setState: function(state) {

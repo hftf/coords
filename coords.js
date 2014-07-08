@@ -83,9 +83,6 @@ function text2coords(s) {
 		fy = ~~m[2],
 		x = fx * 2,
 		y = fy * 2;
-	if (fx < bounds[0] || fx > bounds[2] || fy < bounds[1] || fy > bounds[3])
-		throw 'Coordinate out of bounds. Bounds are from ' +
-			bounds[0] + ',' + bounds[1] + ' to ' + bounds[2] + ',' + bounds[3] + '.';
 
 	return { x: x, y: y, fx: fx, fy: fy };
 }
