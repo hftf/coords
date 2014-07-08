@@ -44,7 +44,9 @@ var Draw = (function() {
 			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + '</label>');
 
 			if ('desc' in coords[category][menu]) {
-				div2.innerHTML = coords[category][menu].desc;
+				var html = '“' + coords[category][menu].desc + '”';
+				html += '<p class="contrib-screen"><a href="https://github.com/hftf/coords/issues/41">Contribute this screen</a></p>';
+				div2.innerHTML = html;
 			}
 			else {
 				var checkbox = document.createElement('input');

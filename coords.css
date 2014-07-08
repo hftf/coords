@@ -84,7 +84,7 @@ section {
 .menu-heading .layers img { opacity: 0; }
 .menu-heading .layers:hover img { opacity: 1; }
 
-.contrib-image {
+.contrib-image, .contrib-screen {
 	font-size: 0.8em;
 }
 
