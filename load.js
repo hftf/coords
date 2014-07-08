@@ -75,9 +75,9 @@ var Load = (function() {
 				var s = '';
 				var r = mouse2coords(e);
 
-				if (r.x >= 0 && r.y >= 0) {
-					var d = main_ctx.getImageData(~~r.x, ~~r.y, 1, 1).data;
-					coords_hover.innerHTML = r.fx + ',' + r.fy;
+				if (r[0] >= 0 && r[1] >= 0) {
+					var d = main_ctx.getImageData(2 * r[0], 2 * r[1], 1, 1).data;
+					coords_hover.innerHTML = r[0] + ',' + r[1];
 					coords_hover.style.backgroundColor = 'rgba(' + d[0] + ',' + d[1] + ',' + d[2] + ',' + (d[3]/255) + ')';
 				}
 
@@ -91,7 +91,7 @@ var Load = (function() {
 				coords_click.className = '';
 				coords_click_errors.style.display = 'none';
 
-				State.setCoords([r.fx, r.fy]);
+				State.setCoords(r);
 				State.replaceState();
 			};
 			coords_click.onchange = function(e) {
@@ -102,7 +102,7 @@ var Load = (function() {
 					coords_click.className = 'valid';
 					coords_click_errors.style.display = 'none';
 
-					State.setCoords([r.fx, r.fy]);
+					State.setCoords(r);
 					State.replaceState();
 				}
 				catch (err) {

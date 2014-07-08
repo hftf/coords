@@ -31,13 +31,13 @@ function list_overlaps(r) {
 		rekt, inside, input, x1y1,
 		gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 
-	span2.value = r.fx + ',' + r.fy;
+	span2.value = r[0] + ',' + r[1];
 	overlaps.style.display = 'block';
 
 	click_ctx.clear();
-	click_ctx.fillRect(r.fx - 2, r.fy, 5, 1);
-	click_ctx.fillRect(r.fx, r.fy - 2, 1, 5);
-	click_ctx.clearRect(r.fx, r.fy, 1, 1);
+	click_ctx.fillRect (r[0] - 2, r[1],     5, 1);
+	click_ctx.fillRect (r[0],     r[1] - 2, 1, 5);
+	click_ctx.clearRect(r[0],     r[1],     1, 1);
 
 	for (category in coords) {
 		for (menu in coords[category]) {
@@ -45,7 +45,7 @@ function list_overlaps(r) {
 			for (rekt in coords[category][menu]) {
 				if (rekt === 'id') continue;
 				x1y1 = coords[category][menu][rekt].coords;
-				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
+				inside = (x1y1[0] <= r[0]) && (r[0] <= x1y1[2]) && (x1y1[1] <= r[1]) && (r[1] <= x1y1[3]);
 				if (inside) {
 					var id = Draw._joinIds(category, menu, rekt);
 					input = document.getElementById(id);
@@ -71,7 +71,7 @@ function mouse2coords(e) {
 		fx = Math.floor(x / 2),
 		fy = Math.floor(y / 2);
 
-	return { x: x, y: y, fx: fx, fy: fy };
+	return [fx, fy];
 }
 
 function text2coords(s) {
@@ -84,7 +84,7 @@ function text2coords(s) {
 		x = fx * 2,
 		y = fy * 2;
 
-	return { x: x, y: y, fx: fx, fy: fy };
+	return [fx, fy];
 }
 
 function draw() {

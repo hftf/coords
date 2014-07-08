@@ -64,7 +64,7 @@ var State = (function() {
 			if (state.coords !== undefined)
 				try {
 					var r = text2coords(state.coords);
-					this.setCoords([r.fx, r.fy]);
+					this.setCoords(r);
 					list_overlaps(r);
 				}
 				catch (e) {
