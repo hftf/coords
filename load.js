@@ -112,6 +112,23 @@ var Load = (function() {
 				}
 			};
 		},
+		key_handlers: function() {
+			var deltas = {
+				37: [-1,  0],
+				38: [ 0, -1],
+				39: [ 1,  0],
+				40: [ 0,  1],
+			};
+			document.body.onkeydown = function(e) {
+				var key = e.keyCode;
+				if (key in deltas) {
+					State.setCoords(State.state.coords.map(function(v, i) {
+						return v + deltas[key][i];
+					}));
+					e.preventDefault();
+				}
+			};
+		},
 
 		categories_toc: function() {
 			var b = document.getElementById('b'),
@@ -133,6 +150,7 @@ var Load = (function() {
 
 			this.grid();
 			this.main_handlers();
+			this.key_handlers();
 
 			this.categories_toc();
 		}
