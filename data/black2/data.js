@@ -116,6 +116,22 @@ var coords = {
 		"Slot 4":           { "id": "4", "coords": [127, 167,   166, 182], "ref": "bm"  },
 		"Cancel":           { "id": "x", "coords": [215, 151,   255, 191], "ref": "bs"  },
 	},
+	"Nickname?": {
+		"id": "n",
+		"desc": "Give a nickname to the caught Pokémon?",
+	},
+	"Delete?": {
+		"id": "o",
+		"desc": "Delete a move to make room?",
+	},
+	"Stop trying?": {
+		"id": "r",
+		"desc": "Stop trying to learn the new move?",
+	},
+	"Forget": {
+		"id": "e",
+		"desc": "Which move should be forgotten?",
+	},
 },
 "Overworld": {
 	"id": "o",
