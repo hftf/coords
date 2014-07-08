@@ -25,6 +25,9 @@ function reset_all(state) {
 	State.replaceState();
 }
 
+function scale(x, y, w, h) {
+	return [this * x, this * y, this * w, this * h];
+}
 function list_overlaps(r) {
 	var span2 = document.getElementById('coords-click'),
 		overlaps = document.getElementById('overlaps'),
@@ -35,9 +38,10 @@ function list_overlaps(r) {
 	overlaps.style.display = 'block';
 
 	click_ctx.clear();
-	click_ctx.fillRect (r[0] - 2, r[1],     5, 1);
-	click_ctx.fillRect (r[0],     r[1] - 2, 1, 5);
-	click_ctx.clearRect(r[0],     r[1],     1, 1);
+	click_ctx.fillRect .apply(click_ctx, scale.call(4, r[0] - 2,    r[1] + 0.25, 5,   0.5));
+	click_ctx.fillRect .apply(click_ctx, scale.call(4, r[0] + 0.25, r[1] - 2,    0.5, 5  ));
+	click_ctx.fillRect .apply(click_ctx, scale.call(4, r[0] - 0.25, r[1] - 0.25, 1.5, 1.5));
+	click_ctx.clearRect.apply(click_ctx, scale.call(4, r[0],        r[1],        1,   1  ));
 
 	for (category in coords) {
 		for (menu in coords[category]) {
@@ -100,16 +104,16 @@ function recomposite_main() {
 		gathered[input.dataset.state].push([input.dataset.self, input.dataset.parent, input.dataset.grandparent]);
 	}
 
-	main_ctx.clearRect(0, 0, cw, ch);
+	main_ctx.clearRect.apply(main_ctx, scale.call(4, 0, 0, cw, ch));
 	main_ctx.globalAlpha = 0.4;
 	for (var i = 0; i < gathered.checked.length; i ++) {
 		var rekt = gathered.checked[i];
-		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords);
+		var xywh = scale.apply(4, to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords));
 		main_ctx.fillRect.apply(main_ctx, xywh);
 	}
 	for (var i = 0; i < gathered.indeterminate.length; i ++) {
 		var rekt = gathered.indeterminate[i];
-		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords);
+		var xywh = scale.apply(4, to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords));
 		main_ctx.clearRect.apply(main_ctx, xywh);
 	}
 }

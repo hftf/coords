@@ -59,15 +59,13 @@ var Load = (function() {
 		main_handlers: function() {
 			var main = document.getElementById('main');
 			main_ctx = main.getContext('2d');
-			main_ctx.scale(2, 2);
 			main_ctx.fillStyle = '#7af';
 
 			var click = document.getElementById('click');
 			click_ctx = click.getContext('2d');
 			click_ctx.fillStyle = '#222';
-			click_ctx.scale(2, 2);
 			click_ctx.clear = function() {
-				this.clearRect.apply(this, to_xywh.apply(null, bounds));
+				this.clearRect.apply(this, scale.apply(4, to_xywh.apply(null, bounds)));
 			};
 
 			var coords_hover = document.getElementById('coords-hover');
