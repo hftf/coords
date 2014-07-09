@@ -41,6 +41,7 @@ var Draw = (function() {
 
 			section.appendChild(div);
 			section.appendChild(div2);
+			var checkbox_id = this._joinIds(parent, menu);
 			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + '</label>');
 
 			if ('desc' in coords[category][menu]) {
@@ -50,7 +51,6 @@ var Draw = (function() {
 			}
 			else {
 				var checkbox = document.createElement('input');
-				var checkbox_id = this._joinIds(parent, menu);
 				checkbox.setAttribute('type', 'checkbox');
 				checkbox.setAttribute('id', checkbox_id);
 				checkbox.setAttribute('data-self', menu);
