@@ -69,8 +69,8 @@ var State = (function() {
 				catch (e) {
 					console.error(e);
 				}
-			state.checked.map(this.setState('checked'));
-			state.indeterminate.map(this.setState('indeterminate'));
+			state.checked.map(this.setState.checked);
+			state.indeterminate.map(this.setState.indeterminate);
 		},
 		setGame: function(game) {
 			this.state.game = game;
@@ -85,16 +85,8 @@ var State = (function() {
 		setState: function(state, el) {
 			if (!(state in Box))
 				throw "Invalid state '" + state + "'";
-				
-			if (el) {
-				// Immediate call
-				return this._setState(state, el);
-			} else {
-				// Partial call
-				return function(el) {
-					return this._setState(state, el);
-				}.bind(this);
-			}
+
+			return this._setState(state, el);
 		},
 		_setState: function(state, el) {
 			var id;
@@ -147,7 +139,7 @@ var State = (function() {
 	_State.rotateStates = (function(_this) { return function(e) {
 		var currentState = this.dataset.state || 'unchecked',
 			state = Box[currentState]['next'],
-			setState = _this.setState(state);
+			setState = _this.setState[state];
 
 		setState(this);
 		var children = document.querySelectorAll('input[data-parent="' + this.dataset.self + '"][data-grandparent="' + this.dataset.parent + '"]');
@@ -179,7 +171,10 @@ var State = (function() {
 		rotateStates:  wrap(_State.rotateStates, true),
 	};
 	for (var state in Box)
-		State['set' + state.charAt(0).toUpperCase() + state.slice(1)] = State.setState(state);
+		_State.setState[state] = (function(state) {
+			return function(el) { return this.setState(state, el); }.bind(_State);
+		})(state);
+
 	return State;
 })();
 
