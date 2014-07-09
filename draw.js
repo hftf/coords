@@ -27,49 +27,63 @@ var Draw = (function() {
 		menu: function(menu, parent) {
 			// Heading
 			var section = document.createElement('div'),
-				div = document.createElement('div');
-				h = document.createElement('h3');
+				div = document.createElement('div'),
+				h = document.createElement('h3'),
+				div2 = document.createElement('div');
 			section.setAttribute('class', 'menu');
 			div.setAttribute('class', 'menu-heading');
-
-			var checkbox = document.createElement('input');
-			var checkbox_id = this._joinIds(parent, menu);
-			checkbox.setAttribute('type', 'checkbox');
-			checkbox.setAttribute('id', checkbox_id);
-			checkbox.setAttribute('data-self', menu);
-			checkbox.setAttribute('data-parent', parent);
-			checkbox.setAttribute('data-state', 'unchecked');
-			h.appendChild(checkbox);
-			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + '</label>');
-			div.appendChild(h);
-
-			// Reset
-			current_color = 0;
-
-			var c = new_canvas();
-			var ctx = c.getContext('2d');
-			ctx.globalCompositeOperation = 'dest-over';
+			div2.setAttribute('class', 'menu-list');
 
 			var layers = document.createElement('div');
 			layers.setAttribute('class', 'layers');
-			layers.appendChild(c);
-			layers.insertAdjacentHTML('afterbegin', '<img src="data/' + game + '/screens/' + parent + '/' + menu + '.png">');
+			div.appendChild(h);
 			div.appendChild(layers);
+
 			section.appendChild(div);
-
-			var div2 = document.createElement('div');
-			div2.setAttribute('class', 'menu-list');
-			var ul = document.createElement('ul');
-
-			for (rekt in coords[category][menu]) {
-				if (rekt !== 'id') {
-					var child_c = this.rekt(rekt, menu, ctx, parent);
-					ul.appendChild(child_c);
-				}
-			}
-
-			div2.appendChild(ul);
 			section.appendChild(div2);
+			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + '</label>');
+
+			if ('desc' in coords[category][menu]) {
+				var html = '“' + coords[category][menu].desc + '”';
+				html += '<p class="contrib-screen"><a href="https://github.com/hftf/coords/issues/41">Contribute this screen</a></p>';
+				div2.innerHTML = html;
+			}
+			else {
+				var checkbox = document.createElement('input');
+				var checkbox_id = this._joinIds(parent, menu);
+				checkbox.setAttribute('type', 'checkbox');
+				checkbox.setAttribute('id', checkbox_id);
+				checkbox.setAttribute('data-self', menu);
+				checkbox.setAttribute('data-parent', parent);
+				checkbox.setAttribute('data-state', 'unchecked');
+				h.insertBefore(checkbox, h.firstChild);
+
+				// Reset
+				current_color = 0;
+
+				var c = new_canvas();
+				var ctx = c.getContext('2d');
+				ctx.globalCompositeOperation = 'dest-over';
+
+				var img = document.createElement('img'),
+					src = 'data/' + game + '/screens/' + parent + '/' + menu + '.png';
+				img.onerror = this.error.bind(div);
+				img.setAttribute('src', src);
+				layers.appendChild(img);
+
+				layers.appendChild(c);
+
+				var ul = document.createElement('ul');
+
+				for (rekt in coords[category][menu]) {
+					if (rekt !== 'id') {
+						var child_c = this.rekt(rekt, menu, ctx, parent);
+						ul.appendChild(child_c);
+					}
+				}
+
+				div2.appendChild(ul);
+			}
 			return section;
 		},
 		rekt: function(rekt, parent, parent_ctx, grandparent) {
@@ -102,6 +116,11 @@ var Draw = (function() {
 			parent_ctx.fillRect.apply(parent_ctx, xywh);
 
 			return div;
+		},
+		error: function(e) {
+			this.insertAdjacentHTML('beforeend',
+				'<p class="contrib-image"><a href="https://github.com/hftf/coords/issues/42">Contribute this screen</a></p>'
+			);
 		},
 	};
 

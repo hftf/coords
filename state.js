@@ -56,12 +56,19 @@ var State = (function() {
 				game:                      m[1] ,      // 'hg'
 				checked:       this._split(m[2]),      // ['a', 'b', 'c']
 				indeterminate: this._split(m[3]),      // ['d', 'e', 'f']
-				coords:        this._split(m[4]),      // ['x', 'y']
+				coords:                    m[4],       // 'x,y'
 			};
 		},
 		setAll: function(state) {
 			this.setGame(state.game);
-			this.setCoords(state.coords);
+			if (state.coords !== undefined)
+				try {
+					var r = text2coords(state.coords);
+					this.setCoords(r);
+				}
+				catch (e) {
+					console.error(e);
+				}
 			state.checked.map(this.setState('checked'));
 			state.indeterminate.map(this.setState('indeterminate'));
 		},
@@ -69,7 +76,12 @@ var State = (function() {
 			this.state.game = game;
 		},
 		setCoords: function(coords) {
+			if (coords[0] < bounds[0] || coords[0] > bounds[2] || coords[1] < bounds[1] || coords[1] > bounds[3])
+				throw 'Coordinate out of bounds. Bounds are from ' +
+					bounds[0] + ',' + bounds[1] + ' to ' + bounds[2] + ',' + bounds[3] + '.';
+
 			this.state.coords = coords;
+			list_overlaps(coords);
 		},
 		setState: function(state) {
 			if (!(state in Box))
@@ -122,7 +134,7 @@ var State = (function() {
 	return _State;
 })();
 
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
 	Load.all();
 	try {
 		State.setAllFromUrl();
@@ -142,4 +154,4 @@ window.onload = function() {
 	}
 	draw();
 	recomposite_main();
-}
+});

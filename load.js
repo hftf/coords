@@ -59,17 +59,23 @@ var Load = (function() {
 		main_handlers: function() {
 			var main = document.getElementById('main');
 			main_ctx = main.getContext('2d');
-			main_ctx.scale(2, 2);
 			main_ctx.fillStyle = '#7af';
 
+			var click = document.getElementById('click');
+			click_ctx = click.getContext('2d');
+			click_ctx.fillStyle = '#222';
+			click_ctx.clear = function() {
+				this.clearRect.apply(this, scale.apply(4, to_xywh.apply(null, bounds)));
+			};
+
 			var coords_hover = document.getElementById('coords-hover');
-			main.onmousemove = function(e) {
+			click.onmousemove = function(e) {
 				var s = '';
 				var r = mouse2coords(e);
 
-				if (r.x >= 0 && r.y >= 0) {
-					var d = main_ctx.getImageData(~~r.x, ~~r.y, 1, 1).data;
-					coords_hover.innerHTML = r.fx + ',' + r.fy;
+				if (r[0] >= 0 && r[1] >= 0) {
+					var d = main_ctx.getImageData(2 * r[0], 2 * r[1], 1, 1).data;
+					coords_hover.innerHTML = r[0] + ',' + r[1];
 					coords_hover.style.backgroundColor = 'rgba(' + d[0] + ',' + d[1] + ',' + d[2] + ',' + (d[3]/255) + ')';
 				}
 
@@ -77,21 +83,56 @@ var Load = (function() {
 			var coords_click = document.getElementById('coords-click'),
 				coords_click_errors = document.getElementById('coords-click-errors');
 
-			main.onclick = function(e) {
-				list_overlaps(mouse2coords(e));
+			click.onclick = function(e) {
+				var r = mouse2coords(e);
+				list_overlaps(r);
 				coords_click.className = '';
 				coords_click_errors.style.display = 'none';
+
+				State.setCoords(r);
+				State.replaceState();
 			};
 			coords_click.onchange = function(e) {
+				var r;
 				try {
-					list_overlaps(text2coords(coords_click.value));
+					r = text2coords(coords_click.value);
+					list_overlaps(r);
 					coords_click.className = 'valid';
 					coords_click_errors.style.display = 'none';
+
+					State.setCoords(r);
+					State.replaceState();
 				}
 				catch (err) {
 					coords_click.className = 'invalid';
 					coords_click_errors.style.display = 'block';
 					coords_click_errors.innerHTML = err;
+				}
+			};
+		},
+		key_handlers: function() {
+			var deltas = {
+				37: [-1,  0],
+				38: [ 0, -1],
+				39: [ 1,  0],
+				40: [ 0,  1],
+			};
+			document.body.onkeydown = function(e) {
+				var key = e.keyCode;
+				if (key in deltas) {
+					var r = State.state.coords;
+					if (r.length === 0)
+						return;
+
+					try {
+						State.setCoords(r.map(function(v, i) {
+							return v + deltas[key][i];
+						}));
+						State.replaceState();
+					}
+					catch (e) {
+					}
+					e.preventDefault();
 				}
 			};
 		},
@@ -116,6 +157,7 @@ var Load = (function() {
 
 			this.grid();
 			this.main_handlers();
+			this.key_handlers();
 
 			this.categories_toc();
 		}

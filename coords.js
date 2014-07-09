@@ -4,7 +4,7 @@ var palette = [
 	'rgb( 88,150, 62)', 'rgb(237,185, 52)', 'rgb( 85, 78,148)', 'rgb(255,198,187)', 'rgb(128,128,  0)', 'rgb(128 , 0, 64)', 'rgb(255,255,195)'
 ];
 
-var b, current_color, all_inputs, main_ctx,
+var b, current_color, all_inputs, main_ctx, click_ctx,
 	cw = bounds[2] - bounds[0] + 1;
 	ch = bounds[3] - bounds[1] + 1;
 
@@ -22,24 +22,48 @@ function reset_all(state) {
 	var inputs = document.querySelectorAll('.menu input');
 	for (var i = 0; i < inputs.length; i ++)
 		State.setState(state)(inputs[i].id);
+	State.replaceState();
+}
+
+function scale(x, y, w, h) {
+	return [this * x, this * y, this * w, this * h];
+}
+var crosshair_dpr = {
+	1: function(r) { return [
+		[r[0] - 2,    r[1],        5,   1  ],
+		[r[0],        r[1] - 2,    1,   5  ],
+		[r[0] - 0.5,  r[1] - 0.5,  2,   2  ],
+	]; },
+	2: function(r) { return [
+		[r[0] - 2,    r[1] + 0.25, 5,   0.5],
+		[r[0] + 0.25, r[1] - 2,    0.5, 5  ],
+		[r[0] - 0.25, r[1] - 0.25, 1.5, 1.5],
+	]; },
 }
 
 function list_overlaps(r) {
 	var span2 = document.getElementById('coords-click'),
 		overlaps = document.getElementById('overlaps'),
-		rekt, inside, input,
+		rekt, inside, input, x1y1,
 		gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 
-	span2.value = r.fx + ',' + r.fy;
+	span2.value = r[0] + ',' + r[1];
 	overlaps.style.display = 'block';
+
+	click_ctx.clear();
+	crosshair_dpr[window.devicePixelRatio](r).forEach(function(v) {
+		click_ctx.fillRect.apply(click_ctx, scale.apply(4, v));
+	});
+	click_ctx.clearRect.apply(click_ctx, scale.call(4, r[0], r[1], 1, 1));
 
 	for (category in coords) {
 		for (menu in coords[category]) {
 			if (menu === 'id') continue;
+			if ('desc' in coords[category][menu]) continue;
 			for (rekt in coords[category][menu]) {
 				if (rekt === 'id') continue;
 				x1y1 = coords[category][menu][rekt].coords;
-				inside = (x1y1[0] <= r.fx) && (r.fx <= x1y1[2]) && (x1y1[1] <= r.fy) && (r.fy <= x1y1[3]);
+				inside = (x1y1[0] <= r[0]) && (r[0] <= x1y1[2]) && (x1y1[1] <= r[1]) && (r[1] <= x1y1[3]);
 				if (inside) {
 					var id = Draw._joinIds(category, menu, rekt);
 					input = document.getElementById(id);
@@ -65,7 +89,7 @@ function mouse2coords(e) {
 		fx = Math.floor(x / 2),
 		fy = Math.floor(y / 2);
 
-	return { x: x, y: y, fx: fx, fy: fy };
+	return [fx, fy];
 }
 
 function text2coords(s) {
@@ -77,11 +101,8 @@ function text2coords(s) {
 		fy = ~~m[2],
 		x = fx * 2,
 		y = fy * 2;
-	if (fx < bounds[0] || fx > bounds[2] || fy < bounds[1] || fy > bounds[3])
-		throw 'Coordinate out of bounds. Bounds are from ' +
-			bounds[0] + ',' + bounds[1] + ' to ' + bounds[2] + ',' + bounds[3] + '.';
 
-	return { x: x, y: y, fx: fx, fy: fy };
+	return [fx, fy];
 }
 
 function draw() {
@@ -97,16 +118,16 @@ function recomposite_main() {
 		gathered[input.dataset.state].push([input.dataset.self, input.dataset.parent, input.dataset.grandparent]);
 	}
 
-	main_ctx.clearRect(0, 0, cw, ch);
+	main_ctx.clearRect.apply(main_ctx, scale.call(4, 0, 0, cw, ch));
 	main_ctx.globalAlpha = 0.4;
 	for (var i = 0; i < gathered.checked.length; i ++) {
 		var rekt = gathered.checked[i];
-		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords);
+		var xywh = scale.apply(4, to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords));
 		main_ctx.fillRect.apply(main_ctx, xywh);
 	}
 	for (var i = 0; i < gathered.indeterminate.length; i ++) {
 		var rekt = gathered.indeterminate[i];
-		var xywh = to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords);
+		var xywh = scale.apply(4, to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords));
 		main_ctx.clearRect.apply(main_ctx, xywh);
 	}
 }

@@ -100,9 +100,9 @@ var coords = {
 	"Check moves": { // Almost the same as "Summary"
 		"id": "c",
 		"Move 1":           { "id": "1", "coords": [  0,  47,   126,  94], "ref": "bm"  },
-		"Move 2":           { "id": "2", "coords": [127,  47,   253,  94], "ref": "bm"  },
+		"Move 2":           { "id": "2", "coords": [127,  47,   255,  94], "ref": "bm"  },
 		"Move 3":           { "id": "3", "coords": [  0,  95,   126, 142], "ref": "bm"  },
-		"Move 4":           { "id": "4", "coords": [127,  95,   253, 142], "ref": "bm"  },
+		"Move 4":           { "id": "4", "coords": [127,  95,   255, 142], "ref": "bm"  },
 		"Previous":         { "id": "j", "coords": [  0, 151,    38, 191], "ref": "bc"  },
 		"Next":             { "id": "k", "coords": [ 39, 151,    78, 191], "ref": "bc"  },
 		"Summary":          { "id": "w", "coords": [ 95, 151,   198, 191], "ref": "NEW" },
@@ -115,6 +115,35 @@ var coords = {
 		"Slot 3":           { "id": "3", "coords": [ 87, 167,   126, 182], "ref": "bm"  },
 		"Slot 4":           { "id": "4", "coords": [127, 167,   166, 182], "ref": "bm"  },
 		"Cancel":           { "id": "x", "coords": [215, 151,   255, 191], "ref": "bc"  },
+	},
+	"Nickname": {
+		"id": "n",
+		"Yes":              { "id": "y", "coords": [  0,  31,   255,  79], "ref": "zk"  },
+		"No":               { "id": "x", "coords": [  0,  80,   255, 127], "ref": "END" },
+	},
+	"Delete move": {
+		"id": "o",
+		"Forget":           { "id": "f", "coords": [  0,  31,   255,  79], "ref": "bl"  },
+		"Keep old":         { "id": "k", "coords": [  0,  80,   255, 127], "ref": "bu"  },
+	},
+	"Give up move": {
+		"id": "u",
+		"Give up":          { "id": "g", "coords": [  0,  31,   255,  79], "ref": "END" },
+		"Don't give up":    { "id": "d", "coords": [  0,  80,   255, 127], "ref": "bo"  },
+	},
+	"Replace move": {
+		"id": "l",
+		"Move 1":           { "id": "1", "coords": [  0,  47,   126,  94], "ref": "be"  },
+		"Move 2":           { "id": "2", "coords": [127,  47,   255,  94], "ref": "be"  },
+		"Move 3":           { "id": "3", "coords": [  0,  95,   126, 142], "ref": "be"  },
+		"Move 4":           { "id": "4", "coords": [127,  95,   255, 142], "ref": "be"  },
+		"New move":         { "id": "m", "coords": [ 63, 143,   190, 191], "ref": "NEW" },
+		"Cancel":           { "id": "x", "coords": [215, 151,   255, 191], "ref": "bo"  },
+	},
+	"Forget move": {
+		"id": "e",
+		"Forget":           { "id": "f", "coords": [  0, 151,   206, 191], "ref": "END" },
+		"Cancel":           { "id": "x", "coords": [215, 151,   255, 191], "ref": "bl"  },
 	},
 },
 "Overworld": {

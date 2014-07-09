@@ -84,6 +84,10 @@ section {
 .menu-heading .layers img { opacity: 0; }
 .menu-heading .layers:hover img { opacity: 1; }
 
+.contrib-image, .contrib-screen {
+	font-size: 0.8em;
+}
+
 .category h2 {
 	margin-top: 2em;
 	border-left: 6px solid #bbb;
