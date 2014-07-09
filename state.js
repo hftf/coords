@@ -69,8 +69,8 @@ var State = (function() {
 				catch (e) {
 					console.error(e);
 				}
-			state.checked.map(this.setState.checked);
-			state.indeterminate.map(this.setState.indeterminate);
+			this.setState('checked', state.checked);
+			this.setState('indeterminate', state.indeterminate);
 		},
 		setGame: function(game) {
 			this.state.game = game;
@@ -86,9 +86,6 @@ var State = (function() {
 			if (!(state in Box))
 				throw "Invalid state '" + state + "'";
 
-			return this._setState(state, el);
-		},
-		_setState: function(state, el) {
 			var id;
 			if (typeof el === "string") {
 				// ID
@@ -98,7 +95,7 @@ var State = (function() {
 			else if (typeof el.length === "number") {
 				// Multiple elements
 				for (var i = 0; i < el.length; i ++)
-					this._setState(state, el[i]);
+					this.setState(state, el[i]);
 				return;
 			}
 			else {
@@ -124,6 +121,18 @@ var State = (function() {
 			el.checked = Box[state].checked;
 			el.indeterminate = Box[state].indeterminate;
 		},
+		rotateState: function(el) {
+			var currentState = el.dataset.state || 'unchecked';
+			this.setState(Box[currentState]['next'], el);
+		},
+		rotateStates: function(el) {
+			var currentState = el.dataset.state || 'unchecked',
+				state = Box[currentState]['next'];
+
+			this.setState(state, el);
+			var children = document.querySelectorAll('input[data-parent="' + el.dataset.self + '"][data-grandparent="' + el.dataset.parent + '"]');
+			this.setState(state, children);
+		},
 		updateState: function(recomposite) {
 			this.replaceState();
 			if (recomposite)
@@ -132,45 +141,23 @@ var State = (function() {
 				list_overlaps(this.state.coords);
 		},
 	};
-	_State.rotateState = (function(_this) { return function(e) {
-		var currentState = this.dataset.state || 'unchecked';
-		_this.setState(Box[currentState]['next'], this);
-	}; })(_State);
-	_State.rotateStates = (function(_this) { return function(e) {
-		var currentState = this.dataset.state || 'unchecked',
-			state = Box[currentState]['next'],
-			setState = _this.setState[state];
 
-		setState(this);
-		var children = document.querySelectorAll('input[data-parent="' + this.dataset.self + '"][data-grandparent="' + this.dataset.parent + '"]');
-		setState(children);
-	}; })(_State);
-	for (var state in Box)
-		_State.setState[state] = (function(state) {
-			return function(el) { return this.setState(state, el); }.bind(_State);
-		})(state);
-
-	var wrap = function(fn, recomposite, ctxt) {
+	var wrap = function(fn, recomposite) {
 		return function() {
-			var result = fn.apply(ctxt || this, arguments);
-			if (typeof result === "function") {
-				return wrap(result, recomposite, ctxt);
-			}
-			else {
-				_State.updateState(recomposite);
-				return result;
-			}
+			var result = fn.apply(_State, arguments);
+			_State.updateState(recomposite);
+			return result;
 		};
 	};
 
 	var State = {
 		getUrl:        _State.getUrl.bind(_State),
-		replaceState:  wrap(_State.replaceState, true, _State),
-		setAll:        wrap(_State.setAll, true, _State),
-		setAllFromUrl: wrap(_State.setAllFromUrl, true, _State),
-		setGame:       wrap(_State.setGame, true, _State),
-		setCoords:     wrap(_State.setCoords, false, _State),
-		setState:      wrap(_State.setState, true, _State),
+		replaceState:  wrap(_State.replaceState, true),
+		setAll:        wrap(_State.setAll, true),
+		setAllFromUrl: wrap(_State.setAllFromUrl, true),
+		setGame:       wrap(_State.setGame, true),
+		setCoords:     wrap(_State.setCoords, false),
+		setState:      wrap(_State.setState, true),
 		rotateState:   wrap(_State.rotateState, true),
 		rotateStates:  wrap(_State.rotateStates, true),
 	};
@@ -183,11 +170,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	var inputs = document.querySelectorAll('.menu-list input');
 	for (var i in inputs) {
-		inputs[i].onclick = State.rotateState;
+		inputs[i].onclick = function() {
+			State.rotateState(this);
+		};
 	}
 	inputs = document.querySelectorAll('.menu-heading input');
 	for (var i in inputs) {
-		inputs[i].onclick = State.rotateStates;
+		inputs[i].onclick = function() {
+			State.rotateStates(this);
+		};
 	}
 
 	draw();
