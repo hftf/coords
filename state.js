@@ -16,6 +16,9 @@ var State = (function() {
 		replaceState: function() {
 			window.history.replaceState(this.state, null, this.getUrl() + window.location.hash);
 		},
+		getCoords: function() {
+			return this.state.coords.slice(0);
+		},
 		getUrl: function(state) {
 			if (state === undefined)
 				state = this.state;
@@ -151,6 +154,7 @@ var State = (function() {
 	};
 
 	var State = {
+		getCoords:     _State.getCoords.bind(_State),
 		getUrl:        _State.getUrl.bind(_State),
 		replaceState:  wrap(_State.replaceState, true),
 		setAll:        wrap(_State.setAll, true),
