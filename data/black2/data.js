@@ -100,9 +100,9 @@ var coords = {
 	"Check moves": { // Almost the same as "Summary"
 		"id": "c",
 		"Move 1":           { "id": "1", "coords": [  0,  47,   126,  94], "ref": "bm"  },
-		"Move 2":           { "id": "2", "coords": [127,  47,   253,  94], "ref": "bm"  },
+		"Move 2":           { "id": "2", "coords": [127,  47,   255,  94], "ref": "bm"  },
 		"Move 3":           { "id": "3", "coords": [  0,  95,   126, 142], "ref": "bm"  },
-		"Move 4":           { "id": "4", "coords": [127,  95,   253, 142], "ref": "bm"  },
+		"Move 4":           { "id": "4", "coords": [127,  95,   255, 142], "ref": "bm"  },
 		"Previous":         { "id": "j", "coords": [  0, 151,    38, 191], "ref": "bc"  },
 		"Next":             { "id": "k", "coords": [ 39, 151,    78, 191], "ref": "bc"  },
 		"Summary":          { "id": "w", "coords": [ 95, 151,   198, 191], "ref": "NEW" },
