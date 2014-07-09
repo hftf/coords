@@ -64,6 +64,8 @@ var State = (function() {
 		},
 		setAll: function(state) {
 			this.setGame(state.game);
+			this.setStates('checked', state.checked);
+			this.setStates('indeterminate', state.indeterminate);
 			if (state.coords !== undefined)
 				try {
 					var r = text2coords(state.coords);
@@ -72,8 +74,6 @@ var State = (function() {
 				catch (e) {
 					console.error(e);
 				}
-			this.setStates('checked', state.checked);
-			this.setStates('indeterminate', state.indeterminate);
 		},
 		setGame: function(game) {
 			this.state.game = game;
