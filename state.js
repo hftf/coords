@@ -145,6 +145,10 @@ var State = (function() {
 		var children = document.querySelectorAll('input[data-parent="' + this.dataset.self + '"][data-grandparent="' + this.dataset.parent + '"]');
 		setState(children);
 	}; })(_State);
+	for (var state in Box)
+		_State.setState[state] = (function(state) {
+			return function(el) { return this.setState(state, el); }.bind(_State);
+		})(state);
 
 	var wrap = function(fn, recomposite, ctxt) {
 		return function() {
@@ -170,10 +174,6 @@ var State = (function() {
 		rotateState:   wrap(_State.rotateState, true),
 		rotateStates:  wrap(_State.rotateStates, true),
 	};
-	for (var state in Box)
-		_State.setState[state] = (function(state) {
-			return function(el) { return this.setState(state, el); }.bind(_State);
-		})(state);
 
 	return State;
 })();
