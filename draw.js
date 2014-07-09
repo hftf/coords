@@ -56,7 +56,7 @@ var Draw = (function() {
 				checkbox.setAttribute('data-self', menu);
 				checkbox.setAttribute('data-parent', parent);
 				checkbox.setAttribute('data-state', 'unchecked');
-				h.insertAdjacentElement('afterbegin', checkbox);
+				h.insertBefore(checkbox, h.firstChild);
 
 				// Reset
 				current_color = 0;
