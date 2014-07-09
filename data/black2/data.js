@@ -116,21 +116,34 @@ var coords = {
 		"Slot 4":           { "id": "4", "coords": [127, 167,   166, 182], "ref": "bm"  },
 		"Cancel":           { "id": "x", "coords": [215, 151,   255, 191], "ref": "bs"  },
 	},
-	"Nickname?": {
+	"Nickname": {
 		"id": "n",
-		"desc": "Give a nickname to the caught Pokémon?",
+		"Yes":              { "id": "y", "coords": [  0,  31,   255,  79], "ref": "zk"  },
+		"No":               { "id": "x", "coords": [  0,  80,   255, 127], "ref": "END" },
 	},
-	"Delete?": {
+	"Delete move": {
 		"id": "o",
-		"desc": "Delete a move to make room?",
+		"Forget":           { "id": "f", "coords": [  0,  31,   255,  79], "ref": "bl"  },
+		"Keep old":         { "id": "k", "coords": [  0,  80,   255, 127], "ref": "bu"  },
 	},
-	"Stop trying?": {
-		"id": "r",
-		"desc": "Stop trying to learn the new move?",
+	"Give up move": {
+		"id": "u",
+		"Give up":          { "id": "g", "coords": [  0,  31,   255,  79], "ref": "END" },
+		"Don't give up":    { "id": "d", "coords": [  0,  80,   255, 127], "ref": "bo"  },
 	},
-	"Forget": {
+	"Replace move": {
+		"id": "l",
+		"Move 1":           { "id": "1", "coords": [  0,  47,   126,  94], "ref": "be"  },
+		"Move 2":           { "id": "2", "coords": [127,  47,   255,  94], "ref": "be"  },
+		"Move 3":           { "id": "3", "coords": [  0,  95,   126, 142], "ref": "be"  },
+		"Move 4":           { "id": "4", "coords": [127,  95,   255, 142], "ref": "be"  },
+		"New move":         { "id": "m", "coords": [ 63, 143,   190, 191], "ref": "NEW" },
+		"Cancel":           { "id": "x", "coords": [215, 151,   255, 191], "ref": "bo"  },
+	},
+	"Forget move": {
 		"id": "e",
-		"desc": "Which move should be forgotten?",
+		"Forget":           { "id": "f", "coords": [  0, 151,   206, 191], "ref": "END" },
+		"Cancel":           { "id": "x", "coords": [215, 151,   255, 191], "ref": "bl"  },
 	},
 },
 "Overworld": {
