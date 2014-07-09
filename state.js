@@ -82,22 +82,36 @@ var State = (function() {
 
 			this.state.coords = coords;
 		},
-		setState: function(state, id) {
+		setState: function(state, el) {
 			if (!(state in Box))
 				throw "Invalid state '" + state + "'";
 				
-			if (id) {
+			if (el) {
 				// Immediate call
-				return this._setState(state, id);
+				return this._setState(state, el);
 			} else {
 				// Partial call
-				return function(id) {
-					return this._setState(state, id);
+				return function(el) {
+					return this._setState(state, el);
 				}.bind(this);
 			}
 		},
-		_setState: function(state, id) {
-			var el = document.getElementById(id);
+		_setState: function(state, el) {
+			var id;
+			if (typeof el === "string") {
+				// ID
+				id = el;
+				el = document.getElementById(id);
+			} else if (typeof el.length === "number") {
+				// Multiple elements
+				for (var i = 0; i < el.length; i ++)
+					this._setState(state, el[i]);
+				return;
+			} else {
+				// Element
+				id = el.id;
+			}
+
 			if (el === null)
 				throw "No element exists with id '" + id + "'";
 
@@ -126,17 +140,16 @@ var State = (function() {
 	};
 	_State.rotateState = (function(_this) { return function(e) {
 		var currentState = this.dataset.state || 'unchecked';
-		_this.setState(Box[currentState]['next'], this.id);
+		_this.setState(Box[currentState]['next'], this);
 	}; })(_State);
 	_State.rotateStates = (function(_this) { return function(e) {
 		var currentState = this.dataset.state || 'unchecked',
 			state = Box[currentState]['next'],
 			setState = _this.setState(state);
 
-		setState(this.id);
+		setState(this);
 		var children = document.querySelectorAll('input[data-parent="' + this.dataset.self + '"][data-grandparent="' + this.dataset.parent + '"]');
-		for (var i = 0; i < children.length; i ++)
-			setState(children[i].id);
+		setState(children);
 	}; })(_State);
 
 	var wrap = function(fn, recomposite, ctxt) {
