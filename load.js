@@ -60,11 +60,15 @@ var Load = (function() {
 			var main = document.getElementById('main');
 			main_ctx = main.getContext('2d');
 			main_ctx.fillStyle = '#7af';
+			
+			var varia = document.getElementById('varia');
+			varia_ctx = varia.getContext('2d');
 
 			var click = document.getElementById('click');
 			click_ctx = click.getContext('2d');
 			click_ctx.fillStyle = '#222';
-			click_ctx.clear = function() {
+			
+			click_ctx.clear = varia_ctx.clear = function() {
 				this.clearRect.apply(this, scale.apply(4, to_xywh.apply(null, bounds)));
 			};
 
