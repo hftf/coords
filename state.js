@@ -102,12 +102,14 @@ var State = (function() {
 				// ID
 				id = el;
 				el = document.getElementById(id);
-			} else if (typeof el.length === "number") {
+			}
+			else if (typeof el.length === "number") {
 				// Multiple elements
 				for (var i = 0; i < el.length; i ++)
 					this._setState(state, el[i]);
 				return;
-			} else {
+			}
+			else {
 				// Element
 				id = el.id;
 			}
@@ -157,7 +159,8 @@ var State = (function() {
 			var result = fn.apply(ctxt || this, arguments);
 			if (typeof result === "function") {
 				return wrap(result, recomposite, ctxt);
-			} else {
+			}
+			else {
 				_State.updateState(recomposite);
 				return result;
 			}
