@@ -81,68 +81,107 @@ var State = (function() {
 					bounds[0] + ',' + bounds[1] + ' to ' + bounds[2] + ',' + bounds[3] + '.';
 
 			this.state.coords = coords;
-			list_overlaps(coords);
 		},
-		setState: function(state) {
+		setState: function(state, el) {
 			if (!(state in Box))
 				throw "Invalid state '" + state + "'";
+				
+			if (el) {
+				// Immediate call
+				return this._setState(state, el);
+			} else {
+				// Partial call
+				return function(el) {
+					return this._setState(state, el);
+				}.bind(this);
+			}
+		},
+		_setState: function(state, el) {
+			var id;
+			if (typeof el === "string") {
+				// ID
+				id = el;
+				el = document.getElementById(id);
+			} else if (typeof el.length === "number") {
+				// Multiple elements
+				for (var i = 0; i < el.length; i ++)
+					this._setState(state, el[i]);
+				return;
+			} else {
+				// Element
+				id = el.id;
+			}
 
-			return function(id) {
-				var el = document.getElementById(id);
-				if (el === null)
-					throw "No element exists with id '" + id + "'";
+			if (el === null)
+				throw "No element exists with id '" + id + "'";
 
-				var currentState = el.dataset.state || 'unchecked';
-				// if (currentState === state)
-				//	throw "Element with id '" + id + "' is already " + state;
+			var currentState = el.dataset.state || 'unchecked';
+			// if (currentState === state)
+			//	throw "Element with id '" + id + "' is already " + state;
 
-				if (currentState in this.state)
-					if (id in this.state[currentState])
-						delete this.state[currentState][id];
+			if (currentState in this.state)
+				if (id in this.state[currentState])
+					delete this.state[currentState][id];
 
-				if (state in this.state)
-					this.state[state][id] = true;
+			if (state in this.state)
+				this.state[state][id] = true;
 
-				el.dataset.state = state;
-				el.checked = Box[state].checked;
-				el.indeterminate = Box[state].indeterminate;
-			}.bind(this);
+			el.dataset.state = state;
+			el.checked = Box[state].checked;
+			el.indeterminate = Box[state].indeterminate;
+		},
+		updateState: function(recomposite) {
+			this.replaceState();
+			if (recomposite)
+				recomposite_main();
+			if (this.state.coords.length)
+				list_overlaps(this.state.coords);
 		},
 	};
 	_State.rotateState = (function(_this) { return function(e) {
 		var currentState = this.dataset.state || 'unchecked';
-
-		_this.setState(Box[currentState]['next'])(this.id);
-		_this.replaceState();
-		recomposite_main();
+		_this.setState(Box[currentState]['next'], this);
 	}; })(_State);
 	_State.rotateStates = (function(_this) { return function(e) {
 		var currentState = this.dataset.state || 'unchecked',
 			state = Box[currentState]['next'],
 			setState = _this.setState(state);
 
-		setState(this.id);
+		setState(this);
 		var children = document.querySelectorAll('input[data-parent="' + this.dataset.self + '"][data-grandparent="' + this.dataset.parent + '"]');
-		for (var i = 0; i < children.length; i ++)
-			setState(children[i].id);
-
-		_this.replaceState();
-		recomposite_main();
+		setState(children);
 	}; })(_State);
+
+	var wrap = function(fn, recomposite, ctxt) {
+		return function() {
+			var result = fn.apply(ctxt || this, arguments);
+			if (typeof result === "function") {
+				return wrap(result, recomposite, ctxt);
+			} else {
+				_State.updateState(recomposite);
+				return result;
+			}
+		};
+	};
+
+	var State = {
+		getUrl:        _State.getUrl.bind(_State),
+		replaceState:  wrap(_State.replaceState, true, _State),
+		setAll:        wrap(_State.setAll, true, _State),
+		setAllFromUrl: wrap(_State.setAllFromUrl, true, _State),
+		setGame:       wrap(_State.setGame, true, _State),
+		setCoords:     wrap(_State.setCoords, false, _State),
+		setState:      wrap(_State.setState, true, _State),
+		rotateState:   wrap(_State.rotateState, true),
+		rotateStates:  wrap(_State.rotateStates, true),
+	};
 	for (var state in Box)
-		_State['set' + state.charAt(0).toUpperCase() + state.slice(1)] = _State.setState(state);
-	return _State;
+		State['set' + state.charAt(0).toUpperCase() + state.slice(1)] = State.setState(state);
+	return State;
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
 	Load.all();
-	try {
-		State.setAllFromUrl();
-	}
-	catch (e) {
-		// TODO display error to user?
-		console.error(e);
-	}
 
 	var inputs = document.querySelectorAll('.menu-list input');
 	for (var i in inputs) {
@@ -152,6 +191,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	for (var i in inputs) {
 		inputs[i].onclick = State.rotateStates;
 	}
+
 	draw();
-	recomposite_main();
+	try {
+		State.setAllFromUrl();
+	}
+	catch (e) {
+		// TODO display error to user?
+		console.error(e);
+	}
 });

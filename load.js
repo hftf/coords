@@ -85,23 +85,19 @@ var Load = (function() {
 
 			click.onclick = function(e) {
 				var r = mouse2coords(e);
-				list_overlaps(r);
 				coords_click.className = '';
 				coords_click_errors.style.display = 'none';
 
 				State.setCoords(r);
-				State.replaceState();
 			};
 			coords_click.onchange = function(e) {
 				var r;
 				try {
 					r = text2coords(coords_click.value);
-					list_overlaps(r);
 					coords_click.className = 'valid';
 					coords_click_errors.style.display = 'none';
 
 					State.setCoords(r);
-					State.replaceState();
 				}
 				catch (err) {
 					coords_click.className = 'invalid';
@@ -128,7 +124,6 @@ var Load = (function() {
 						State.setCoords(r.map(function(v, i) {
 							return v + deltas[key][i];
 						}));
-						State.replaceState();
 					}
 					catch (e) {
 					}
