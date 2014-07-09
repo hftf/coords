@@ -20,7 +20,7 @@ function to_xywh(x1, y1, x2, y2) { return [x1, y1, x2 - x1 + 1, y2 - y1 + 1]; }
 function reset_all(state) {
 	var state = state || 'unchecked';
 	var inputs = document.querySelectorAll('.menu input');
-	State.setState(state, inputs);
+	State.setStates(state, inputs);
 }
 
 function scale(x, y, w, h) {

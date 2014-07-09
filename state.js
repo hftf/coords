@@ -72,8 +72,8 @@ var State = (function() {
 				catch (e) {
 					console.error(e);
 				}
-			this.setState('checked', state.checked);
-			this.setState('indeterminate', state.indeterminate);
+			this.setStates('checked', state.checked);
+			this.setStates('indeterminate', state.indeterminate);
 		},
 		setGame: function(game) {
 			this.state.game = game;
@@ -85,21 +85,19 @@ var State = (function() {
 
 			this.state.coords = coords;
 		},
+		setStates: function(state, els) {
+			for (var i = 0; i < els.length; i ++)
+				this.setState(state, els[i]);
+		},
 		setState: function(state, el) {
 			if (!(state in Box))
 				throw "Invalid state '" + state + "'";
 
 			var id;
-			if (typeof el === "string") {
+			if ('string' === typeof el) {
 				// ID
 				id = el;
 				el = document.getElementById(id);
-			}
-			else if (typeof el.length === "number") {
-				// Multiple elements
-				for (var i = 0; i < el.length; i ++)
-					this.setState(state, el[i]);
-				return;
 			}
 			else {
 				// Element
@@ -134,7 +132,7 @@ var State = (function() {
 
 			this.setState(state, el);
 			var children = document.querySelectorAll('input[data-parent="' + el.dataset.self + '"][data-grandparent="' + el.dataset.parent + '"]');
-			this.setState(state, children);
+			this.setStates(state, children);
 		},
 		updateState: function(recomposite) {
 			this.replaceState();
@@ -156,12 +154,14 @@ var State = (function() {
 	var State = {
 		getCoords:     _State.getCoords.bind(_State),
 		getUrl:        _State.getUrl.bind(_State),
+
 		replaceState:  wrap(_State.replaceState, true),
 		setAll:        wrap(_State.setAll, true),
 		setAllFromUrl: wrap(_State.setAllFromUrl, true),
 		setGame:       wrap(_State.setGame, true),
 		setCoords:     wrap(_State.setCoords, false),
 		setState:      wrap(_State.setState, true),
+		setStates:     wrap(_State.setStates, true),
 		rotateState:   wrap(_State.rotateState, true),
 		rotateStates:  wrap(_State.rotateStates, true),
 	};
