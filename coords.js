@@ -16,7 +16,12 @@ function new_canvas() {
 	return c;
 }
 
-function to_xywh(x1, y1, x2, y2) { return [x1, y1, x2 - x1 + 1, y2 - y1 + 1]; }
+function to_xywh(x1, y1, x2, y2) {
+	if (x1.length)
+		return to_xywh.apply(null, x1);
+	else
+		return [x1, y1, x2 - x1 + 1, y2 - y1 + 1];
+}
 
 function reset_all(state) {
 	var state = state || 'unchecked';
@@ -124,12 +129,12 @@ function recomposite_main() {
 	main_ctx.globalAlpha = 0.4;
 	for (var i = 0; i < gathered.checked.length; i ++) {
 		var rekt = gathered.checked[i];
-		var xywh = coords2main(to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords));
+		var xywh = coords2main(to_xywh(coords[rekt[2]][rekt[1]][rekt[0]].coords));
 		main_ctx.fillRect.apply(main_ctx, xywh);
 	}
 	for (var i = 0; i < gathered.indeterminate.length; i ++) {
 		var rekt = gathered.indeterminate[i];
-		var xywh = coords2main(to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords));
+		var xywh = coords2main(to_xywh(coords[rekt[2]][rekt[1]][rekt[0]].coords));
 		main_ctx.clearRect.apply(main_ctx, xywh);
 	}
 }

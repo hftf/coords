@@ -112,7 +112,7 @@ var Draw = (function() {
 				'</label>');
 
 			parent_ctx.fillStyle = color;
-			var xywh = to_xywh.apply(null, coords[category][menu][rekt].coords);
+			var xywh = to_xywh(coords[category][menu][rekt].coords);
 			parent_ctx.fillRect.apply(parent_ctx, xywh);
 
 			return div;
