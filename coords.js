@@ -103,7 +103,7 @@ function text2coords(s) {
 	if (!m)
 		throw 'Invalid coordinate syntax.';
 
-	return scale(mouse_scale, [~~m[1], ~~m[2]]);
+	return [~~m[1], ~~m[2]];
 }
 
 function coords2main(x, y, w, h) {
