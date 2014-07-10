@@ -16,13 +16,6 @@ function new_canvas() {
 	return c;
 }
 
-function to_xywh(x1, y1, x2, y2) {
-	if (x1.length)
-		return to_xywh.apply(null, x1);
-	else
-		return [x1, y1, x2 - x1 + 1, y2 - y1 + 1];
-}
-
 function reset_all(state) {
 	var state = state || 'unchecked';
 	var inputs = document.querySelectorAll('.menu input');
@@ -84,11 +77,22 @@ function format_x1y1(x1, y1, x2, y2) {
 	return '↖ ' + x1 + ',' + y1 + '<br />↘ ' + x2 + ',' + y2;
 }
 
+function to_xywh(x1, y1, x2, y2) {
+	if (x1.length)
+		return to_xywh.apply(null, x1);
+	else
+		return [x1, y1, x2 - x1 + 1, y2 - y1 + 1];
+}
+
 function scale(s, x, y, w, h) {
 	if (x.length)
 		return x.map(function(n) { return Math.floor(s * n); });
 	else
 		return scale(s, [x, y, w, h]);
+}
+
+function coords2main(x, y, w, h) {
+	return scale(main_scale, x, y, w, h);
 }
 
 function mouse2coords(e) {
@@ -104,10 +108,6 @@ function text2coords(s) {
 		throw 'Invalid coordinate syntax.';
 
 	return [~~m[1], ~~m[2]];
-}
-
-function coords2main(x, y, w, h) {
-	return scale(main_scale, x, y, w, h);
 }
 
 function draw() {
