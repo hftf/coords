@@ -75,7 +75,8 @@ var Load = (function() {
 				var r = mouse2coords(e);
 
 				if (r[0] >= 0 && r[1] >= 0) {
-					var d = main_ctx.getImageData(4 * r[0], 4 * r[1], 1, 1).data;
+					var p = coords2main(r);
+					var d = main_ctx.getImageData(p[0], p[1], 1, 1).data;
 					coords_hover.innerHTML = r[0] + ',' + r[1];
 					coords_hover.style.backgroundColor = 'rgba(' + d[0] + ',' + d[1] + ',' + d[2] + ',' + (d[3]/255) + ')';
 				}
