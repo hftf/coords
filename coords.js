@@ -5,6 +5,7 @@ var palette = [
 ];
 
 var b, current_color, all_inputs, main_ctx, click_ctx,
+	main_scale, mouse_scale,
 	cw = bounds[2] - bounds[0] + 1;
 	ch = bounds[3] - bounds[1] + 1;
 
@@ -15,7 +16,12 @@ function new_canvas() {
 	return c;
 }
 
-function to_xywh(x1, y1, x2, y2) { return [x1, y1, x2 - x1 + 1, y2 - y1 + 1]; }
+function to_xywh(x1, y1, x2, y2) {
+	if (x1.length)
+		return to_xywh.apply(null, x1);
+	else
+		return [x1, y1, x2 - x1 + 1, y2 - y1 + 1];
+}
 
 function reset_all(state) {
 	var state = state || 'unchecked';
@@ -23,9 +29,6 @@ function reset_all(state) {
 	State.setStates(state, inputs);
 }
 
-function scale(x, y, w, h) {
-	return [this * x, this * y, this * w, this * h];
-}
 var crosshair_dpr = {
 	1: function(r) { return [
 		[r[0] - 2,    r[1],        5,   1  ],
@@ -50,9 +53,9 @@ function list_overlaps(r) {
 
 	click_ctx.clear();
 	crosshair_dpr[window.devicePixelRatio](r).forEach(function(v) {
-		click_ctx.fillRect.apply(click_ctx, scale.apply(4, v));
+		click_ctx.fillRect.apply(click_ctx, coords2main(v));
 	});
-	click_ctx.clearRect.apply(click_ctx, scale.call(4, r[0], r[1], 1, 1));
+	click_ctx.clearRect.apply(click_ctx, coords2main(r[0], r[1], 1, 1));
 
 	for (category in coords) {
 		for (menu in coords[category]) {
@@ -81,13 +84,18 @@ function format_x1y1(x1, y1, x2, y2) {
 	return '↖ ' + x1 + ',' + y1 + '<br />↘ ' + x2 + ',' + y2;
 }
 
+function scale(s, x, y, w, h) {
+	if (x.length)
+		return x.map(function(n) { return Math.floor(s * n); });
+	else
+		return scale(s, [x, y, w, h]);
+}
+
 function mouse2coords(e) {
 	var x = (e.offsetX === undefined) ? e.layerX - e.currentTarget.offsetLeft : e.offsetX,
-		y = (e.offsetY === undefined) ? e.layerY - e.currentTarget.offsetTop  : e.offsetY,
-		fx = Math.floor(x / 2),
-		fy = Math.floor(y / 2);
+		y = (e.offsetY === undefined) ? e.layerY - e.currentTarget.offsetTop  : e.offsetY;
 
-	return [fx, fy];
+	return scale(1 / mouse_scale, [x, y]);
 }
 
 function text2coords(s) {
@@ -95,16 +103,17 @@ function text2coords(s) {
 	if (!m)
 		throw 'Invalid coordinate syntax.';
 
-	var fx = ~~m[1],
-		fy = ~~m[2],
-		x = fx * 2,
-		y = fy * 2;
+	return [~~m[1], ~~m[2]];
+}
 
-	return [fx, fy];
+function coords2main(x, y, w, h) {
+	return scale(main_scale, x, y, w, h);
 }
 
 function draw() {
-
+	var main = document.getElementById('main');
+	main_scale = Math.floor(main.width / cw);
+	mouse_scale = Math.floor(main.width / main.offsetWidth);
 
 	all_inputs = document.querySelectorAll('.menu-list input');
 }
@@ -116,16 +125,16 @@ function recomposite_main() {
 		gathered[input.dataset.state].push([input.dataset.self, input.dataset.parent, input.dataset.grandparent]);
 	}
 
-	main_ctx.clearRect.apply(main_ctx, scale.call(4, 0, 0, cw, ch));
+	main_ctx.clear();
 	main_ctx.globalAlpha = 0.4;
 	for (var i = 0; i < gathered.checked.length; i ++) {
 		var rekt = gathered.checked[i];
-		var xywh = scale.apply(4, to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords));
+		var xywh = coords2main(to_xywh(coords[rekt[2]][rekt[1]][rekt[0]].coords));
 		main_ctx.fillRect.apply(main_ctx, xywh);
 	}
 	for (var i = 0; i < gathered.indeterminate.length; i ++) {
 		var rekt = gathered.indeterminate[i];
-		var xywh = scale.apply(4, to_xywh.apply(null, coords[rekt[2]][rekt[1]][rekt[0]].coords));
+		var xywh = coords2main(to_xywh(coords[rekt[2]][rekt[1]][rekt[0]].coords));
 		main_ctx.clearRect.apply(main_ctx, xywh);
 	}
 }

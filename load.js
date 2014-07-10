@@ -64,8 +64,9 @@ var Load = (function() {
 			var click = document.getElementById('click');
 			click_ctx = click.getContext('2d');
 			click_ctx.fillStyle = '#222';
-			click_ctx.clear = function() {
-				this.clearRect.apply(this, scale.apply(4, to_xywh.apply(null, bounds)));
+
+			main_ctx.clear = click_ctx.clear = function() {
+				this.clearRect(0, 0, main.width, main.height);
 			};
 
 			var coords_hover = document.getElementById('coords-hover');
@@ -74,7 +75,8 @@ var Load = (function() {
 				var r = mouse2coords(e);
 
 				if (r[0] >= 0 && r[1] >= 0) {
-					var d = main_ctx.getImageData(2 * r[0], 2 * r[1], 1, 1).data;
+					var p = coords2main(r);
+					var d = main_ctx.getImageData(p[0], p[1], 1, 1).data;
 					coords_hover.innerHTML = r[0] + ',' + r[1];
 					coords_hover.style.backgroundColor = 'rgba(' + d[0] + ',' + d[1] + ',' + d[2] + ',' + (d[3]/255) + ')';
 				}
