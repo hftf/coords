@@ -194,3 +194,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		console.error(e);
 	}
 });
+window.onload = function() {
+	Load.grid();
+};

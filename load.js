@@ -152,7 +152,6 @@ var Load = (function() {
 			this.preferences();
 			this.example();
 
-			this.grid();
 			this.main_handlers();
 			this.key_handlers();
 
