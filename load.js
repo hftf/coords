@@ -64,8 +64,9 @@ var Load = (function() {
 			var click = document.getElementById('click');
 			click_ctx = click.getContext('2d');
 			click_ctx.fillStyle = '#222';
-			click_ctx.clear = function() {
-				this.clearRect.apply(this, scale.apply(4, to_xywh.apply(null, bounds)));
+
+			main_ctx.clear = click_ctx.clear = function() {
+				this.clearRect(0, 0, main.width, main.height);
 			};
 
 			var coords_hover = document.getElementById('coords-hover');
