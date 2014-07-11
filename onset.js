@@ -14,7 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 	}
 
-	draw();
+	var main = document.getElementById('main');
+	main_scale = Math.floor(main.width / cw);
+	mouse_scale = Math.floor(main.width / main.offsetWidth);
+
+	all_inputs = document.querySelectorAll('.menu-list input');
+
 	try {
 		State.setAllFromUrl();
 	}

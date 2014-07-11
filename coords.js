@@ -110,14 +110,6 @@ function text2coords(s) {
 	return [~~m[1], ~~m[2]];
 }
 
-function draw() {
-	var main = document.getElementById('main');
-	main_scale = Math.floor(main.width / cw);
-	mouse_scale = Math.floor(main.width / main.offsetWidth);
-
-	all_inputs = document.querySelectorAll('.menu-list input');
-}
-
 function recomposite_main() {
 	var gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 	for (var i = 0; i < all_inputs.length; i ++) {
