@@ -42,18 +42,22 @@ var Load = (function() {
 			var grid_ctx = grid.getContext('2d');
 			grid_ctx.strokeStyle = grid_ctx.fillStyle = '#888';
 			grid_ctx.lineWidth = 1;
-			grid_ctx.font = '22px Alto Pro';
+
+			var fontSize = 22, left = main_scale, top = fontSize - main_scale / 2;
+			grid_ctx.font = fontSize + 'px Alto Pro';
+
 			for (var x = 64; x <= cw; x += 64) {
 				grid_ctx.textAlign = 'right';
-				grid_ctx.moveTo     (4*x+0.5, 0);
-				grid_ctx.lineTo     (4*x+0.5, ch*4);
-				grid_ctx.fillText(x, 4*x-4,   20);
+				grid_ctx.fillText(x, main_scale * (x - 1), top);
+				grid_ctx.moveTo     (main_scale * x + 0.5, 0);
+				grid_ctx.lineTo     (main_scale * x + 0.5, main_scale * ch);
+
 				grid_ctx.textAlign = 'left';
-				grid_ctx.moveTo     (0,       4*x+0.5);
-				grid_ctx.lineTo     (cw*4,    4*x+0.5);
-				grid_ctx.fillText(x, 4,      4*x-4);
+				grid_ctx.fillText(x, left,                 main_scale * (x - 1));
+				grid_ctx.moveTo     (0,                    main_scale * x + 0.5);
+				grid_ctx.lineTo     (main_scale * cw,      main_scale * x + 0.5);
 			}
-			grid_ctx.fillText(0, 4, 20);
+			grid_ctx.fillText  ('0', left,                 top);
 			grid_ctx.stroke();
 		},
 		main_handlers: function() {
