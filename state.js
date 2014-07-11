@@ -155,15 +155,15 @@ var State = (function() {
 		getCoords:     _State.getCoords.bind(_State),
 		getUrl:        _State.getUrl.bind(_State),
 
-		replaceState:  wrap(_State.replaceState, true),
-		setAll:        wrap(_State.setAll, true),
+		replaceState:  wrap(_State.replaceState,  true),
+		setAll:        wrap(_State.setAll,        true),
 		setAllFromUrl: wrap(_State.setAllFromUrl, true),
-		setGame:       wrap(_State.setGame, true),
-		setCoords:     wrap(_State.setCoords, false),
-		setState:      wrap(_State.setState, true),
-		setStates:     wrap(_State.setStates, true),
-		rotateState:   wrap(_State.rotateState, true),
-		rotateStates:  wrap(_State.rotateStates, true),
+		setGame:       wrap(_State.setGame,       true),
+		setCoords:     wrap(_State.setCoords,     false),
+		setState:      wrap(_State.setState,      true),
+		setStates:     wrap(_State.setStates,     true),
+		rotateState:   wrap(_State.rotateState,   true),
+		rotateStates:  wrap(_State.rotateStates,  true),
 	};
 
 	return State;
