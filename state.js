@@ -47,10 +47,10 @@ var State = (function() {
 			if (search === '')
 				window.location.search = '?' + this.state.game;
 
-			// '?hg;x,y+a,b,c-d,e,f'
-			//                      ? hg           + a,b,c           - d,e,f         ; x,y
-			//                      - --------     - ---------       - --------      - -------
-			var m = search.match(/^\?(\w+)(?:\+([\wé,. ]+))?(?:-([\wé,. ]+))?(?:;(\d+,\d+))?$/);
+			// '?hg+a,b-c,d;x,y'
+			//                      ? hg      + a,b      - c,d      ; x,y
+			//                      ^ 1--     ^ 2--      ^ 3--      ^ 4------
+			var m = search.match(/^\?(\w+)(?:\+(\w+))?(?:-(\w+))?(?:;(\d+,\d+))?$/);
 
 			if (!m)
 				throw 'Invalid query string: ' + search;
