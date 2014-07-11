@@ -1,0 +1,28 @@
+html, body {
+	margin: 0;
+	height: 100%;
+}
+
+.node rect {
+	stroke-width: 1.5px;
+	stroke: #333;
+	fill: #fff;
+}
+
+[id^='node-NEW'] rect {
+	fill: #f77;
+}
+
+[id^='node-END'] rect {
+	fill: #7f7;
+}
+
+.edgeLabel rect {
+	fill: #fff;
+}
+
+.edgePath path {
+	stroke: #333;
+	stroke-width: 1.5px;
+	fill: none;
+}
