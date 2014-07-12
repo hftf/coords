@@ -9,8 +9,9 @@ var Load = (function() {
 		},
 		unclickables: function() {
 			var key_checkboxes = document.getElementsByClassName('noclick');
+			function noclick() { return false; }
 			for (var i in key_checkboxes)
-				key_checkboxes[i].onclick = function() { return false; };
+				key_checkboxes[i].onclick = noclick;
 		},
 		preferences: function() {
 			var prefs_chekboxes = document.querySelectorAll('#prefs input');

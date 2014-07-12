@@ -2,16 +2,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	Load.all();
 
 	var inputs = document.querySelectorAll('.menu-list input');
+	function rotateState(e) { State.rotateState(this); }
 	for (var i in inputs) {
-		inputs[i].onclick = function() {
-			State.rotateState(this);
-		};
+		inputs[i].onclick = rotateState;
 	}
 	inputs = document.querySelectorAll('.menu-heading input');
+	function rotateStates(e) { State.rotateStates(this); }
 	for (var i in inputs) {
-		inputs[i].onclick = function() {
-			State.rotateStates(this);
-		};
+		inputs[i].onclick = rotateStates;
 	}
 
 	var main = document.getElementById('main');
