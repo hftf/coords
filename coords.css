@@ -116,6 +116,9 @@ section {
 	position: absolute;
 	left: 0;
 }
+.menu-heading h3 label {
+	display: block;
+}
 .menu-list {
 	width: 20em;
 }
@@ -128,7 +131,7 @@ section {
 	margin: 0;
 	vertical-align: middle;
 }
-.rekt input:target + label {
+.menu input:target + label {
 	background: #ff8;
 }
 .rekt label {
