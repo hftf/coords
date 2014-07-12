@@ -147,6 +147,16 @@ section {
 	font-size: 0.7em;
 }
 
+.refs .NEW, .refs .END {
+	font-weight: bold;
+}
+.refs .NEW {
+	color: #b55;
+}
+.refs .END {
+	color: #5b5;
+}
+
 .overlap {
 	display: inline-block;
 	min-width: 12em;
