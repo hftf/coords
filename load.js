@@ -142,7 +142,7 @@ var Load = (function() {
 			var b = document.getElementById('b'),
 				toc = document.getElementById('toc'),
 				jumps = [], returned;
-			for (category in coords) {
+			for (var category in coords) {
 				returned = Draw.category(category);
 				b.appendChild(returned[0]);
 				jumps.push(returned[1]);

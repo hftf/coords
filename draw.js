@@ -17,14 +17,14 @@ var Draw = (function() {
 			div.setAttribute('class', 'category');
 			div.appendChild(h);
 
-			for (menu in coords[category])
+			for (var menu in coords[category])
 				if (menu !== 'id')
 					div.appendChild(this.menu(menu, category));
 
 			var a = '<a href="#' + id + '">' + category + '</a>';
 			return [div, a];
 		},
-		menu: function(menu, parent) {
+		menu: function(menu, category) {
 			// Heading
 			var section = document.createElement('div'),
 				div = document.createElement('div'),
@@ -41,7 +41,7 @@ var Draw = (function() {
 
 			section.appendChild(div);
 			section.appendChild(div2);
-			var checkbox_id = this._joinIds(parent, menu);
+			var checkbox_id = this._joinIds(category, menu);
 			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + '</label>');
 
 			if ('desc' in coords[category][menu]) {
@@ -54,7 +54,7 @@ var Draw = (function() {
 				checkbox.setAttribute('type', 'checkbox');
 				checkbox.setAttribute('id', checkbox_id);
 				checkbox.setAttribute('data-self', menu);
-				checkbox.setAttribute('data-parent', parent);
+				checkbox.setAttribute('data-parent', category);
 				checkbox.setAttribute('data-state', 'unchecked');
 				h.insertBefore(checkbox, h.firstChild);
 
@@ -66,7 +66,7 @@ var Draw = (function() {
 				ctx.globalCompositeOperation = 'dest-over';
 
 				var img = document.createElement('img'),
-					src = 'data/' + game + '/screens/' + parent + '/' + menu + '.png';
+					src = 'data/' + game + '/screens/' + category + '/' + menu + '.png';
 				img.onerror = this.error.bind(div);
 				img.setAttribute('src', src);
 				layers.appendChild(img);
@@ -75,9 +75,9 @@ var Draw = (function() {
 
 				var ul = document.createElement('ul');
 
-				for (rekt in coords[category][menu]) {
+				for (var rekt in coords[category][menu]) {
 					if (rekt !== 'id') {
-						var child_c = this.rekt(rekt, menu, ctx, parent);
+						var child_c = this.rekt(rekt, menu, ctx, category);
 						ul.appendChild(child_c);
 					}
 				}
@@ -86,18 +86,18 @@ var Draw = (function() {
 			}
 			return section;
 		},
-		rekt: function(rekt, parent, parent_ctx, grandparent) {
+		rekt: function(rekt, menu, menu_ctx, category) {
 			// Heading
 			var div = document.createElement('li');
 			div.setAttribute('class', 'rekt');
 
 			var checkbox = document.createElement('input');
-			var checkbox_id = this._joinIds(grandparent, parent, rekt);
+			var checkbox_id = this._joinIds(category, menu, rekt);
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
 			checkbox.setAttribute('data-self', rekt);
-			checkbox.setAttribute('data-parent', parent);
-			checkbox.setAttribute('data-grandparent', grandparent);
+			checkbox.setAttribute('data-parent', menu);
+			checkbox.setAttribute('data-grandparent', category);
 			checkbox.setAttribute('data-state', 'unchecked');
 			div.appendChild(checkbox);
 
@@ -111,9 +111,9 @@ var Draw = (function() {
 				'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, coords[category][menu][rekt].coords) + '</span></small>' +
 				'</label>');
 
-			parent_ctx.fillStyle = color;
+			menu_ctx.fillStyle = color;
 			var xywh = to_xywh(coords[category][menu][rekt].coords);
-			parent_ctx.fillRect.apply(parent_ctx, xywh);
+			menu_ctx.fillRect.apply(menu_ctx, xywh);
 
 			return div;
 		},

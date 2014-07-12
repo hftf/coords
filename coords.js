@@ -50,8 +50,8 @@ function list_overlaps(r) {
 	});
 	click_ctx.clearRect.apply(click_ctx, coords2main(r[0], r[1], 1, 1));
 
-	for (category in coords) {
-		for (menu in coords[category]) {
+	for (var category in coords) {
+		for (var menu in coords[category]) {
 			if (menu === 'id') continue;
 			if ('desc' in coords[category][menu]) continue;
 			for (rekt in coords[category][menu]) {
