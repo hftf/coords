@@ -1,7 +1,7 @@
 function draw() {
 	g = new dagreD3.Digraph();
 
-	var category_id, menu_id, rekt_id,
+	var category_id, menu_id, rekt_id, edge_id,
 		from, to, edges = {};
 	for (var category in coords) {
 		for (var menu in coords[category]) {
@@ -23,7 +23,8 @@ function draw() {
 					tos = [tos];
 
 				for (var i = 0; i < tos.length; i ++) {
-					var to = tos[i], edge_id = rekt_id + to;
+					to = tos[i];
+					edge_id = rekt_id + to;
 
 					if (to === '   ')
 						continue;

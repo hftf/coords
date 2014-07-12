@@ -124,11 +124,11 @@ var State = (function() {
 		},
 		rotateState: function(el) {
 			var currentState = el.dataset.state || 'unchecked';
-			this.setState(Box[currentState]['next'], el);
+			this.setState(Box[currentState].next, el);
 		},
 		rotateStates: function(el) {
 			var currentState = el.dataset.state || 'unchecked',
-				state = Box[currentState]['next'];
+				state = Box[currentState].next;
 
 			this.setState(state, el);
 			var children = document.querySelectorAll('input[data-parent="' + el.dataset.self + '"][data-grandparent="' + el.dataset.parent + '"]');

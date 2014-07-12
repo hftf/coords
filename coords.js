@@ -17,7 +17,7 @@ function new_canvas() {
 }
 
 function reset_all(state) {
-	var state = state || 'unchecked';
+	state = state || 'unchecked';
 	var inputs = document.querySelectorAll('.menu input');
 	State.setStates(state, inputs);
 }
@@ -33,7 +33,7 @@ var crosshair_dpr = {
 		[r[0] + 0.25, r[1] - 2,    0.5, 5  ],
 		[r[0] - 0.25, r[1] - 0.25, 1.5, 1.5],
 	]; },
-}
+};
 
 function list_overlaps(r) {
 	var span2 = document.getElementById('coords-click'),
@@ -111,22 +111,24 @@ function text2coords(s) {
 }
 
 function recomposite_main() {
-	var gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
-	for (var i = 0; i < all_inputs.length; i ++) {
+	var gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] },
+		i, rekt, xywh;
+
+	for (i = 0; i < all_inputs.length; i ++) {
 		var input = all_inputs[i];
 		gathered[input.dataset.state].push([input.dataset.self, input.dataset.parent, input.dataset.grandparent]);
 	}
 
 	main_ctx.clear();
 	main_ctx.globalAlpha = 0.4;
-	for (var i = 0; i < gathered.checked.length; i ++) {
-		var rekt = gathered.checked[i];
-		var xywh = coords2main(to_xywh(coords[rekt[2]][rekt[1]][rekt[0]].coords));
+	for (i = 0; i < gathered.checked.length; i ++) {
+		rekt = gathered.checked[i];
+		xywh = coords2main(to_xywh(coords[rekt[2]][rekt[1]][rekt[0]].coords));
 		main_ctx.fillRect.apply(main_ctx, xywh);
 	}
-	for (var i = 0; i < gathered.indeterminate.length; i ++) {
-		var rekt = gathered.indeterminate[i];
-		var xywh = coords2main(to_xywh(coords[rekt[2]][rekt[1]][rekt[0]].coords));
+	for (i = 0; i < gathered.indeterminate.length; i ++) {
+		rekt = gathered.indeterminate[i];
+		xywh = coords2main(to_xywh(coords[rekt[2]][rekt[1]][rekt[0]].coords));
 		main_ctx.clearRect.apply(main_ctx, xywh);
 	}
 }
