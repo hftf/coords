@@ -4,7 +4,7 @@ var palette = [
 	'rgb( 88,150, 62)', 'rgb(237,185, 52)', 'rgb( 85, 78,148)', 'rgb(255,198,187)', 'rgb(128,128,  0)', 'rgb(128 , 0, 64)', 'rgb(255,255,195)'
 ];
 
-var b, current_color, all_inputs, main_ctx, click_ctx,
+var b, current_color, all_inputs, main_ctx, varia_ctx, click_ctx,
 	main_scale, mouse_scale,
 	cw = bounds[2] - bounds[0] + 1;
 	ch = bounds[3] - bounds[1] + 1;
@@ -70,6 +70,59 @@ function list_overlaps(r) {
 		var el = document.getElementById('overlaps-' + i);
 		el.innerHTML = gathered[i].join('');
 		el.parentNode.style.display = (gathered[i].length === 0) ? 'none' : 'block';
+	}
+
+	draw_varia(r);
+}
+
+function draw_varia(r) {
+	var rekt, inside, input, id, x1y1, varia_rect,
+		hit = { 'checked': [], 'unchecked': [], 'indeterminate': [] },
+		miss = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
+
+	for (category in coords) {
+		for (menu in coords[category]) {
+			if (menu === 'id') continue;
+			if ('desc' in coords[category][menu]) continue;
+			for (rekt in coords[category][menu]) {
+				if (rekt === 'id') continue;
+				x1y1 = coords[category][menu][rekt].coords;
+				id = Draw._joinIds(category, menu, rekt);
+				input = document.getElementById(id);
+				inside = (x1y1[0] <= r[0]) && (r[0] <= x1y1[2]) && (x1y1[1] <= r[1]) && (r[1] <= x1y1[3]);
+				(inside ? hit : miss)[input.dataset.state].push(x1y1);
+			}
+		}
+	}
+
+	varia_ctx.clear();
+	if (hit.indeterminate.length) {
+		// Hit a button to avoid, show warning
+		varia_ctx.fillStyle = '#f77';
+		for (var i = 0; i < hit.indeterminate.length; i ++) {
+			var rect = hit.indeterminate[i];
+			var xywh = scale.apply(4, to_xywh.apply(null, rect));
+			varia_ctx.fillRect.apply(varia_ctx, xywh);
+		}
+	} else if (hit.checked.length) {
+		// Hit a button to click, show variability
+		varia_rect = bounds.slice(0);
+		for (var i = 0; i < hit.checked.length; i ++) {
+			var rect = hit.checked[i];
+			varia_rect[0] = Math.max(varia_rect[0], rect[0]);
+			varia_rect[1] = Math.max(varia_rect[1], rect[1]);
+			varia_rect[2] = Math.min(varia_rect[2], rect[2]);
+			varia_rect[3] = Math.min(varia_rect[3], rect[3]);
+		}
+		var xywh = scale.apply(4, to_xywh.apply(null, varia_rect));
+		varia_ctx.fillStyle = '#7f7';
+		varia_ctx.fillRect.apply(varia_ctx, xywh);
+		// Remove buttons to avoid from variability
+		for (var i = 0; i < miss.indeterminate.length; i ++) {
+			var rect = miss.indeterminate[i];
+			var xywh = scale.apply(4, to_xywh.apply(null, rect));
+			varia_ctx.clearRect.apply(varia_ctx, xywh);
+		}
 	}
 }
 
