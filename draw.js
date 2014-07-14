@@ -122,11 +122,9 @@ var Draw = (function() {
 			return div;
 		},
 		refs: (function() {
-			function index_f(i) { return '➀➁➂➃'[i]; }
 			function fixme_filter(to) { return to !== '   '; }
 			function to2link(to, i, a) {
-				var title, link_text, link;
-				var index = (a.length > 1) ? index_f(i) + ' ' : '';
+				var title, link_text, link, index = '';
 
 				if (to in ref_key) {
 					title = ref_key[to];
