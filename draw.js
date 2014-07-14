@@ -113,7 +113,7 @@ var Draw = (function() {
 				'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, rekt_obj.coords) + '</span></small>' +
 				'</label>');
 
-			div.appendChild(this.refs(this._joinIds(grandparent, parent), rekt_obj.ref));
+			div.appendChild(this.refs(this._joinIds(category, menu), rekt_obj.ref));
 
 			menu_ctx.fillStyle = color;
 			var xywh = to_xywh(coords[category][menu][rekt].coords);
