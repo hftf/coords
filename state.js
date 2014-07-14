@@ -39,7 +39,8 @@ var State = (function() {
 			return s === undefined ? [] : s.split(',');
 		},
 		_join: function(prefix, s) {
-			return s.length === 0 ? '' : prefix + s.join(',');
+			var joined = ('string' === typeof s) ? s : s.join(',');
+			return s.length === 0 ? '' : prefix + joined;
 		},
 
 		setAllFromUrl: function(search) {
