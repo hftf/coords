@@ -131,13 +131,13 @@ var Draw = (function() {
 				if (to in ref_key) {
 					title = ref_key[to];
 					link_text = to;
-					link = index + '<span title="' + title + '" class="' + to + '">' + link_text + '</span>';
+					link = index + '<span title="' + title + '" class="ref ' + to + '">' + link_text + '</span>';
 				}
 				else {
 					var path = Load.lookup[to];
 					title = path.join(' → ');
 					link_text = path[path.length - 1];
-					link = index + '<a title="' + title + '" href="#' + to + '">' + link_text + '</a>';
+					link = index + '<a title="' + title + '" class="ref" href="#' + to + '">' + link_text + '</a>';
 				}
 
 				return link;
