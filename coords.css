@@ -116,6 +116,9 @@ section {
 	position: absolute;
 	left: 0;
 }
+.menu-heading h3 label {
+	display: block;
+}
 .menu-list {
 	width: 20em;
 }
@@ -128,7 +131,7 @@ section {
 	margin: 0;
 	vertical-align: middle;
 }
-.rekt input:target + label {
+.menu input:target + label {
 	background: #ff8;
 }
 .rekt label {
@@ -145,6 +148,24 @@ section {
 	padding: 1px 4px;
 	width: 5.5em;
 	font-size: 0.7em;
+}
+
+.refs {
+	font-size: 0.8em;
+	color: #888;
+}
+.refs .triangle {
+	margin-left: 10%;
+	margin-right: 0.2em;
+}
+.refs .NEW, .refs .END {
+	font-weight: bold;
+}
+.refs .NEW {
+	color: #b55;
+}
+.refs .END {
+	color: #5b5;
 }
 
 .overlap {
@@ -168,5 +189,8 @@ body.rekt-small-disabled .rekt small {
 	height: 1.5em;
 }
 body.rekt-small-disabled .rekt small > span {
+	display: none;
+}
+body.refs-disabled .refs {
 	display: none;
 }

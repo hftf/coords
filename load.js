@@ -139,6 +139,36 @@ var Load = (function() {
 			};
 		},
 
+		_lookup: (function() {
+			var lookup, max_depth = 3, cur;
+			function get(obj, key) {
+				return obj[key];
+			}
+			function recurse(me) {
+				if (cur.length === max_depth)
+					return;
+				if (me === 'id' || me ==='desc')
+					return;
+				if (me) {
+					cur.push(me);
+
+					var key = Draw._joinIds.apply(null, cur);
+					if (key in lookup)
+						throw "Key '" + key + "' not unique";
+					lookup[key] = cur.slice(0);
+				}
+
+				Object.keys(cur.reduce(get, coords)).map(recurse);
+				cur.pop();
+			}
+
+			return function() {
+				lookup = {}, cur = [];
+				recurse();
+				return lookup;
+			};
+		})(),
+
 		categories_toc: function() {
 			var b = document.getElementById('b'),
 				toc = document.getElementById('toc'),
@@ -160,6 +190,7 @@ var Load = (function() {
 			this.main_handlers();
 			this.key_handlers();
 
+			this.lookup = this._lookup();
 			this.categories_toc();
 		}
 	};
