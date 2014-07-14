@@ -73,10 +73,16 @@ var Load = (function() {
 			click_ctx = click.getContext('2d');
 			click_ctx.fillStyle = '#222';
 
-			zoom_img = document.getElementById('zoom');
+			var zoom = document.getElementById('zoom');
+			zoom_ctx = zoom.getContext('2d');
+			zoom_ctx.webkitImageSmoothingEnabled = false;
+			zoom_ctx.mozImageSmoothingEnabled = false;
 
-			main_ctx.clear = click_ctx.clear = varia_ctx.clear = function() {
+			main_ctx.clear = click_ctx.clear = varia_ctx.clear = zoom_ctx.clear = function() {
 				this.clearRect(0, 0, main.width, main.height);
+			};
+			zoom_ctx.drawScaledImage = function(img) {
+				this.drawImage(img, 0, 0, main.width, main.height);
 			};
 
 			var coords_hover = document.getElementById('coords-hover');
