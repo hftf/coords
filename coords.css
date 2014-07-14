@@ -183,3 +183,6 @@ body.rekt-small-disabled .rekt small {
 body.rekt-small-disabled .rekt small > span {
 	display: none;
 }
+body.refs-disabled .refs {
+	display: none;
+}
