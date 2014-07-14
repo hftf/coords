@@ -75,7 +75,7 @@ section {
 #varia {
 	opacity: 0.5;
 }
-.menu-heading .layers, .menu-heading .layers canvas {
+.menu-heading .layers, .menu-heading .layers canvas, .menu-heading .layers img {
 	width: 128px;
 	height: 96px;
 }
