@@ -153,7 +153,7 @@ var Draw = (function() {
 				tos = tos.filter(fixme_filter);
 
 				if (tos.length > 0)
-					div.innerHTML = tos.map(to2link).join(', ');
+					div.innerHTML = '<span class="triangle">▶</span> ' + tos.map(to2link).join(', ');
 
 				return div;
 			};

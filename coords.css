@@ -150,6 +150,14 @@ section {
 	font-size: 0.7em;
 }
 
+.refs {
+	font-size: 0.8em;
+	color: #888;
+}
+.refs .triangle {
+	margin-left: 10%;
+	margin-right: 0.2em;
+}
 .refs .NEW, .refs .END {
 	font-weight: bold;
 }
