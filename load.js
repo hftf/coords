@@ -73,6 +73,8 @@ var Load = (function() {
 			click_ctx = click.getContext('2d');
 			click_ctx.fillStyle = '#222';
 
+			zoom_img = document.getElementById('zoom');
+
 			main_ctx.clear = click_ctx.clear = varia_ctx.clear = function() {
 				this.clearRect(0, 0, main.width, main.height);
 			};

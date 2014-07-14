@@ -79,7 +79,7 @@ section {
 	width: 128px;
 	height: 96px;
 }
-.then .layers, .then .layers canvas {
+.then .layers, .then .layers canvas, .then .layers img {
 	width: 512px;
 	height: 384px;
 }
