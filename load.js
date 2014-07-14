@@ -121,10 +121,13 @@ var Load = (function() {
 				40: [ 0,  1],
 			};
 			document.body.onkeydown = function(e) {
-				var key = e.keyCode;
+				var key = e.keyCode, scale = 1;
+
 				if (key in deltas) {
 					if (e.altKey || e.ctrlKey || e.metaKey)
 						return;
+					if (e.shiftKey)
+						scale = 16;
 
 					var r = State.getCoords();
 					if (r.length === 0)
@@ -132,7 +135,7 @@ var Load = (function() {
 
 					try {
 						State.setCoords(r.map(function(v, i) {
-							return v + deltas[key][i];
+							return v + scale * deltas[key][i];
 						}));
 					}
 					catch (e) {
