@@ -153,6 +153,20 @@ section {
 	font-size: 0.7em;
 }
 
+.permalink a:link, .permalink a:visited {
+	color: #aaa;
+}
+.permalink {
+	font-weight: normal;
+	display: inline-block;
+	vertical-align: bottom;
+	width: 0;
+	overflow: hidden;
+}
+label:hover .permalink {
+	overflow: visible;
+}
+
 .refs {
 	font-size: 0.8em;
 	color: #888;

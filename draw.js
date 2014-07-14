@@ -6,6 +6,9 @@ var Draw = (function() {
 
 			return Array.prototype.join.call(arguments, '');
 		},
+		_permalink: function(id, level) {
+			return '<span class="permalink">&nbsp;<a href="#' + id + '" title="Permalink to this ' + level + '">#</a></span>';
+		},
 		category: function(category) {
 			var div = document.createElement('div'),
 				h = document.createElement('h2'),
@@ -41,8 +44,9 @@ var Draw = (function() {
 
 			section.appendChild(div);
 			section.appendChild(div2);
-			var checkbox_id = this._joinIds(category, menu);
-			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + '</label>');
+			var checkbox_id = this._joinIds(category, menu),
+				permalink = this._permalink(checkbox_id, 'screen');
+			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + permalink + '</label>');
 
 			if ('desc' in coords[category][menu]) {
 				var html = '“' + coords[category][menu].desc + '”';
@@ -92,7 +96,8 @@ var Draw = (function() {
 			div.setAttribute('class', 'rekt');
 
 			var checkbox = document.createElement('input');
-			var checkbox_id = this._joinIds(category, menu, rekt);
+			var checkbox_id = this._joinIds(category, menu, rekt),
+				permalink = this._permalink(checkbox_id, 'button');
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
 			checkbox.setAttribute('data-self', rekt);
@@ -109,7 +114,7 @@ var Draw = (function() {
 
 			div.insertAdjacentHTML('beforeend',
 				'<label for="' + checkbox_id + '">' +
-				'<strong>' + rekt + '</strong>' +
+				'<strong>' + rekt + permalink + '</strong>' +
 				'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, rekt_obj.coords) + '</span></small>' +
 				'</label>');
 
