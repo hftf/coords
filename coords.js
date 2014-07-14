@@ -80,8 +80,8 @@ function draw_varia(r) {
 		hit = { 'checked': [], 'unchecked': [], 'indeterminate': [] },
 		miss = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
 
-	for (category in coords) {
-		for (menu in coords[category]) {
+	for (var category in coords) {
+		for (var menu in coords[category]) {
 			if (menu === 'id') continue;
 			if ('desc' in coords[category][menu]) continue;
 			for (rekt in coords[category][menu]) {
@@ -95,32 +95,33 @@ function draw_varia(r) {
 		}
 	}
 
+	var i, rect, xywh;
 	varia_ctx.clear();
 	if (hit.indeterminate.length) {
 		// Hit a button to avoid, show warning
 		varia_ctx.fillStyle = '#f77';
-		for (var i = 0; i < hit.indeterminate.length; i ++) {
-			var rect = hit.indeterminate[i];
-			var xywh = coords2main(to_xywh(rect));
+		for (i = 0; i < hit.indeterminate.length; i ++) {
+			rect = hit.indeterminate[i];
+			xywh = coords2main(to_xywh(rect));
 			varia_ctx.fillRect.apply(varia_ctx, xywh);
 		}
 	} else if (hit.checked.length) {
 		// Hit a button to click, show variability
 		varia_rect = bounds.slice(0);
-		for (var i = 0; i < hit.checked.length; i ++) {
-			var rect = hit.checked[i];
+		for (i = 0; i < hit.checked.length; i ++) {
+			rect = hit.checked[i];
 			varia_rect[0] = Math.max(varia_rect[0], rect[0]);
 			varia_rect[1] = Math.max(varia_rect[1], rect[1]);
 			varia_rect[2] = Math.min(varia_rect[2], rect[2]);
 			varia_rect[3] = Math.min(varia_rect[3], rect[3]);
 		}
-		var xywh = coords2main(to_xywh(varia_rect));
+		xywh = coords2main(to_xywh(varia_rect));
 		varia_ctx.fillStyle = '#7f7';
 		varia_ctx.fillRect.apply(varia_ctx, xywh);
 		// Remove buttons to avoid from variability
-		for (var i = 0; i < miss.indeterminate.length; i ++) {
-			var rect = miss.indeterminate[i];
-			var xywh = coords2main(to_xywh(rect));
+		for (i = 0; i < miss.indeterminate.length; i ++) {
+			rect = miss.indeterminate[i];
+			xywh = coords2main(to_xywh(rect));
 			varia_ctx.clearRect.apply(varia_ctx, xywh);
 		}
 	}

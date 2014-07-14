@@ -94,15 +94,11 @@ var State = (function() {
 				throw "Invalid state '" + state + "'";
 
 			var id;
-			if ('string' === typeof el) {
-				// ID
-				id = el;
+			if ('string' === typeof el) // param 2 is an id
+				id = el,
 				el = document.getElementById(id);
-			}
-			else {
-				// Element
+			else // param 2 is an element
 				id = el.id;
-			}
 
 			if (el === null)
 				throw "No element exists with id '" + id + "'";
