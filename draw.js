@@ -6,6 +6,9 @@ var Draw = (function() {
 
 			return Array.prototype.join.call(arguments, '');
 		},
+		_permalink: function(id, level) {
+			return '<span class="permalink">&nbsp;<a href="#' + id + '" title="Permalink to this ' + level + '">#</a></span>';
+		},
 		category: function(category) {
 			var div = document.createElement('div'),
 				h = document.createElement('h2'),
@@ -41,8 +44,9 @@ var Draw = (function() {
 
 			section.appendChild(div);
 			section.appendChild(div2);
-			var checkbox_id = this._joinIds(category, menu);
-			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + '</label>');
+			var checkbox_id = this._joinIds(category, menu),
+				permalink = this._permalink(checkbox_id, 'screen');
+			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + permalink + '</label>');
 
 			if ('desc' in coords[category][menu]) {
 				var html = '“' + coords[category][menu].desc + '”';
@@ -65,10 +69,16 @@ var Draw = (function() {
 				var ctx = c.getContext('2d');
 				ctx.globalCompositeOperation = 'dest-over';
 
+				var zoom = function(e) {
+					State.setImage(checkbox_id);
+				};
+
 				var img = document.createElement('img'),
 					src = 'data/' + game + '/screens/' + category + '/' + menu + '.png';
 				img.onerror = this.error.bind(div);
+				img.setAttribute('id', checkbox_id + '-image');
 				img.setAttribute('src', src);
+				layers.onclick = zoom.bind(img);
 				layers.appendChild(img);
 
 				layers.appendChild(c);
@@ -92,7 +102,8 @@ var Draw = (function() {
 			div.setAttribute('class', 'rekt');
 
 			var checkbox = document.createElement('input');
-			var checkbox_id = this._joinIds(category, menu, rekt);
+			var checkbox_id = this._joinIds(category, menu, rekt),
+				permalink = this._permalink(checkbox_id, 'button');
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
 			checkbox.setAttribute('data-self', rekt);
@@ -105,11 +116,15 @@ var Draw = (function() {
 			if (current_color >= palette.length)
 				current_color = 0;
 
+			var rekt_obj = coords[category][menu][rekt];
+
 			div.insertAdjacentHTML('beforeend',
 				'<label for="' + checkbox_id + '">' +
-				'<strong>' + rekt + '</strong>' +
-				'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, coords[category][menu][rekt].coords) + '</span></small>' +
+				'<strong>' + rekt + permalink + '</strong>' +
+				'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, rekt_obj.coords) + '</span></small>' +
 				'</label>');
+
+			div.appendChild(this.refs(this._joinIds(category, menu), rekt_obj.ref));
 
 			menu_ctx.fillStyle = color;
 			var xywh = to_xywh(coords[category][menu][rekt].coords);
@@ -117,7 +132,43 @@ var Draw = (function() {
 
 			return div;
 		},
+		refs: (function() {
+			function fixme_filter(to) { return to !== '   '; }
+			function to2link(to, i, a) {
+				var title, link_text, link, index = '';
+
+				if (to in ref_key) {
+					title = ref_key[to];
+					link_text = to;
+					link = index + '<span title="' + title + '" class="ref ' + to + '">' + link_text + '</span>';
+				}
+				else {
+					var path = Load.lookup[to];
+					title = path.join(' → ');
+					link_text = path[path.length - 1];
+					link = index + '<a title="' + title + '" class="ref" href="#' + to + '">' + link_text + '</a>';
+				}
+
+				return link;
+			}
+
+			return function(from, tos) {
+				var div = document.createElement('div');
+				div.setAttribute('class', 'refs');
+
+				if ('string' === typeof tos)
+					tos = [tos];
+
+				tos = tos.filter(fixme_filter);
+
+				if (tos.length > 0)
+					div.innerHTML = '<span class="triangle">▶</span> ' + tos.map(to2link).join(', ');
+
+				return div;
+			};
+		})(),
 		error: function(e) {
+			(e.target || e.srcElement).dataset.missing = true;
 			this.insertAdjacentHTML('beforeend',
 				'<p class="contrib-image"><a href="https://github.com/hftf/coords/issues/42">Contribute this screen</a></p>'
 			);

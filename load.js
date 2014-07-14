@@ -66,12 +66,23 @@ var Load = (function() {
 			main_ctx = main.getContext('2d');
 			main_ctx.fillStyle = '#7af';
 
+			var varia = document.getElementById('varia');
+			varia_ctx = varia.getContext('2d');
+
 			var click = document.getElementById('click');
 			click_ctx = click.getContext('2d');
 			click_ctx.fillStyle = '#222';
 
-			main_ctx.clear = click_ctx.clear = function() {
+			var zoom = document.getElementById('zoom');
+			zoom_ctx = zoom.getContext('2d');
+			zoom_ctx.webkitImageSmoothingEnabled = false;
+			zoom_ctx.mozImageSmoothingEnabled = false;
+
+			main_ctx.clear = click_ctx.clear = varia_ctx.clear = zoom_ctx.clear = function() {
 				this.clearRect(0, 0, main.width, main.height);
+			};
+			zoom_ctx.drawScaledImage = function(img) {
+				this.drawImage(img, 0, 0, main.width, main.height);
 			};
 
 			var coords_hover = document.getElementById('coords-hover');
@@ -121,15 +132,21 @@ var Load = (function() {
 				40: [ 0,  1],
 			};
 			document.body.onkeydown = function(e) {
-				var key = e.keyCode;
+				var key = e.keyCode, scale = 1;
+
 				if (key in deltas) {
+					if (e.altKey || e.ctrlKey || e.metaKey)
+						return;
+					if (e.shiftKey)
+						scale = 16;
+
 					var r = State.getCoords();
 					if (r.length === 0)
 						return;
 
 					try {
 						State.setCoords(r.map(function(v, i) {
-							return v + deltas[key][i];
+							return v + scale * deltas[key][i];
 						}));
 					}
 					catch (e) {
@@ -138,6 +155,36 @@ var Load = (function() {
 				}
 			};
 		},
+
+		_lookup: (function() {
+			var lookup, max_depth = 3, cur;
+			function get(obj, key) {
+				return obj[key];
+			}
+			function recurse(me) {
+				if (cur.length === max_depth)
+					return;
+				if (me === 'id' || me ==='desc')
+					return;
+				if (me) {
+					cur.push(me);
+
+					var key = Draw._joinIds.apply(null, cur);
+					if (key in lookup)
+						throw "Key '" + key + "' not unique";
+					lookup[key] = cur.slice(0);
+				}
+
+				Object.keys(cur.reduce(get, coords)).map(recurse);
+				cur.pop();
+			}
+
+			return function() {
+				lookup = {}, cur = [];
+				recurse();
+				return lookup;
+			};
+		})(),
 
 		categories_toc: function() {
 			var b = document.getElementById('b'),
@@ -160,6 +207,7 @@ var Load = (function() {
 			this.main_handlers();
 			this.key_handlers();
 
+			this.lookup = this._lookup();
 			this.categories_toc();
 		}
 	};
