@@ -19,7 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	mouse_scale = Math.floor(main.width / main.offsetWidth);
 
 	all_inputs = document.querySelectorAll('.menu-list input');
+});
+window.onload = function() {
+	// requires fonts
+	Load.grid();
 
+	// requires images
 	try {
 		State.setAllFromUrl();
 	}
@@ -27,7 +32,4 @@ document.addEventListener('DOMContentLoaded', function() {
 		// TODO display error to user?
 		console.error(e);
 	}
-});
-window.onload = function() {
-	Load.grid();
 };

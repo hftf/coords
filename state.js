@@ -11,6 +11,7 @@ var State = (function() {
 			coords: [],
 			checked: {},
 			indeterminate: {},
+			image: '',
 		},
 
 		replaceState: function() {
@@ -31,13 +32,15 @@ var State = (function() {
 				this._join('+', Object.keys(state.checked).sort()),
 				this._join('-', Object.keys(state.indeterminate).sort()),
 				this._join(';',             state.coords),
+				this._join('@',             state.image),
 			].join('');
 		},
 		_split: function(s) {
 			return s === undefined ? [] : s.split(',');
 		},
 		_join: function(prefix, s) {
-			return s.length === 0 ? '' : prefix + s.join(',');
+			var joined = ('string' === typeof s) ? s : s.join(',');
+			return s.length === 0 ? '' : prefix + joined;
 		},
 
 		setAllFromUrl: function(search) {
@@ -47,19 +50,20 @@ var State = (function() {
 			if (search === '')
 				window.location.search = '?' + this.state.game;
 
-			// '?hg+a,b-c,d;x,y'
-			//                      ? hg      + a,b         - c,d         ; x,y
-			//                      ^ 1--     ^ 2-----      ^ 3-----      ^ 4------
-			var m = search.match(/^\?(\w+)(?:\+([\w,]+))?(?:-([\w,]+))?(?:;(\d+,\d+))?$/);
+			// '?hg+a,b-c,d;x,y@z'
+			//                      ? hg      + a,b         - c,d         ; x,y          @ z
+			//                      ^ 1--     ^ 2-----      ^ 3-----      ^ 4------      ^ 5--
+			var m = search.match(/^\?(\w+)(?:\+([\w,]+))?(?:-([\w,]+))?(?:;(\d+,\d+))?(?:@(\w+))?$/);
 
 			if (!m)
 				throw 'Invalid query string: ' + search;
 
 			return {
 				game:                      m[1] ,      // 'hg'
-				checked:       this._split(m[2]),      // ['a', 'b', 'c']
-				indeterminate: this._split(m[3]),      // ['d', 'e', 'f']
+				checked:       this._split(m[2]),      // ['a', 'b']
+				indeterminate: this._split(m[3]),      // ['c', 'd']
 				coords:                    m[4],       // 'x,y'
+				image:                     m[5],       // 'z'
 			};
 		},
 		setAll: function(state) {
@@ -74,6 +78,7 @@ var State = (function() {
 				catch (e) {
 					console.error(e);
 				}
+			this.setImage(state.image);
 		},
 		setGame: function(game) {
 			this.state.game = game;
@@ -84,6 +89,33 @@ var State = (function() {
 					bounds[0] + ',' + bounds[1] + ' to ' + bounds[2] + ',' + bounds[3] + '.';
 
 			this.state.coords = coords;
+		},
+		setImage: function(image) {
+			if (image === undefined) {
+				zoom_ctx.clear();
+				this.state.image = '';
+				return;
+			}
+
+			if (!(image in Load.lookup))
+				throw "No item exists with id '" + image + "'";
+
+			var menu = Load.lookup[image];
+			if (menu.length !== 2)
+				throw "Item with id '" + image + "' is not a menu";
+
+			var img = document.getElementById(image + '-image');
+
+			// Possible race condition between window.onload and image.onerror?
+			if ('missing' in img.dataset) {
+				console.warn("Image with id '" + image + "' is missing. Blanking zoom layer.");
+				zoom_ctx.clear();
+				return;
+			}
+
+			zoom_ctx.drawScaledImage(img);
+
+			this.state.image = image;
 		},
 		setStates: function(state, els) {
 			for (var i = 0; i < els.length; i ++)
@@ -156,6 +188,7 @@ var State = (function() {
 		setAllFromUrl: wrap(_State.setAllFromUrl, true),
 		setGame:       wrap(_State.setGame,       true),
 		setCoords:     wrap(_State.setCoords,     false),
+		setImage:      wrap(_State.setImage,      false),
 		setState:      wrap(_State.setState,      true),
 		setStates:     wrap(_State.setStates,     true),
 		rotateState:   wrap(_State.rotateState,   true),

@@ -69,10 +69,16 @@ var Draw = (function() {
 				var ctx = c.getContext('2d');
 				ctx.globalCompositeOperation = 'dest-over';
 
+				var zoom = function(e) {
+					State.setImage(checkbox_id);
+				};
+
 				var img = document.createElement('img'),
 					src = 'data/' + game + '/screens/' + category + '/' + menu + '.png';
 				img.onerror = this.error.bind(div);
+				img.setAttribute('id', checkbox_id + '-image');
 				img.setAttribute('src', src);
+				layers.onclick = zoom.bind(img);
 				layers.appendChild(img);
 
 				layers.appendChild(c);
@@ -162,6 +168,7 @@ var Draw = (function() {
 			};
 		})(),
 		error: function(e) {
+			(e.target || e.srcElement).dataset.missing = true;
 			this.insertAdjacentHTML('beforeend',
 				'<p class="contrib-image"><a href="https://github.com/hftf/coords/issues/42">Contribute this screen</a></p>'
 			);
