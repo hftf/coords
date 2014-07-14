@@ -168,6 +168,7 @@ var Draw = (function() {
 			};
 		})(),
 		error: function(e) {
+			(e.target || e.srcElement).dataset.missing = true;
 			this.insertAdjacentHTML('beforeend',
 				'<p class="contrib-image"><a href="https://github.com/hftf/coords/issues/42">Contribute this screen</a></p>'
 			);

@@ -106,10 +106,17 @@ var State = (function() {
 
 			var img = document.getElementById(image + '-image');
 
-			zoom_img.src = img.src;
+			// Possible race condition between window.onload and image.onerror?
+			if ('missing' in img.dataset) {
+				console.warn("Image with id '" + image + "' is missing. Blanking zoom layer.");
+				zoom_img.style.display = 'none';
+			}
+			else {
+				zoom_img.src = img.src;
 
-			if (zoom_img.style.display === 'none')
-				zoom_img.style.display = null;
+				if (zoom_img.style.display === 'none')
+					zoom_img.style.display = null;
+			}
 
 			this.state.image = image;
 		},
