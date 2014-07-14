@@ -150,7 +150,10 @@ var Draw = (function() {
 				if ('string' === typeof tos)
 					tos = [tos];
 
-				div.innerHTML = tos.filter(fixme_filter).map(to2link).join(', ');
+				tos = tos.filter(fixme_filter);
+
+				if (tos.length > 0)
+					div.innerHTML = tos.map(to2link).join(', ');
 
 				return div;
 			};
