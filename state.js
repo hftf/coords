@@ -92,7 +92,7 @@ var State = (function() {
 		},
 		setImage: function(image) {
 			if (image === undefined) {
-				zoom_img.style.display = 'none';
+				zoom_ctx.clear();
 				this.state.image = '';
 				return;
 			}
@@ -109,14 +109,11 @@ var State = (function() {
 			// Possible race condition between window.onload and image.onerror?
 			if ('missing' in img.dataset) {
 				console.warn("Image with id '" + image + "' is missing. Blanking zoom layer.");
-				zoom_img.style.display = 'none';
+				zoom_ctx.clear();
+				return;
 			}
-			else {
-				zoom_img.src = img.src;
 
-				if (zoom_img.style.display === 'none')
-					zoom_img.style.display = null;
-			}
+			zoom_ctx.drawScaledImage(img);
 
 			this.state.image = image;
 		},
