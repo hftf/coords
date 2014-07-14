@@ -123,6 +123,9 @@ var Load = (function() {
 			document.body.onkeydown = function(e) {
 				var key = e.keyCode;
 				if (key in deltas) {
+					if (e.altKey || e.ctrlKey || e.metaKey)
+						return;
+
 					var r = State.getCoords();
 					if (r.length === 0)
 						return;
