@@ -101,7 +101,7 @@ function draw_varia(r) {
 		varia_ctx.fillStyle = '#f77';
 		for (var i = 0; i < hit.indeterminate.length; i ++) {
 			var rect = hit.indeterminate[i];
-			var xywh = scale.apply(4, to_xywh.apply(null, rect));
+			var xywh = coords2main(to_xywh(rect));
 			varia_ctx.fillRect.apply(varia_ctx, xywh);
 		}
 	} else if (hit.checked.length) {
@@ -114,13 +114,13 @@ function draw_varia(r) {
 			varia_rect[2] = Math.min(varia_rect[2], rect[2]);
 			varia_rect[3] = Math.min(varia_rect[3], rect[3]);
 		}
-		var xywh = scale.apply(4, to_xywh.apply(null, varia_rect));
+		var xywh = coords2main(to_xywh(varia_rect));
 		varia_ctx.fillStyle = '#7f7';
 		varia_ctx.fillRect.apply(varia_ctx, xywh);
 		// Remove buttons to avoid from variability
 		for (var i = 0; i < miss.indeterminate.length; i ++) {
 			var rect = miss.indeterminate[i];
-			var xywh = scale.apply(4, to_xywh.apply(null, rect));
+			var xywh = coords2main(to_xywh(rect));
 			varia_ctx.clearRect.apply(varia_ctx, xywh);
 		}
 	}
