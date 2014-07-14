@@ -91,6 +91,26 @@ var State = (function() {
 			this.state.coords = coords;
 		},
 		setImage: function(image) {
+			if (image === undefined) {
+				zoom_img.style.display = 'none';
+				this.state.image = '';
+				return;
+			}
+
+			if (!(image in Load.lookup))
+				throw "No item exists with id '" + image + "'";
+
+			var menu = Load.lookup[image];
+			if (menu.length !== 2)
+				throw "Item with id '" + image + "' is not a menu";
+
+			var img = document.getElementById(image + '-image');
+
+			zoom_img.src = img.src;
+
+			if (zoom_img.style.display === 'none')
+				zoom_img.style.display = null;
+
 			this.state.image = image;
 		},
 		setStates: function(state, els) {
