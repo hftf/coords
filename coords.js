@@ -24,9 +24,9 @@ function reset_all(state) {
 }
 
 var crosshair_dpr = (function() {
-	var _crosshair_dpr = {
-		1: [[-2, 0   ], [ 0,    -2], [-0.5,  -0.5 ]],
-		2: [[-2, 0.25], [ 0.25, -2], [-0.25, -0.25]],
+	var result = {}, _crosshair_dpr = {
+		1: { rects: [[-2, 0   ], [ 0,    -2], [-0.5,  -0.5 ]], inner: 0,    outer: 0.5  },
+		2: { rects: [[-2, 0.25], [ 0.25, -2], [-0.25, -0.25]], inner: 0.25, outer: 0.75 },
 	};
 	function x1y1_to_xywh(r) {
 		return [r[0], r[1], 1 - 2 * r[0], 1 - 2 * r[1]];
@@ -40,19 +40,24 @@ var crosshair_dpr = (function() {
 		];
 	}
 	for (var dpr in _crosshair_dpr) {
-		var xywhs = _crosshair_dpr[dpr].map(x1y1_to_xywh);
+		(function(dpr) {
+			var settings = _crosshair_dpr[dpr],
+				xywhs = settings.rects.map(x1y1_to_xywh);
 
-		_crosshair_dpr[dpr] = function(r) {
-			var partial = function(rect) {
-				return xywh_to_f(rect, r, this);
+			result[dpr] = function(r) {
+				function partial(px) {
+					return function(rect) {
+						return xywh_to_f(rect, r, px);
+					};
+				}
+				return {
+					inner: xywhs.map(partial(settings.inner)),
+					outer: xywhs.map(partial(settings.outer)),
+				};
 			};
-			return {
-				inner: xywhs.map(partial.bind(0.5 / dpr)),
-				outer: xywhs.map(partial.bind(1.5 / dpr)),
-			};
-		};
+		})(dpr);
 	}
-	return _crosshair_dpr;
+	return result;
 })();
 
 function list_overlaps(r) {
