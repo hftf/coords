@@ -23,18 +23,37 @@ function reset_all(state) {
 	State.setStates(state, inputs);
 }
 
-var crosshair_dpr = {
-	1: function(r) { return [
-		[r[0] - 2,    r[1],        5,   1  ],
-		[r[0],        r[1] - 2,    1,   5  ],
-		[r[0] - 0.5,  r[1] - 0.5,  2,   2  ],
-	]; },
-	2: function(r) { return [
-		[r[0] - 2,    r[1] + 0.25, 5,   0.5],
-		[r[0] + 0.25, r[1] - 2,    0.5, 5  ],
-		[r[0] - 0.25, r[1] - 0.25, 1.5, 1.5],
-	]; },
-};
+var crosshair_dpr = (function() {
+	var _crosshair_dpr = {
+		1: [[-2, 0   ], [ 0,    -2], [-0.5,  -0.5 ]],
+		2: [[-2, 0.25], [ 0.25, -2], [-0.25, -0.25]],
+	};
+	function x1y1_to_xywh(r) {
+		return [r[0], r[1], 1 - 2 * r[0], 1 - 2 * r[1]];
+	}
+	function xywh_to_f(rect, r, px) {
+		return [
+			rect[0] + r[0] - px,
+			rect[1] + r[1] - px,
+			rect[2]        + px * 2,
+			rect[3]        + px * 2,
+		];
+	}
+	for (var dpr in _crosshair_dpr) {
+		var xywhs = _crosshair_dpr[dpr].map(x1y1_to_xywh);
+
+		_crosshair_dpr[dpr] = function(r) {
+			var partial = function(rect) {
+				return xywh_to_f(rect, r, this);
+			};
+			return {
+				inner: xywhs.map(partial.bind(0.5 / dpr)),
+				outer: xywhs.map(partial.bind(1.5 / dpr)),
+			};
+		};
+	}
+	return _crosshair_dpr;
+})();
 
 function list_overlaps(r) {
 	var span2 = document.getElementById('coords-click'),
@@ -45,10 +64,17 @@ function list_overlaps(r) {
 	span2.value = r[0] + ',' + r[1];
 	overlaps.style.display = 'block';
 
+	var inner_outer = crosshair_dpr[window.devicePixelRatio](r);
 	click_ctx.clear();
-	crosshair_dpr[window.devicePixelRatio](r).forEach(function(v) {
+	click_ctx.fillStyle = '#fff';
+	inner_outer.outer.forEach(function(v) {
 		click_ctx.fillRect.apply(click_ctx, coords2main(v));
 	});
+	click_ctx.fillStyle = '#000';
+	inner_outer.inner.forEach(function(v) {
+		click_ctx.fillRect.apply(click_ctx, coords2main(v));
+	});
+
 	click_ctx.clearRect.apply(click_ctx, coords2main(r[0], r[1], 1, 1));
 
 	for (var category in coords) {
