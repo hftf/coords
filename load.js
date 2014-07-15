@@ -78,6 +78,8 @@ var Load = (function() {
 			zoom_ctx.webkitImageSmoothingEnabled = false;
 			zoom_ctx.mozImageSmoothingEnabled = false;
 
+			reset_screenshot = document.getElementById('reset-screenshot');
+
 			main_ctx.clear = click_ctx.clear = varia_ctx.clear = zoom_ctx.clear = function() {
 				this.clearRect(0, 0, main.width, main.height);
 			};

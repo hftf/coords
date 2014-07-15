@@ -4,7 +4,7 @@ var palette = [
 	'rgb( 88,150, 62)', 'rgb(237,185, 52)', 'rgb( 85, 78,148)', 'rgb(255,198,187)', 'rgb(128,128,  0)', 'rgb(128 , 0, 64)', 'rgb(255,255,195)'
 ];
 
-var b, current_color, all_inputs,
+var b, current_color, all_inputs, reset_screenshot,
 	zoom_img, main_ctx, varia_ctx, click_ctx,
 	main_scale, mouse_scale,
 	cw = bounds[2] - bounds[0] + 1;

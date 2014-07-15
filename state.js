@@ -91,29 +91,33 @@ var State = (function() {
 			this.state.coords = coords;
 		},
 		setImage: function(image) {
-			if (image === undefined) {
-				zoom_ctx.clear();
-				this.state.image = '';
-				return;
+			var clear = false;
+			if (image === undefined && (clear = true))
+				image = '';
+
+			else {
+				if (!(image in Load.lookup))
+					throw "No item exists with id '" + image + "'";
+
+				var menu = Load.lookup[image];
+				if (menu.length !== 2)
+					throw "Item with id '" + image + "' is not a menu";
+
+				var img = document.getElementById(image + '-image');
+
+				// Possible race condition between window.onload and image.onerror?
+				if ('missing' in img.dataset && (clear = true))
+					console.warn("Image with id '" + image + "' is missing. Blanking zoom layer.");
 			}
 
-			if (!(image in Load.lookup))
-				throw "No item exists with id '" + image + "'";
-
-			var menu = Load.lookup[image];
-			if (menu.length !== 2)
-				throw "Item with id '" + image + "' is not a menu";
-
-			var img = document.getElementById(image + '-image');
-
-			// Possible race condition between window.onload and image.onerror?
-			if ('missing' in img.dataset) {
-				console.warn("Image with id '" + image + "' is missing. Blanking zoom layer.");
+			if (clear) {
 				zoom_ctx.clear();
-				return;
+				reset_screenshot.style.display = 'none';
 			}
-
-			zoom_ctx.drawScaledImage(img);
+			else {
+				zoom_ctx.drawScaledImage(img);
+				reset_screenshot.style.display = null;
+			}
 
 			this.state.image = image;
 		},
