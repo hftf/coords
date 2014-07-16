@@ -120,7 +120,7 @@ var Draw = (function() {
 
 			div.insertAdjacentHTML('beforeend',
 				'<label for="' + checkbox_id + '">' +
-				'<strong>' + rekt + permalink + '</strong>' +
+				'<span class="name">' + rekt + permalink + '</span>' +
 				'<small style="background: ' + color + ';"><span>' + format_x1y1.apply(null, rekt_obj.coords) + '</span></small>' +
 				'</label>');
 
