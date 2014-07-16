@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	var main = document.getElementById('main');
-	main_scale = Math.floor(main.width / cw);
-	mouse_scale = Math.floor(main.width / main.offsetWidth);
+	main_scale = main.width / cw;
+	mouse_scale = main.width / main.offsetWidth;
 
 	all_inputs = document.querySelectorAll('.menu-list input');
 });
