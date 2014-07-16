@@ -12,7 +12,7 @@
 }
 
 body {
-	margin: 1em 2em;
+	margin: 0;
 	font-family: 'Alto Pro', 'Segoe UI', 'Trebuchet MS', sans-serif;
 }
 .tm {
@@ -27,12 +27,16 @@ ul {
 section {
 	display: inline-block;
 	width: 50%;
+	box-sizing: border-box;
+	padding: 1em 2em;
 }
 .then {
 	position: fixed;
 	height: 100%;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
+
 #coords-hover {
 	padding: 0.1em 0.3em;
 }
