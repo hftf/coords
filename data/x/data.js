@@ -398,7 +398,7 @@ var coords = {
 		"Quit":             { "id": "q", "coords": [249, 209,   279, 239], "ref": "   " },
 		"Cancel":           { "id": "x", "coords": [289, 209,   319, 239], "ref": "   " },
 	},
-	"Name": {
+	"Name lower": {
 		"id": "k",
 		"A":                { "id": "A", "coords": [ 29,  49,    49,  79], "ref": "   " },
 		"B":                { "id": "B", "coords": [ 50,  49,    69,  79], "ref": "   " },
