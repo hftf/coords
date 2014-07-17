@@ -196,7 +196,7 @@ var State = (function() {
 		getCoords:     _State.getCoords.bind(_State),
 		getUrl:        _State.getUrl.bind(_State),
 		getCheckboxId: _State.getCheckboxId.bind(_State),
-		getCheckbox:   _State.getCheckboxId.bind(_State),
+		getCheckbox:   _State.getCheckbox.bind(_State),
 		getId:         _State.getId.bind(_State),
 
 		replaceState:  wrap(_State.replaceState,  true),
