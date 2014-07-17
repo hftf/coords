@@ -41,7 +41,7 @@ var Draw = (function() {
 			div2.setAttribute('class', 'menu-list');
 
 			var layers = document.createElement('div');
-			layers.setAttribute('class', 'layers');
+			layers.setAttribute('class', 'layers size-small');
 			div.appendChild(h);
 			div.appendChild(layers);
 
@@ -73,6 +73,7 @@ var Draw = (function() {
 				current_color = 0;
 
 				var c = new_canvas();
+				c.setAttribute('class', 'size-small');
 				var ctx = c.getContext('2d');
 				ctx.globalCompositeOperation = 'dest-over';
 
@@ -85,6 +86,7 @@ var Draw = (function() {
 				img.onerror = this.error.bind(div);
 				img.setAttribute('id', menu_id + '-image');
 				img.setAttribute('src', src);
+				img.setAttribute('class', 'size-small');
 				layers.onclick = zoom.bind(img);
 				layers.appendChild(img);
 
