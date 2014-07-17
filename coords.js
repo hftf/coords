@@ -7,6 +7,7 @@ var palette = [
 var b, current_color, all_inputs, reset_screenshot,
 	zoom_img, main_ctx, varia_ctx, click_ctx,
 	main_scale, mouse_scale,
+	level_delim = ' › ',
 	cw = bounds[2] - bounds[0] + 1;
 	ch = bounds[3] - bounds[1] + 1;
 
@@ -93,7 +94,7 @@ function list_overlaps(r) {
 				if (inside) {
 					var id = Draw._joinIds(category, menu, rekt);
 					input = document.getElementById(id);
-					gathered[input.dataset.state].push('<a href="#' + id + '" class="overlap">' + menu + ' → ' + rekt + '</a>');
+					gathered[input.dataset.state].push('<a href="#' + id + '" class="overlap">' + menu + level_delim + rekt + '</a>');
 				}
 			}
 		}

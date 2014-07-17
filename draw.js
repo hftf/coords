@@ -148,7 +148,7 @@ var Draw = (function() {
 				}
 				else {
 					var path = Load.lookup[to];
-					title = path.join(' → ');
+					title = path.join(level_delim);
 					link_text = path[path.length - 1];
 					link = index + '<a title="' + title + '" class="ref" href="#' + to + '">' + link_text + '</a>';
 				}
