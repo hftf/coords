@@ -130,6 +130,7 @@ function draw_varia(r) {
 
 	var i, rect, xywh;
 	varia_ctx.clear();
+	varia_ctx.globalAlpha = 0.4;
 	if (hit.indeterminate.length) {
 		// Hit a button to avoid, show warning
 		varia_ctx.fillStyle = '#f77';
