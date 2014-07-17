@@ -29,6 +29,8 @@ var Load = (function() {
 		example: function () {
 			var state = { checked: {}, indeterminate: {} }, i;
 
+			state.image = 'bf';
+			state.coords = coords['Battle']['Fight']['Attack 1'].coords.slice(2).join(',');
 			for (i = 1; i <= 4; i ++)
 				state.checked['bf' + i] = true;
 			for (i = 1; i <= 6; i ++)
