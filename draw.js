@@ -60,7 +60,11 @@ var Draw = (function() {
 				checkbox.setAttribute('data-self', menu);
 				checkbox.setAttribute('data-parent', category);
 				checkbox.setAttribute('data-state', 'unchecked');
-				h.insertBefore(checkbox, h.firstChild);
+				var p = document.createElement('div');
+				p.setAttribute('class', 'toggle');
+				p.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">Toggle buttons to </label>');
+				p.appendChild(checkbox);
+				div.insertBefore(p, h.nextSibling);
 
 				// Reset
 				current_color = 0;
