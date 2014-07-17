@@ -137,7 +137,6 @@ function draw_varia(r) {
 		for (i = 0; i < hit.indeterminate.length; i ++) {
 			rect = hit.indeterminate[i];
 			xywh = coords2main(to_xywh(rect));
-			varia_ctx.clearRect.apply(varia_ctx, xywh);
 			varia_ctx.fillRect.apply(varia_ctx, xywh);
 		}
 	} else if (hit.checked.length) {
