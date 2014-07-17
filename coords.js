@@ -6,7 +6,9 @@ var palette = [
 
 var b, current_color, all_inputs, reset_screenshot,
 	zoom_img, main_ctx, varia_ctx, click_ctx,
-	main_scale, mouse_scale,
+	main_scale = 4,
+	mouse_scale = 2,
+	menu_scale = 0.5,
 	level_delim = ' › ',
 	cw = bounds[2] - bounds[0] + 1;
 	ch = bounds[3] - bounds[1] + 1;
