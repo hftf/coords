@@ -61,7 +61,7 @@ section {
 	font-weight: bold;
 }
 
-#key input {
+input.noclick {
 	margin-right: 1.5em;
 	outline: none;
 }
