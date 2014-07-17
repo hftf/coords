@@ -130,12 +130,14 @@ function draw_varia(r) {
 
 	var i, rect, xywh;
 	varia_ctx.clear();
+	varia_ctx.globalAlpha = 0.4;
 	if (hit.indeterminate.length) {
 		// Hit a button to avoid, show warning
 		varia_ctx.fillStyle = '#f77';
 		for (i = 0; i < hit.indeterminate.length; i ++) {
 			rect = hit.indeterminate[i];
 			xywh = coords2main(to_xywh(rect));
+			varia_ctx.clearRect.apply(varia_ctx, xywh);
 			varia_ctx.fillRect.apply(varia_ctx, xywh);
 		}
 	} else if (hit.checked.length) {

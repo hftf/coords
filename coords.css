@@ -81,9 +81,6 @@ input.noclick {
 	position: absolute;
 	left: 0; top: 0;
 }
-#varia {
-	opacity: 0.5;
-}
 .menu-heading .layers {
 	cursor: pointer;
 }
