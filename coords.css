@@ -111,7 +111,9 @@ input.noclick {
 }
 
 .menu {
-	margin: 0 0 4em;
+	margin: -0.5em;
+	margin-bottom: 3em;
+	padding: 0.5em;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 }
@@ -140,14 +142,14 @@ input.noclick {
 }
 
 .rekt {
-	margin-bottom: 0.25em;
+	padding: 0.25em 0;
 }
 .rekt input {
 	width: 10%;
 	margin: 0;
 	vertical-align: middle;
 }
-.menu input:target + label {
+.menu:target, .rekt:target {
 	background: #ff8;
 }
 .rekt label {
