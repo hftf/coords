@@ -166,13 +166,10 @@ section {
 }
 .permalink {
 	font-weight: normal;
-	display: inline-block;
-	vertical-align: bottom;
-	width: 0;
-	overflow: hidden;
+	visibility: hidden;
 }
 label:hover .permalink {
-	overflow: visible;
+	visibility: visible;
 }
 
 .refs {
