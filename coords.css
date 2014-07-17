@@ -11,7 +11,11 @@
 	src: local('Alto Pro Bold'), local('Alto Pro'), url('fonts/AltoPro-Bold.otf');
 }
 
+html, body {
+	height: 100%;
+}
 body {
+	min-width: 1200px;
 	margin: 0;
 	font-family: 'Alto Pro', 'Segoe UI', 'Trebuchet MS', sans-serif;
 }
@@ -25,13 +29,10 @@ ul {
 }
 
 section {
-	display: inline-block;
+	float: left;
 	width: 50%;
 	box-sizing: border-box;
 	padding: 1em 2em;
-}
-.then {
-	position: fixed;
 	height: 100%;
 	overflow-y: auto;
 	overflow-x: hidden;
