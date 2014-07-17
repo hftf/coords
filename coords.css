@@ -37,6 +37,10 @@ section {
 	overflow-y: auto;
 	overflow-x: hidden;
 }
+#↑ {
+	position: relative;
+	top: -1em;
+}
 
 #coords-hover {
 	padding: 0.1em 0.3em;
@@ -162,6 +166,7 @@ input.noclick {
 	font-size: 0.7em;
 }
 
+.top:link, .top:visited,
 .permalink a:link, .permalink a:visited {
 	color: #aaa;
 }
@@ -171,6 +176,9 @@ input.noclick {
 }
 label:hover .permalink {
 	visibility: visible;
+}
+.top {
+	float: right;
 }
 
 .refs {
