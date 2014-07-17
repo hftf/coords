@@ -93,7 +93,7 @@ function list_overlaps(r) {
 				inside = (x1y1[0] <= r[0]) && (r[0] <= x1y1[2]) && (x1y1[1] <= r[1]) && (r[1] <= x1y1[3]);
 				if (inside) {
 					var id = Draw._joinIds(category, menu, rekt);
-					input = document.getElementById(id);
+					input = State.getCheckbox(id);
 					gathered[input.dataset.state].push('<a href="#' + id + '" class="overlap">' + menu + level_delim + rekt + '</a>');
 				}
 			}
@@ -121,7 +121,7 @@ function draw_varia(r) {
 				if (rekt === 'id') continue;
 				x1y1 = coords[category][menu][rekt].coords;
 				id = Draw._joinIds(category, menu, rekt);
-				input = document.getElementById(id);
+				input = State.getCheckbox(id);
 				inside = (x1y1[0] <= r[0]) && (r[0] <= x1y1[2]) && (x1y1[1] <= r[1]) && (r[1] <= x1y1[3]);
 				(inside ? hit : miss)[input.dataset.state].push(x1y1);
 			}

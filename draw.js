@@ -33,7 +33,9 @@ var Draw = (function() {
 			var section = document.createElement('div'),
 				div = document.createElement('div'),
 				h = document.createElement('h3'),
-				div2 = document.createElement('div');
+				div2 = document.createElement('div'),
+				menu_id = this._joinIds(category, menu);
+			section.setAttribute('id', menu_id);
 			section.setAttribute('class', 'menu');
 			div.setAttribute('class', 'menu-heading');
 			div2.setAttribute('class', 'menu-list');
@@ -45,8 +47,8 @@ var Draw = (function() {
 
 			section.appendChild(div);
 			section.appendChild(div2);
-			var checkbox_id = this._joinIds(category, menu),
-				permalink = this._permalink(checkbox_id, 'screen');
+			var checkbox_id = State.getCheckboxId(menu_id),
+				permalink = this._permalink(menu_id, 'screen');
 			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + permalink + '</label>');
 
 			if ('desc' in coords[category][menu]) {
@@ -75,13 +77,13 @@ var Draw = (function() {
 				ctx.globalCompositeOperation = 'dest-over';
 
 				var zoom = function(e) {
-					State.setImage(checkbox_id);
+					State.setImage(menu_id);
 				};
 
 				var img = document.createElement('img'),
 					src = 'data/' + game + '/screens/' + category + '/' + menu + '.png';
 				img.onerror = this.error.bind(div);
-				img.setAttribute('id', checkbox_id + '-image');
+				img.setAttribute('id', menu_id + '-image');
 				img.setAttribute('src', src);
 				layers.onclick = zoom.bind(img);
 				layers.appendChild(img);
@@ -103,12 +105,14 @@ var Draw = (function() {
 		},
 		rekt: function(rekt, menu, menu_ctx, category) {
 			// Heading
-			var div = document.createElement('li');
+			var div = document.createElement('li'),
+				rekt_id = this._joinIds(category, menu, rekt);
+			div.setAttribute('id', rekt_id);
 			div.setAttribute('class', 'rekt');
 
 			var checkbox = document.createElement('input');
-			var checkbox_id = this._joinIds(category, menu, rekt),
-				permalink = this._permalink(checkbox_id, 'button');
+			var checkbox_id = State.getCheckboxId(rekt_id),
+				permalink = this._permalink(rekt_id, 'button');
 			checkbox.setAttribute('type', 'checkbox');
 			checkbox.setAttribute('id', checkbox_id);
 			checkbox.setAttribute('data-self', rekt);

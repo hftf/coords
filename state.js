@@ -121,6 +121,15 @@ var State = (function() {
 
 			this.state.image = image;
 		},
+		getCheckboxId: function(id) {
+			return '_' + id;
+		},
+		getCheckbox: function(id) {
+			return document.getElementById(this.getCheckboxId(id));
+		},
+		getId: function(checkbox) {
+			return checkbox.id.substr(1);
+		},
 		setStates: function(state, els) {
 			for (var i = 0; i < els.length; i ++)
 				this.setState(state, els[i]);
@@ -132,9 +141,9 @@ var State = (function() {
 			var id;
 			if ('string' === typeof el) // param 2 is an id
 				id = el,
-				el = document.getElementById(id);
+				el = this.getCheckbox(id);
 			else // param 2 is an element
-				id = el.id;
+				id = this.getId(el);
 
 			if (el === null)
 				throw "No element exists with id '" + id + "'";
@@ -186,6 +195,9 @@ var State = (function() {
 	var State = {
 		getCoords:     _State.getCoords.bind(_State),
 		getUrl:        _State.getUrl.bind(_State),
+		getCheckboxId: _State.getCheckboxId.bind(_State),
+		getCheckbox:   _State.getCheckboxId.bind(_State),
+		getId:         _State.getId.bind(_State),
 
 		replaceState:  wrap(_State.replaceState,  true),
 		setAll:        wrap(_State.setAll,        true),
