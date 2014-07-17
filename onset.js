@@ -14,10 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		inputs[i].onclick = rotateStates;
 	}
 
-	var main = document.getElementById('main');
-	main_scale = main.width / cw;
-	mouse_scale = main.width / main.offsetWidth;
-
 	all_inputs = document.querySelectorAll('.menu-list input');
 });
 window.onload = function() {

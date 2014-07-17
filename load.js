@@ -40,6 +40,23 @@ var Load = (function() {
 			document.getElementById('example').href = url;
 		},
 
+		layers: function() {
+			var canvasSize = scale(main_scale, to_xywh(bounds)),
+				elemSize = scale(mouse_scale, to_xywh(bounds));
+
+			var layers = document.querySelector('.then .layers');
+			layers.style.width = elemSize[2] + 'px';
+			layers.style.height = elemSize[3] + 'px';
+
+			var canvases = document.querySelectorAll('.then canvas'), canvas;
+			for (var i = 0; i < canvases.length; i ++) {
+				canvas = canvases[i];
+				canvas.width = canvasSize[2];
+				canvas.height = canvasSize[3];
+				canvas.style.width = elemSize[2] + 'px';
+				canvas.style.height = elemSize[3] + 'px';
+			}
+		},
 		grid: function() {
 			var grid = document.getElementById('grid');
 			var grid_ctx = grid.getContext('2d');
@@ -207,6 +224,7 @@ var Load = (function() {
 			this.unclickables();
 			this.preferences();
 			this.example();
+			this.layers();
 
 			this.main_handlers();
 			this.key_handlers();
