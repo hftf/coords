@@ -206,18 +206,42 @@ var coords = {
 	},
 	"TM item": {
 		"id": "h",
-		"Use":              { "id": "u", "coords": [189, 149,   319, 179], "ref": "   " },
-		"Free space":       { "id": "f", "coords": [189, 180,   319, 209], "ref": "   " },
+		"Use":              { "id": "u", "coords": [189, 149,   319, 179], "ref": "oH" },
 		"Cancel":           { "id": "x", "coords": [189, 210,   319, 239], "ref": "ob"  },
 	},
+	"TM Pokémon": {
+		"id": "H",
+		"Pokémon 1":        { "id": "1", "coords": [  0,   0,   158,  59], "ref": "oC"  },
+		"Pokémon 2":        { "id": "2", "coords": [159,   9,   319,  68], "ref": "oC"  },
+		"Pokémon 3":        { "id": "3", "coords": [  0,  60,   158, 118], "ref": "oC"  },
+		"Pokémon 4":        { "id": "4", "coords": [159,  69,   319, 128], "ref": "oC"  },
+		"Pokémon 5":        { "id": "5", "coords": [  0, 119,   158, 178], "ref": "oC"  },
+		"Pokémon 6":        { "id": "6", "coords": [159, 129,   319, 188], "ref": "oC"  },
+		"Cancel":           { "id": "x", "coords": [289, 209,   319, 239], "ref": "END" },
+	},
 	"TM teach": {
+		"id": "C",
+		"Yes":              { "id": "y", "coords": [239,  59,   319,  89], "ref": "oL"  },
+		"No":               { "id": "x", "coords": [239,  90,   319, 119], "ref": "END" },
+	},
+	"TM delete": {
+		"id": "L",
+		"Yes":              { "id": "y", "coords": [239,  59,   319,  89], "ref": "ol"  },
+		"No":               { "id": "x", "coords": [239,  90,   319, 119], "ref": "om"  },
+	},
+	"TM move": {
 		"id": "l",
 		"Move 1":           { "id": "1", "coords": [  9,  19,   179,  59], "ref": "   " },
 		"Move 2":           { "id": "2", "coords": [  9,  60,   179, 100], "ref": "   " },
 		"Move 3":           { "id": "3", "coords": [  9, 101,   179, 139], "ref": "   " },
 		"Move 4":           { "id": "4", "coords": [  9, 140,   179, 179], "ref": "   " },
-		"Forget":           { "id": "f", "coords": [  9, 199,   179, 239], "ref": "   " },
+		"Forget":           { "id": "f", "coords": [  9, 199,   179, 239], "ref": "END" },
 		"Cancel":           { "id": "x", "coords": [289, 209,   319, 239], "ref": "END" },
+	},
+	"TM give up": {
+		"id": "m",
+		"Yes":              { "id": "y", "coords": [239,  59,   319,  89], "ref": "END" },
+		"No":               { "id": "x", "coords": [239,  90,   319, 119], "ref": "oL"  },
 	},
 	"Trash count": {
 		"id": "t",
@@ -449,7 +473,7 @@ var coords = {
 		"Delete":           { "id": "z", "coords": [150, 200,   219, 229], "ref": "   " },
 		"OK":               { "id": "y", "coords": [220, 200,   289, 229], "ref": "   " },
 	},
-	"Daycare Store": {
+	"Daycare store": {
 		"id": "d",
 		"Store":            { "id": "s", "coords": [189, 149,   319, 179], "ref": "   " },
 		"Summary":          { "id": "w", "coords": [189, 180,   319, 209], "ref": "   " },
