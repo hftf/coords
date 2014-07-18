@@ -41,21 +41,17 @@ var Load = (function() {
 		},
 
 		styles: function() {
-			var largeSize = scale(mouse_scale, to_xywh(bounds)),
-				smallSize = scale(menu_scale, to_xywh(bounds)),
-				styleSheet = document.createElement('style');
-			styleSheet.innerHTML = '.size-large{'
-				+ 'width:'  + largeSize[2] + 'px;'
-				+ 'height:' + largeSize[3] + 'px;'
-			+ '}'
-			+ '.size-small{'
-				+ 'width:'  + smallSize[2] + 'px;'
-				+ 'height:' + smallSize[3] + 'px;'
-			+ '}';
+			var styleSheet = document.createElement('style');
+			for (s in scales) {
+				var xywh = scale(scales[s] / scales.mouse, to_xywh(bounds)),
+					cls = '.scale-' + s;
+				styleSheet.innerHTML += cls + ', ' + cls + ' canvas, ' + cls + ' img {\n' +
+					'\twidth: ' + xywh[2] + 'px; height: ' + xywh[3] + 'px;\n}\n';
+			}
 			document.head.appendChild(styleSheet);
 		},
 		layers: function() {
-			var canvasSize = scale(main_scale, to_xywh(bounds));
+			var canvasSize = scale(scales.main, to_xywh(bounds));
 			var canvases = document.querySelectorAll('.then canvas'), canvas;
 			for (var i = 0; i < canvases.length; i ++) {
 				canvas = canvases[i];
@@ -69,21 +65,21 @@ var Load = (function() {
 			grid_ctx.strokeStyle = grid_ctx.fillStyle = '#888';
 			grid_ctx.lineWidth = 1;
 
-			var fontSize = 22, left = main_scale, top = fontSize - main_scale / 2;
+			var fontSize = 22, s = scales.main, left = s, top = fontSize - s / 2;
 			grid_ctx.font = fontSize + 'px Alto Pro';
 
 			for (var x = 64; x <= cw; x += 64) {
 				grid_ctx.textAlign = 'right';
-				grid_ctx.fillText(x, main_scale * (x - 1), top);
-				grid_ctx.moveTo     (main_scale * x + 0.5, 0);
-				grid_ctx.lineTo     (main_scale * x + 0.5, main_scale * ch);
+				grid_ctx.fillText(x, s * (x - 1), top);
+				grid_ctx.moveTo     (s * x + 0.5, 0);
+				grid_ctx.lineTo     (s * x + 0.5, s * ch);
 
 				grid_ctx.textAlign = 'left';
-				grid_ctx.fillText(x, left,                 main_scale * (x - 1));
-				grid_ctx.moveTo     (0,                    main_scale * x + 0.5);
-				grid_ctx.lineTo     (main_scale * cw,      main_scale * x + 0.5);
+				grid_ctx.fillText(x, left,        s * (x - 1));
+				grid_ctx.moveTo     (0,           s * x + 0.5);
+				grid_ctx.lineTo     (s * cw,      s * x + 0.5);
 			}
-			grid_ctx.fillText  ('0', left,                 top);
+			grid_ctx.fillText  ('0', left,        top);
 			grid_ctx.stroke();
 		},
 		main_handlers: function() {

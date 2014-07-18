@@ -6,9 +6,11 @@ var palette = [
 
 var b, current_color, all_inputs, reset_screenshot,
 	zoom_img, main_ctx, varia_ctx, click_ctx,
-	main_scale = 4,
-	mouse_scale = 2,
-	menu_scale = 0.5,
+	scales = {
+		main:  4,
+		mouse: 2,
+		menu:  1,
+	},
 	level_delim = ' › ',
 	cw = bounds[2] - bounds[0] + 1;
 	ch = bounds[3] - bounds[1] + 1;
@@ -195,14 +197,14 @@ function scale(s, x, y, w, h) {
 }
 
 function coords2main(x, y, w, h) {
-	return scale(main_scale, x, y, w, h);
+	return scale(scales.main, x, y, w, h);
 }
 
 function mouse2coords(e) {
 	var x = (e.offsetX === undefined) ? e.layerX - e.currentTarget.offsetLeft : e.offsetX,
 		y = (e.offsetY === undefined) ? e.layerY - e.currentTarget.offsetTop  : e.offsetY;
 
-	return scale(1 / mouse_scale, [x, y]);
+	return scale(1 / scales.mouse, [x, y]);
 }
 
 function text2coords(s) {
