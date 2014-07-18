@@ -111,6 +111,7 @@ input.noclick {
 	display: inline-block;
 }
 .menu-heading {
+	width: 10em;
 	margin-right: 2em;
 }
 .menu-heading h3 {
