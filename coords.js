@@ -24,6 +24,15 @@ function reset_all(state) {
 	State.setStates(state, inputs);
 }
 
+
+function xywh_to_f(rect, r, px) {
+	return [
+		rect[0] + r[0] - px,
+		rect[1] + r[1] - px,
+		rect[2]        + px * 2,
+		rect[3]        + px * 2,
+	];
+}
 var crosshair_dpr = (function() {
 	var result = {}, _crosshair_dpr = {
 		1: { rects: [[-2, 0   ], [ 0,    -2], [-0.5,  -0.5 ]], inner: 0,    outer: 0.5  },
@@ -31,14 +40,6 @@ var crosshair_dpr = (function() {
 	};
 	function x1y1_to_xywh(r) {
 		return [r[0], r[1], 1 - 2 * r[0], 1 - 2 * r[1]];
-	}
-	function xywh_to_f(rect, r, px) {
-		return [
-			rect[0] + r[0] - px,
-			rect[1] + r[1] - px,
-			rect[2]        + px * 2,
-			rect[3]        + px * 2,
-		];
 	}
 	for (var dpr in _crosshair_dpr) {
 		(function(dpr) {
@@ -61,17 +62,12 @@ var crosshair_dpr = (function() {
 	return result;
 })();
 
-function list_overlaps(r) {
-	var span2 = document.getElementById('coords-click'),
-		overlaps = document.getElementById('overlaps'),
-		rekt, inside, input, x1y1,
-		gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
-
-	span2.value = r[0] + ',' + r[1];
-	overlaps.style.display = 'block';
+function draw_crosshair(r) {
+	click_ctx.clear();
+	if (r.length === 0)
+		return;
 
 	var inner_outer = crosshair_dpr[window.devicePixelRatio](r);
-	click_ctx.clear();
 	click_ctx.fillStyle = '#fff';
 	inner_outer.outer.forEach(function(v) {
 		click_ctx.fillRect.apply(click_ctx, coords2main(v));
@@ -82,6 +78,23 @@ function list_overlaps(r) {
 	});
 
 	click_ctx.clearRect.apply(click_ctx, coords2main(r[0], r[1], 1, 1));
+}
+
+function list_overlaps(r) {
+	var span2 = document.getElementById('coords-click'),
+		overlaps = document.getElementById('overlaps'),
+		rekt, inside, input, x1y1,
+		gathered = { 'checked': [], 'unchecked': [], 'indeterminate': [] };
+
+	draw_crosshair(r);
+
+	if (r.length === 0) {
+		overlaps.style.display = 'none';
+		return;
+	}
+
+	span2.value = r[0] + ',' + r[1];
+	overlaps.style.display = 'block';
 
 	for (var category in coords) {
 		for (var menu in coords[category]) {
@@ -191,6 +204,9 @@ function mouse2coords(e) {
 }
 
 function text2coords(s) {
+	if (s === '')
+		return [];
+
 	var m = s.match(/^(\d+),(\d+)$/);
 	if (!m)
 		throw 'Invalid coordinate syntax.';
