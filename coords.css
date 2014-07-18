@@ -200,16 +200,12 @@ a:hover {
 	text-decoration: underline;
 }
 
-body.grid-disabled #grid {
+body.grid-disabled #grid,
+body.rekt-small-disabled .rekt small > span,
+body.refs-disabled .refs {
 	display: none;
 }
 body.rekt-small-disabled .rekt small {
 	width: 1.5em;
 	height: 1.5em;
-}
-body.rekt-small-disabled .rekt small > span {
-	display: none;
-}
-body.refs-disabled .refs {
-	display: none;
 }
