@@ -84,14 +84,6 @@ input.noclick {
 .menu-heading .layers {
 	cursor: pointer;
 }
-.menu-heading .layers, .menu-heading .layers canvas, .menu-heading .layers img {
-	width: 128px;
-	height: 96px;
-}
-.then .layers, .then .layers canvas {
-	width: 512px;
-	height: 384px;
-}
 .menu-heading .layers:hover canvas { opacity: 0.75; }
 .menu-heading .layers img { opacity: 0; }
 .menu-heading .layers:hover img { opacity: 1; }
