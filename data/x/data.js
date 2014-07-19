@@ -94,27 +94,8 @@ var coords = {
 		"id": "s",
 		"Switch":           { "id": "s", "coords": [ 64,  29,   253, 163], "ref": "END" },
 		"Summary":          { "id": "w", "coords": [  0, 189,   128, 239], "ref": "NEW" },
-		"Check moves":      { "id": "m", "coords": [129, 189,   258, 239], "ref": "bc"  },
+		"Check moves":      { "id": "m", "coords": [129, 189,   258, 239], "ref": "NEW" },
 		"Cancel":           { "id": "x", "coords": [269, 189,   319, 239], "ref": "bp"  },
-	},
-	"Check moves": { // Almost the same as "Summary"
-		"id": "c",
-		"Move 1":           { "id": "1", "coords": [  0,  59,   158, 118], "ref": "bm"  },
-		"Move 2":           { "id": "2", "coords": [159,  59,   319, 118], "ref": "bm"  },
-		"Move 3":           { "id": "3", "coords": [  0, 119,   158, 178], "ref": "bm"  },
-		"Move 4":           { "id": "4", "coords": [159, 119,   319, 178], "ref": "bm"  },
-		"Previous":         { "id": "j", "coords": [  0, 189,    48, 239], "ref": "bc"  },
-		"Next":             { "id": "k", "coords": [ 49, 189,    98, 239], "ref": "bc"  },
-		"Summary":          { "id": "w", "coords": [119, 189,   248, 239], "ref": "NEW" },
-		"Cancel":           { "id": "x", "coords": [269, 189,   319, 239], "ref": "bs"  },
-	},
-	"Move": {
-		"id": "m",
-		"Slot 1":           { "id": "1", "coords": [109, 189,   158, 208], "ref": "bm"  },
-		"Slot 2":           { "id": "2", "coords": [159, 189,   208, 208], "ref": "bm"  },
-		"Slot 3":           { "id": "3", "coords": [109, 209,   158, 228], "ref": "bm"  },
-		"Slot 4":           { "id": "4", "coords": [159, 209,   208, 228], "ref": "bm"  },
-		"Cancel":           { "id": "x", "coords": [269, 189,   319, 239], "ref": "bc"  },
 	},
 	"Nickname": {
 		"id": "n",
@@ -306,18 +287,6 @@ var coords = {
 		"id": "O",
 		"Save Yes":         { "id": "y", "coords": [189,  59,   319,  89], "ref": "END" },
 		"Save No":          { "id": "n", "coords": [189,  90,   319, 119], "ref": "END" },
-	},
-},
-"C-Gear": {
-	"id": "y",
-	"C-Gear": {
-		"id": "c",
-		"Power":            { "id": "p", "coords": [238, 213,   260, 235], "ref": "yp"  },
-	},
-	"Power": {
-		"id": "p",
-		"Yes":              { "id": "y", "coords": [209,  59,   319,  89], "ref": "yc"  },
-		"No":               { "id": "x", "coords": [209,  90,   319, 119], "ref": "yc"  },
 	},
 },
 "PC": {
