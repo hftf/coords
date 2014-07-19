@@ -68,15 +68,18 @@ var Load = (function() {
 				grid_ctx.strokeText(text, x, y);
 				grid_ctx.fillText(text, x, y);
 			}
-			
-			function drawLine(x1, y1, x2, y2) {
-				grid_ctx.strokeStyle = lineStyle;
-				grid_ctx.lineWidth = lineWidth;
+
+			function addLine(x1, y1, x2, y2) {
 				grid_ctx.moveTo(x1, y1);
 				grid_ctx.lineTo(x2, y2);
+			}
+
+			function drawLines() {
+				grid_ctx.strokeStyle = lineStyle;
+				grid_ctx.lineWidth = lineWidth;
 				grid_ctx.stroke();
 			}
-		
+
 			var grid = document.getElementById('grid');
 			var grid_ctx = grid.getContext('2d');
 			var lineStyle = '#888',
@@ -90,14 +93,15 @@ var Load = (function() {
 
 			for (var x = 64; x <= cw; x += 64) {
 				drawText(x, s * (x - 1), top, 'right');
-				drawLine   (s * x + 0.5, 0,
+				addLine    (s * x + 0.5, 0,
 				            s * x + 0.5, s * ch);
 
 				drawText(x, left,        s * (x - 1), 'left');
-				drawLine   (0,           s * x + 0.5,
+				addLine    (0,           s * x + 0.5,
 				            s * cw,      s * x + 0.5);
 			}
 			drawText('0',   left,        top, 'left');
+			drawLines();
 		},
 		main_handlers: function() {
 			var main = document.getElementById('main');
