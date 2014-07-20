@@ -60,48 +60,36 @@ var Load = (function() {
 			}
 		},
 		grid: function() {
-			function drawText(text, x, y, align) {
-				grid_ctx.strokeStyle = textStrokeStyle;
-				grid_ctx.lineWidth = textStrokeWidth * 2;
-				grid_ctx.fillStyle = textFillStyle;
-				grid_ctx.textAlign = align;
-				grid_ctx.strokeText(text, x, y);
-				grid_ctx.fillText(text, x, y);
+			var grid = document.getElementById('grid'),
+				grid_ctx = grid.getContext('2d'),
+				fontSize = 22, s = scales.main, left = s, top = fontSize - s / 2, x;
+
+			grid_ctx.strokeStyle = '#888';
+			grid_ctx.lineWidth = 1;
+			for (x = 64; x <= cw; x += 64) {
+				grid_ctx.moveTo(s * x + 0.5, 0);
+				grid_ctx.lineTo(s * x + 0.5, s * ch);
+				grid_ctx.moveTo(0,           s * x + 0.5);
+				grid_ctx.lineTo(s * cw,      s * x + 0.5);
 			}
+			grid_ctx.stroke();
 
-			function addLine(x1, y1, x2, y2) {
-				grid_ctx.moveTo(x1, y1);
-				grid_ctx.lineTo(x2, y2);
-			}
-
-			function drawLines() {
-				grid_ctx.strokeStyle = lineStyle;
-				grid_ctx.lineWidth = lineWidth;
-				grid_ctx.stroke();
-			}
-
-			var grid = document.getElementById('grid');
-			var grid_ctx = grid.getContext('2d');
-			var lineStyle = '#888',
-				lineWidth = 1,
-				textFillStyle = '#fff',
-				textStrokeStyle = '#000',
-				textStrokeWidth = 2;
-
-			var fontSize = 22, s = scales.main, left = s, top = fontSize - s / 2;
 			grid_ctx.font = fontSize + 'px Alto Pro';
+			grid_ctx.strokeStyle = '#444';
+			grid_ctx.fillStyle = '#eee';
+			grid_ctx.lineWidth = 2.25 * 2;
 
-			for (var x = 64; x <= cw; x += 64) {
-				drawText(x, s * (x - 1), top, 'right');
-				addLine    (s * x + 0.5, 0,
-				            s * x + 0.5, s * ch);
-
-				drawText(x, left,        s * (x - 1), 'left');
-				addLine    (0,           s * x + 0.5,
-				            s * cw,      s * x + 0.5);
+			grid_ctx.strokeText('0',   left,        top);
+			grid_ctx.fillText  ('0',   left,        top);
+			for (x = 64; x <= cw; x += 64) {
+				grid_ctx.strokeText(x, left,        s * (x - 1));
+				grid_ctx.fillText  (x, left,        s * (x - 1));
 			}
-			drawText('0',   left,        top, 'left');
-			drawLines();
+			grid_ctx.textAlign = 'right';
+			for (x = 64; x <= cw; x += 64) {
+				grid_ctx.strokeText(x, s * (x - 1), top);
+				grid_ctx.fillText  (x, s * (x - 1), top);
+			}
 		},
 		main_handlers: function() {
 			var main = document.getElementById('main');
