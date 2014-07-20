@@ -60,8 +60,7 @@ section {
 	border-color: #d55;
 	outline-color: #d55;
 }
-#coords-click-errors {
-	display: none;
+.errors {
 	color: #d55;
 	font-weight: bold;
 }
@@ -139,9 +138,6 @@ input.noclick {
 	margin: 0;
 	vertical-align: middle;
 }
-.menu:target, .rekt:target {
-	background: #ff8;
-}
 .rekt label {
 	display: inline-block;
 }
@@ -209,4 +205,8 @@ body.refs-disabled .refs {
 body.rekt-small-disabled .rekt small {
 	width: 1.5em;
 	height: 1.5em;
+}
+
+[id]:target {
+	background: #ff8;
 }
