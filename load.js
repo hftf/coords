@@ -196,7 +196,7 @@ var Load = (function() {
 			function recurse(me) {
 				if (cur.length === max_depth)
 					return;
-				if (me === 'id' || me ==='desc')
+				if (me in ignore_ids)
 					return;
 				if (me) {
 					cur.push(me);

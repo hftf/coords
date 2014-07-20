@@ -221,12 +221,14 @@ var coords = {
 	},
 	"Trash count": {
 		"id": "t",
+		"premium": true,
 		"Trash":            { "id": "t", "coords": [127,  95,   230, 142], "ref": "ou"  },
 		"More":             { "id": "j", "coords": [233,  91,   255, 115], "ref": "   " },
 		"Less":             { "id": "k", "coords": [233, 116,   255, 139], "ref": "   " },
 	},
 	"Trash confirm": {
 		"id": "u",
+		"premium": true,
 		"Yes":              { "id": "y", "coords": [191,  47,   255,  71], "ref": "END" },
 		"No":               { "id": "x", "coords": [191,  72,   255,  95], "ref": "ob"  },
 	},
@@ -298,6 +300,7 @@ var coords = {
 },
 "PC": {
 	"id": "p",
+	"premium": true,
 	"Deposit": {
 		"id": "d",
 		"Pokémon 1":        { "id": "1", "coords": [ 29,  55,    52,  78], "ref": "   " },

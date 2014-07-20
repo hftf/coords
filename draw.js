@@ -22,7 +22,7 @@ var Draw = (function() {
 			div.insertAdjacentHTML('afterbegin', '<a href="#↑" title="Return to top of page" class="top">↑ top</a>');
 
 			for (var menu in coords[category])
-				if (menu !== 'id')
+				if (!(menu in ignore_ids))
 					div.appendChild(this.menu(menu, category));
 
 			var a = '<a href="#' + id + '">' + category + '</a>';
@@ -51,7 +51,10 @@ var Draw = (function() {
 				permalink = this._permalink(menu_id, 'screen');
 			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + permalink + '</label>');
 
-			if ('desc' in coords[category][menu]) {
+			if ('premium' in coords[category] || 'premium' in coords[category][menu]) {
+				div2.innerHTML = '<p>This screen is <a href="#premium">premium-only</a>.</p>';
+			}
+			else if ('desc' in coords[category][menu]) {
 				var html = '“' + coords[category][menu].desc + '”';
 				html += '<p class="contrib-screen"><a href="https://github.com/hftf/coords/issues/41">Contribute this screen</a></p>';
 				div2.innerHTML = html;
@@ -93,10 +96,9 @@ var Draw = (function() {
 				var ul = document.createElement('ul');
 
 				for (var rekt in coords[category][menu]) {
-					if (rekt !== 'id') {
-						var child_c = this.rekt(rekt, menu, ctx, category);
-						ul.appendChild(child_c);
-					}
+					if (rekt in ignore_ids) continue;
+					var child_c = this.rekt(rekt, menu, ctx, category);
+					ul.appendChild(child_c);
 				}
 
 				div2.appendChild(ul);
