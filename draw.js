@@ -22,7 +22,7 @@ var Draw = (function() {
 			div.insertAdjacentHTML('afterbegin', '<a href="#↑" title="Return to top of page" class="top">↑ top</a>');
 
 			for (var menu in coords[category])
-				if (menu !== 'id')
+				if (!(menu in ignore_ids))
 					div.appendChild(this.menu(menu, category));
 
 			var a = '<a href="#' + id + '">' + category + '</a>';
@@ -93,10 +93,9 @@ var Draw = (function() {
 				var ul = document.createElement('ul');
 
 				for (var rekt in coords[category][menu]) {
-					if (rekt !== 'id') {
-						var child_c = this.rekt(rekt, menu, ctx, category);
-						ul.appendChild(child_c);
-					}
+					if (rekt in ignore_ids) continue;
+					var child_c = this.rekt(rekt, menu, ctx, category);
+					ul.appendChild(child_c);
 				}
 
 				div2.appendChild(ul);

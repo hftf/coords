@@ -11,6 +11,7 @@ var b, current_color, all_inputs, reset_screenshot,
 		mouse: 2,
 		menu:  1,
 	},
+	ignore_ids = { 'id': 1, 'desc': 1 },
 	level_delim = ' › ',
 	cw = bounds[2] - bounds[0] + 1;
 	ch = bounds[3] - bounds[1] + 1;
@@ -102,15 +103,16 @@ function list_overlaps(r) {
 
 	for (var category in coords) {
 		for (var menu in coords[category]) {
-			if (menu === 'id') continue;
+			if (menu in ignore_ids) continue;
 			if ('desc' in coords[category][menu]) continue;
 			for (rekt in coords[category][menu]) {
-				if (rekt === 'id') continue;
+				if (rekt in ignore_ids) continue;
 				x1y1 = coords[category][menu][rekt].coords;
 				inside = (x1y1[0] <= r[0]) && (r[0] <= x1y1[2]) && (x1y1[1] <= r[1]) && (r[1] <= x1y1[3]);
 				if (inside) {
 					var id = Draw._joinIds(category, menu, rekt);
 					input = State.getCheckbox(id);
+					if (!input) continue;
 					gathered[input.dataset.state].push('<a href="#' + id + '" class="overlap">' + menu + level_delim + rekt + '</a>');
 				}
 			}
@@ -132,13 +134,14 @@ function draw_varia(r) {
 
 	for (var category in coords) {
 		for (var menu in coords[category]) {
-			if (menu === 'id') continue;
+			if (menu in ignore_ids) continue;
 			if ('desc' in coords[category][menu]) continue;
 			for (rekt in coords[category][menu]) {
 				if (rekt === 'id') continue;
 				x1y1 = coords[category][menu][rekt].coords;
 				id = Draw._joinIds(category, menu, rekt);
 				input = State.getCheckbox(id);
+				if (!input) continue;
 				inside = (x1y1[0] <= r[0]) && (r[0] <= x1y1[2]) && (x1y1[1] <= r[1]) && (r[1] <= x1y1[3]);
 				(inside ? hit : miss)[input.dataset.state].push(x1y1);
 			}
