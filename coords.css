@@ -210,3 +210,6 @@ body.rekt-small-disabled .rekt small {
 [id]:target {
 	background: #ff8;
 }
+#premium:not(:target) {
+	display: none;
+}
