@@ -204,12 +204,12 @@ var coords = {
 	},
 	"TM move": {
 		"id": "l",
-		"Move 1":           { "id": "1", "coords": [  9,  19,   179,  59], "ref": "   " },
-		"Move 2":           { "id": "2", "coords": [  9,  60,   179, 100], "ref": "   " },
-		"Move 3":           { "id": "3", "coords": [  9, 101,   179, 139], "ref": "   " },
-		"Move 4":           { "id": "4", "coords": [  9, 140,   179, 179], "ref": "   " },
-		"Forget":           { "id": "f", "coords": [  9, 199,   179, 239], "ref": "END" },
-		"Cancel":           { "id": "x", "coords": [289, 209,   319, 239], "ref": "END" },
+		"Move 1":           { "id": "1", "coords": [142,   0,   316,  39], "ref": "   " },
+		"Move 2":           { "id": "2", "coords": [142,  40,   316,  79], "ref": "   " },
+		"Move 3":           { "id": "3", "coords": [142,  80,   316, 119], "ref": "   " },
+		"Move 4":           { "id": "4", "coords": [142, 120,   316, 169], "ref": "   " },
+		"Forget":           { "id": "f", "coords": [142, 170,   316, 209], "ref": "END" },
+		"Cancel":           { "id": "x", "coords": [280, 210,   309, 239], "ref": "END" },
 	},
 	"TM give up": {
 		"id": "m",
@@ -218,9 +218,10 @@ var coords = {
 	},
 	"Trash count": {
 		"id": "t",
-		"Trash":            { "id": "t", "coords": [159, 119,   288, 178], "ref": "ou"  },
-		"More":             { "id": "j", "coords": [291, 114,   319, 144], "ref": "   " },
-		"Less":             { "id": "k", "coords": [291, 145,   319, 174], "ref": "   " },
+		"Trash":            { "id": "t", "coords": [208,  87,   314, 143], "ref": "ou"  },
+		"More":             { "id": "j", "coords": [208, 144,   314, 171], "ref": "   " },
+		"Less":             { "id": "k", "coords": [208, 172,   314, 199], "ref": "   " },
+		"Cancel":           { "id": "x", "coords": [283, 200,   312, 229], "ref": "ob"  },
 	},
 	"Trash confirm": {
 		"id": "u",
