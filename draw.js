@@ -51,7 +51,10 @@ var Draw = (function() {
 				permalink = this._permalink(menu_id, 'screen');
 			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + permalink + '</label>');
 
-			if ('desc' in coords[category][menu]) {
+			if ('premium' in coords[category] || 'premium' in coords[category][menu]) {
+				div2.innerHTML = '<p>This screen is <a href="#premium">premium-only</a>.</p>';
+			}
+			else if ('desc' in coords[category][menu]) {
 				var html = '“' + coords[category][menu].desc + '”';
 				html += '<p class="contrib-screen"><a href="https://github.com/hftf/coords/issues/41">Contribute this screen</a></p>';
 				div2.innerHTML = html;
