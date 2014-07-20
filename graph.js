@@ -2,17 +2,18 @@ function draw() {
 	g = new dagreD3.Digraph();
 
 	var category_id, menu_id, rekt_id, edge_id,
+		ignore_ids = { 'id': 1, 'desc': 1, 'premium': 1 },
 		from, to, edges = {};
 	for (var category in coords) {
 		for (var menu in coords[category]) {
-			if (menu === 'id')
+			if (menu in ignore_ids)
 				continue;
 
 			menu_id = Draw._joinIds(category, menu);
 
 			g.addNode(menu_id, { label: menu });
 			for (var rekt in coords[category][menu]) {
-				if (rekt === 'id')
+				if (rekt in ignore_ids)
 					continue;
 
 				rekt_id = Draw._joinIds(category, menu, rekt);
