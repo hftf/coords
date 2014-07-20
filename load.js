@@ -219,12 +219,12 @@ var Load = (function() {
 		})(),
 
 		categories_toc: function() {
-			var b = document.getElementById('b'),
+			var screens = document.getElementById('screens'),
 				toc = document.getElementById('toc'),
 				jumps = [], returned;
 			for (var category in coords) {
 				returned = Draw.category(category);
-				b.appendChild(returned[0]);
+				screens.appendChild(returned[0]);
 				jumps.push(returned[1]);
 			}
 			toc.insertAdjacentHTML('beforeend', jumps.join(' · '));
