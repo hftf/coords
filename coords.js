@@ -150,7 +150,6 @@ function draw_varia(r) {
 
 	var i, rect, xywh;
 	varia_ctx.clear();
-	varia_ctx.globalAlpha = 0.4;
 	if (hit.indeterminate.length) {
 		// Hit a button to avoid, show warning
 		varia_ctx.fillStyle = '#f77';
@@ -231,11 +230,14 @@ function recomposite_main() {
 	}
 
 	main_ctx.clear();
-	main_ctx.globalAlpha = 0.4;
 	for (i = 0; i < gathered.checked.length; i ++) {
 		rekt = gathered.checked[i];
 		xywh = coords2main(to_xywh(coords[rekt[2]][rekt[1]][rekt[0]].coords));
-		main_ctx.fillRect.apply(main_ctx, xywh);
+		main_ctx.beginPath();
+		main_ctx.rect.apply(main_ctx, xywh);
+		main_ctx.fill();
+		main_ctx.rect.apply(main_ctx, xywh_to_f(xywh, [0, 0], -3 * scales.main));
+		main_ctx.fill('evenodd');
 	}
 	for (i = 0; i < gathered.indeterminate.length; i ++) {
 		rekt = gathered.indeterminate[i];
