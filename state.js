@@ -47,7 +47,7 @@ var State = (function() {
 			for (i = 0; i < a.length; i ++)
 				if (a[i].length > 3)
 					for (prefix = a[i].substr(0, 2), j = 2; j < a[i].length; j ++)
-						r.push(prefix + a[i][j]);
+						r.push(prefix + ((a[i][j] !== '.') ? a[i][j] : ''));
 				else
 					r.push(a[i]);
 			return r;
@@ -57,9 +57,9 @@ var State = (function() {
 			for (i = 0; i < a.length; i ++)
 				if (a[i].length === 3 &&
 					r.length > 0 &&
-					r[r.length - 1].length > 2 &&
+					r[r.length - 1].length >= 2 &&
 					r[r.length - 1].substr(0, 2) === a[i].substr(0, 2))
-					r[r.length - 1] += a[i][2];
+					r[r.length - 1] += ((r[r.length - 1].length === 2) ? '.' : '') + a[i][2];
 				else
 					r.push(a[i]);
 			return r;
@@ -73,9 +73,9 @@ var State = (function() {
 				window.location.search = '?' + this.state.game;
 
 			// '?hg+a,b-c,d;x,y@z'
-			//                      ? hg      + a,b         - c,d         ; x,y          @ z
-			//                      ^ 1--     ^ 2-----      ^ 3-----      ^ 4------      ^ 5--
-			var m = search.match(/^\?(\w+)(?:\+([\w,]+))?(?:-([\w,]+))?(?:;(\d+,\d+))?(?:@(\w+))?$/);
+			//                      ? hg      + a,b          - c,d          ; x,y          @ z
+			//                      ^ 1--     ^ 2------      ^ 3------      ^ 4------      ^ 5--
+			var m = search.match(/^\?(\w+)(?:\+([\w,.]+))?(?:-([\w,.]+))?(?:;(\d+,\d+))?(?:@(\w+))?$/);
 
 			if (!m)
 				throw 'Invalid query string: ' + search;
