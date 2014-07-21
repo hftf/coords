@@ -32,10 +32,10 @@ function reset_all(state) {
 
 function xywh_to_f(rect, r, px) {
 	return [
-		rect[0] + r[0] - px,
-		rect[1] + r[1] - px,
-		rect[2]        + px * 2,
-		rect[3]        + px * 2,
+		            rect[0] + r[0] - px,
+		            rect[1] + r[1] - px,
+		Math.max(0, rect[2]        + px * 2),
+		Math.max(0, rect[3]        + px * 2),
 	];
 }
 var crosshair_dpr = (function() {
