@@ -28,11 +28,11 @@ var State = (function() {
 					if (state[i] === undefined)
 						state[i] = this.state[i];
 
-			return '?' + [                  state.game,
-				this._join('+', Object.keys(state.checked).sort()),
-				this._join('-', Object.keys(state.indeterminate).sort()),
-				this._join(';',             state.coords),
-				this._join('@',             state.image),
+			return '?' + [                              state.game,
+				this._join('+', this._group(Object.keys(state.checked).sort())),
+				this._join('-', this._group(Object.keys(state.indeterminate).sort())),
+				this._join(';',                         state.coords),
+				this._join('@',                         state.image),
 			].join('');
 		},
 		_split: function(s) {
@@ -41,6 +41,28 @@ var State = (function() {
 		_join: function(prefix, s) {
 			var joined = ('string' === typeof s) ? s : s.join(',');
 			return s.length === 0 ? '' : prefix + joined;
+		},
+		_ungroup: function(a) {
+			var r = [], i, j, prefix;
+			for (i = 0; i < a.length; i ++)
+				if (a[i].length > 3)
+					for (prefix = a[i].substr(0, 2), j = 2; j < a[i].length; j ++)
+						r.push(prefix + a[i][j]);
+				else
+					r.push(a[i]);
+			return r;
+		},
+		_group: function(a) {
+			var r = [], i;
+			for (i = 0; i < a.length; i ++)
+				if (a[i].length === 3 &&
+					r.length > 0 &&
+					r[r.length - 1].length > 2 &&
+					r[r.length - 1].substr(0, 2) === a[i].substr(0, 2))
+					r[r.length - 1] += a[i][2];
+				else
+					r.push(a[i]);
+			return r;
 		},
 
 		setAllFromUrl: function(search) {
@@ -59,11 +81,11 @@ var State = (function() {
 				throw 'Invalid query string: ' + search;
 
 			return {
-				game:                      m[1] ,      // 'hg'
-				checked:       this._split(m[2]),      // ['a', 'b']
-				indeterminate: this._split(m[3]),      // ['c', 'd']
-				coords:                    m[4],       // 'x,y'
-				image:                     m[5],       // 'z'
+				game:                                    m[1] ,   // 'hg'
+				checked:       this._ungroup(this._split(m[2])),  // ['a', 'b']
+				indeterminate: this._ungroup(this._split(m[3])),  // ['c', 'd']
+				coords:                                  m[4],    // 'x,y'
+				image:                                   m[5],    // 'z'
 			};
 		},
 		setAll: function(state) {
