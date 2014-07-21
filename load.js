@@ -94,10 +94,11 @@ var Load = (function() {
 		main_handlers: function() {
 			var main = document.getElementById('main');
 			main_ctx = main.getContext('2d');
-			main_ctx.fillStyle = '#7af';
+			main_ctx.fillStyle = 'rgba(119,170,255,0.4)';
 
 			var varia = document.getElementById('varia');
 			varia_ctx = varia.getContext('2d');
+			varia_ctx.globalAlpha = 0.4;
 
 			var click = document.getElementById('click');
 			click_ctx = click.getContext('2d');
