@@ -143,7 +143,10 @@ var State = (function() {
 				reset_screenshot.style.display = 'none';
 			}
 			else {
-				zoom_ctx.drawScaledImage(img);
+				if (img.complete)
+					zoom_ctx.drawScaledImage(img);
+				else
+					img.onload = function() { zoom_ctx.drawScaledImage(img); };
 				reset_screenshot.style.display = null;
 			}
 
