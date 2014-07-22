@@ -167,6 +167,9 @@ var Draw = (function() {
 				var div = document.createElement('div');
 				div.setAttribute('class', 'refs');
 
+				if (tos === undefined)
+					tos = [];
+
 				if ('string' === typeof tos)
 					tos = [tos];
 
