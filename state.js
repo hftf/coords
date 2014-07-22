@@ -42,12 +42,17 @@ var State = (function() {
 			var joined = ('string' === typeof s) ? s : s.join(',');
 			return s.length === 0 ? '' : prefix + joined;
 		},
+		_polygram: function(v) {
+			return v.length > 1;
+		},
 		_ungroup: function(a) {
 			var r = [], i, j, prefix;
 			for (i = 0; i < a.length; i ++)
 				if (a[i].length > 3)
 					for (prefix = a[i].substr(0, 2), j = 2; j < a[i].length; j ++)
 						r.push(prefix + ((a[i][j] !== '.') ? a[i][j] : ''));
+				else if (a[i][a[i].length - 1] === '*')
+					r.push.apply(r, Load.lookup[a[i]].filter(this._polygram));
 				else
 					r.push(a[i]);
 			return r;
@@ -76,9 +81,9 @@ var State = (function() {
 				window.location.search = '?' + this.state.game;
 
 			// '?hg+a,b-c,d;x,y@z'
-			//                      ? hg      + a,b          - c,d          ; x,y          @ z
-			//                      ^ 1--     ^ 2------      ^ 3------      ^ 4------      ^ 5--
-			var m = search.match(/^\?(\w+)(?:\+([\w,.]+))?(?:-([\w,.]+))?(?:;(\d+,\d+))?(?:@(\w+))?$/);
+			//                      ? hg      + a,b           - c,d           ; x,y          @ z
+			//                      ^ 1--     ^ 2-------      ^ 3-------      ^ 4------      ^ 5--
+			var m = search.match(/^\?(\w+)(?:\+([\w,.*]+))?(?:-([\w,.*]+))?(?:;(\d+,\d+))?(?:@(\w+))?$/);
 
 			if (!m)
 				throw 'Invalid query string: ' + search;
