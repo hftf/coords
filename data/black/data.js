@@ -339,8 +339,8 @@ var coords = {
 		"Lower":            { "id": "l", "coords": [ 48, 160,    71, 183] },
 		"Others":           { "id": "o", "coords": [ 72, 160,    95, 183] },
 		"Qwerty":           { "id": "q", "coords": [ 96, 160,   119, 183] },
-		"Delete":           { "id": "b", "coords": [120, 160,   175, 183] },
-		"OK":               { "id": "u", "coords": [176, 160,   231, 183] },
+		"Delete":           { "id": "z", "coords": [120, 160,   175, 183] },
+		"OK":               { "id": "y", "coords": [176, 160,   231, 183] },
 	},
 	"Daycare Store": {
 		"id": "d",
