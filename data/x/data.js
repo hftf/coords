@@ -279,6 +279,20 @@ var coords = {
 },
 "PC": {
 	"id": "p",
+	"PC": {
+		"id": "p",
+		"Cassius":          { "id": "c", "coords": [ 20,  85,   299, 114], "ref": "pc"  },
+		"Professor":        { "id": "p", "coords": [ 20, 135,   299, 164], "ref": "   " },
+		"Power Off":        { "id": "q", "coords": [ 20, 185,   299, 214], "ref": "   " },
+	},
+	"Cassius": {
+		"id": "c",
+		"Deposit":          { "id": "d", "coords": [ 20,  25,   299,  54], "ref": "pd"  },
+		"Withdraw":         { "id": "w", "coords": [ 20,  65,   299,  94], "ref": "pw"  },
+		"Boxes":            { "id": "b", "coords": [ 20, 105,   299, 134], "ref": "   " },
+		"Items":            { "id": "i", "coords": [ 20, 145,   299, 174], "ref": "   " },
+		"Log Out":          { "id": "q", "coords": [ 20, 185,   299, 214], "ref": "pp"  },
+	},
 	"Deposit": {
 		"id": "d",
 		"Pokémon 1":        { "id": "1", "coords": [ 36,  69,    65,  98], "ref": "   " },
