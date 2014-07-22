@@ -66,9 +66,12 @@ var State = (function() {
 		},
 
 		setAllFromUrl: function(search) {
-			return this.setAll(this._url2state(search || decodeURIComponent(window.location.search)));
+			return this.setAll(this.getAllFromUrl(search));
 		},
-		_url2state: function(search) {
+		getAllFromUrl: function(search) {
+			if (search === undefined)
+				search = decodeURIComponent(window.location.search);
+
 			if (search === '')
 				window.location.search = '?' + this.state.game;
 
@@ -219,6 +222,7 @@ var State = (function() {
 	var State = {
 		getCoords:     _State.getCoords.bind(_State),
 		getUrl:        _State.getUrl.bind(_State),
+		getAllFromUrl: _State.getAllFromUrl.bind(_State),
 		getCheckboxId: _State.getCheckboxId.bind(_State),
 		getCheckbox:   _State.getCheckbox.bind(_State),
 		getId:         _State.getId.bind(_State),
