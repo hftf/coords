@@ -307,7 +307,7 @@ var coords = {
 		"Release":          { "id": "r", "coords": [210, 140,   319, 169], "ref": "pr"  },
 		"Cancel":           { "id": "x", "coords": [210, 170,   319, 199], "ref": "   " },
 		"Exit PC":          { "id": "z", "coords": [240, 210,   269, 239], "ref": "   " },
-		"Quit":             { "id": "q", "coords": [280, 210,   309, 239], "ref": "pc"  },
+		"Quit":             { "id": "q", "coords": [280, 210,   309, 239], "ref": "pq"  },
 	},
 	"Withdraw": {
 		"id": "w",
@@ -317,12 +317,17 @@ var coords = {
 		"Release":          { "id": "r", "coords": [210, 140,   319, 169], "ref": "pr"  },
 		"Cancel":           { "id": "x", "coords": [210, 170,   319, 199], "ref": "   " },
 		"Exit PC":          { "id": "z", "coords": [240, 210,   269, 239], "ref": "   " },
-		"Quit":             { "id": "q", "coords": [280, 210,   309, 239], "ref": "pc"  },
+		"Quit":             { "id": "q", "coords": [280, 210,   309, 239], "ref": "pq"  },
 	},
 	"Release": {
 		"id": "r",
 		"Release Yes":      { "id": "y", "coords": [230, 140,   319, 169], "ref": "   " },
 		"Release No":       { "id": "x", "coords": [230, 170,   319, 199], "ref": "   " },
+	},
+	"Continue": {
+		"id": "q",
+		"Continue Yes":     { "id": "y", "coords": [230, 140,   319, 169], "ref": "   " },
+		"Continue No":      { "id": "x", "coords": [230, 170,   319, 199], "ref": "pc"  },
 	},
 	"Box": {
 		"id": "b",
