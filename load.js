@@ -198,9 +198,14 @@ var Load = (function() {
 					lookup[key] = cur.slice(0);
 				}
 
-				if (cur.length < max_depth)
-					Object.keys(cur.reduce(get, coords)).filter(ignore).map(recurse);
+				var ret = key;
+				if (cur.length < max_depth) {
+					var o = Object.keys(cur.reduce(get, coords)).filter(ignore).map(recurse);
+					if (key)
+						lookup[key + '*'] = ret = Array.prototype.concat.apply([key], o);
+				}
 				cur.pop();
+				return ret;
 			}
 
 			return function() {
