@@ -1,4 +1,5 @@
 var game = 'hg';
+var game_name = 'HeartGold';
 var bounds =             [  0,   0,   255, 191];
 var coords = {
 "Battle": {

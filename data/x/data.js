@@ -1,4 +1,5 @@
 var game = 'x';
+var game_name = 'X';
 var bounds =                [  0,   0,   319, 239];
 var ref_key = {
 	"\\w+":	"ID of button",
