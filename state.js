@@ -116,7 +116,7 @@ var State = (function() {
 			this.state.coords = coords;
 		},
 		setImage: function(image) {
-			var clear = false;
+			var clear = false, img;
 			if (image === undefined && (clear = true))
 				image = '';
 
@@ -128,7 +128,7 @@ var State = (function() {
 				if (menu.length !== 2)
 					throw "Item with id '" + image + "' is not a menu";
 
-				var img = document.getElementById(image + '-image');
+				img = document.getElementById(image + '-image');
 
 				// Possible race condition between window.onload and image.onerror?
 				if ('missing' in img.dataset && (clear = true))

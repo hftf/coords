@@ -41,10 +41,10 @@ var Load = (function() {
 		},
 
 		styles: function() {
-			var styleSheet = document.createElement('style');
+			var styleSheet = document.createElement('style'), s, xywh, cls;
 			for (s in scales) {
-				var xywh = scale(scales[s] / scales.mouse, to_xywh(bounds)),
-					cls = '.scale-' + s;
+				xywh = scale(scales[s] / scales.mouse, to_xywh(bounds));
+				cls = '.scale-' + s;
 				styleSheet.innerHTML += cls + ', ' + cls + ' canvas, ' + cls + ' img {\n' +
 					'\twidth: ' + xywh[2] + 'px; height: ' + xywh[3] + 'px;\n}\n';
 			}
