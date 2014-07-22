@@ -235,6 +235,8 @@ var Load = (function() {
 		},
 
 		all: function() {
+			document.getElementById('game-name').innerHTML = game_name;
+
 			this.indeterminates();
 			this.unclickables();
 			this.preferences();
