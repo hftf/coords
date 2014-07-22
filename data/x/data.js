@@ -250,10 +250,10 @@ var coords = {
 	},
 	"Pokémon Item": {
 		"id": "j",
-		"Give":             { "id": "g", "coords": [189, 119,   319, 149], "ref": "   " }, // "Read" when holding mail
-		"Take":             { "id": "t", "coords": [189, 150,   319, 179], "ref": "   " },
-		"Move":             { "id": "m", "coords": [189, 180,   319, 209], "ref": "   " },
-		"Quit":             { "id": "q", "coords": [189, 210,   319, 239], "ref": "op"  },
+		"Use/Give":         { "id": "g", "coords": [230, 120,   319, 149], "ref": "   " }, // "Read" when holding mail
+		"Take":             { "id": "t", "coords": [230, 150,   319, 179], "ref": "   " },
+		"Move":             { "id": "m", "coords": [230, 180,   319, 209], "ref": "   " },
+		"Back":             { "id": "q", "coords": [230, 210,   319, 239], "ref": "op"  },
 	},
 	"Options": {
 		"id": "o",
