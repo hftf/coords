@@ -1,5 +1,6 @@
 var Load = (function() {
 	var _Load = {
+		/* Independent */
 		/* There are currently two static indeterminate checkboxes:
 		   one under "Key" and one under "Overlaps" */
 		indeterminates: function() {
@@ -26,71 +27,7 @@ var Load = (function() {
 				document.body.classList[el.checked ? 'remove' : 'add'](el.id);
 			}
 		},
-		example: function () {
-			var state = { checked: {}, indeterminate: {} }, i;
 
-			state.image = 'bf';
-			state.coords = coords['Battle']['Fight']['Attack 1'].coords.slice(2).join(',');
-			for (i = 1; i <= 4; i ++)
-				state.checked['bf' + i] = true;
-			for (i = 1; i <= 6; i ++)
-				state.indeterminate['bq' + i] = true;
-
-			var url = State.getUrl(state);
-			document.getElementById('example').href = url;
-		},
-
-		styles: function() {
-			var styleSheet = document.createElement('style'), s, xywh, cls;
-			for (s in scales) {
-				xywh = scale(scales[s] / scales.mouse, to_xywh(bounds));
-				cls = '.scale-' + s;
-				styleSheet.innerHTML += cls + ', ' + cls + ' canvas, ' + cls + ' img {\n' +
-					'\twidth: ' + xywh[2] + 'px; height: ' + xywh[3] + 'px;\n}\n';
-			}
-			document.head.appendChild(styleSheet);
-		},
-		layers: function() {
-			var canvasSize = scale(scales.main, to_xywh(bounds));
-			var canvases = document.querySelectorAll('.then canvas'), canvas;
-			for (var i = 0; i < canvases.length; i ++) {
-				canvas = canvases[i];
-				canvas.width = canvasSize[2];
-				canvas.height = canvasSize[3];
-			}
-		},
-		grid: function() {
-			var grid = document.getElementById('grid'),
-				grid_ctx = grid.getContext('2d'),
-				fontSize = 22, s = scales.main, left = s, top = fontSize - s / 2, x;
-
-			grid_ctx.strokeStyle = '#888';
-			grid_ctx.lineWidth = 1;
-			for (x = 64; x <= cw; x += 64) {
-				grid_ctx.moveTo(s * x + 0.5, 0);
-				grid_ctx.lineTo(s * x + 0.5, s * ch);
-				grid_ctx.moveTo(0,           s * x + 0.5);
-				grid_ctx.lineTo(s * cw,      s * x + 0.5);
-			}
-			grid_ctx.stroke();
-
-			grid_ctx.font = fontSize + 'px Alto Pro';
-			grid_ctx.strokeStyle = '#444';
-			grid_ctx.fillStyle = '#eee';
-			grid_ctx.lineWidth = 2.25 * 2;
-
-			grid_ctx.strokeText('0',   left,        top);
-			grid_ctx.fillText  ('0',   left,        top);
-			for (x = 64; x <= cw; x += 64) {
-				grid_ctx.strokeText(x, left,        s * (x - 1));
-				grid_ctx.fillText  (x, left,        s * (x - 1));
-			}
-			grid_ctx.textAlign = 'right';
-			for (x = 64; x <= cw; x += 64) {
-				grid_ctx.strokeText(x, s * (x - 1), top);
-				grid_ctx.fillText  (x, s * (x - 1), top);
-			}
-		},
 		main_handlers: function() {
 			var main = document.getElementById('main');
 			main_ctx = main.getContext('2d');
@@ -189,6 +126,60 @@ var Load = (function() {
 			};
 		},
 
+		/* Dependent on bounds */
+		styles: function() {
+			var styleSheet = document.createElement('style'), s, xywh, cls;
+			for (s in scales) {
+				xywh = scale(scales[s] / scales.mouse, to_xywh(bounds));
+				cls = '.scale-' + s;
+				styleSheet.innerHTML += cls + ', ' + cls + ' canvas, ' + cls + ' img {\n' +
+					'\twidth: ' + xywh[2] + 'px; height: ' + xywh[3] + 'px;\n}\n';
+			}
+			document.head.appendChild(styleSheet);
+		},
+		layers: function() {
+			var canvasSize = scale(scales.main, to_xywh(bounds));
+			var canvases = document.querySelectorAll('.then canvas'), canvas;
+			for (var i = 0; i < canvases.length; i ++) {
+				canvas = canvases[i];
+				canvas.width = canvasSize[2];
+				canvas.height = canvasSize[3];
+			}
+		},
+		grid: function() {
+			var grid = document.getElementById('grid'),
+				grid_ctx = grid.getContext('2d'),
+				fontSize = 22, s = scales.main, left = s, top = fontSize - s / 2, x;
+
+			grid_ctx.strokeStyle = '#888';
+			grid_ctx.lineWidth = 1;
+			for (x = 64; x <= cw; x += 64) {
+				grid_ctx.moveTo(s * x + 0.5, 0);
+				grid_ctx.lineTo(s * x + 0.5, s * ch);
+				grid_ctx.moveTo(0,           s * x + 0.5);
+				grid_ctx.lineTo(s * cw,      s * x + 0.5);
+			}
+			grid_ctx.stroke();
+
+			grid_ctx.font = fontSize + 'px Alto Pro';
+			grid_ctx.strokeStyle = '#444';
+			grid_ctx.fillStyle = '#eee';
+			grid_ctx.lineWidth = 2.25 * 2;
+
+			grid_ctx.strokeText('0',   left,        top);
+			grid_ctx.fillText  ('0',   left,        top);
+			for (x = 64; x <= cw; x += 64) {
+				grid_ctx.strokeText(x, left,        s * (x - 1));
+				grid_ctx.fillText  (x, left,        s * (x - 1));
+			}
+			grid_ctx.textAlign = 'right';
+			for (x = 64; x <= cw; x += 64) {
+				grid_ctx.strokeText(x, s * (x - 1), top);
+				grid_ctx.fillText  (x, s * (x - 1), top);
+			}
+		},
+
+		/* Dependent on coords */
 		_lookup: (function() {
 			var lookup, max_depth = 3, cur;
 			function get(obj, key) {
@@ -218,7 +209,6 @@ var Load = (function() {
 				return lookup;
 			};
 		})(),
-
 		categories_toc: function() {
 			var screens = document.getElementById('screens'),
 				toc = document.getElementById('toc'),
@@ -230,21 +220,34 @@ var Load = (function() {
 			}
 			toc.insertAdjacentHTML('beforeend', jumps.join(' · '));
 		},
+		example: function () {
+			var state = { checked: {}, indeterminate: {} }, i;
+
+			state.image = 'bf';
+			state.coords = coords['Battle']['Fight']['Attack 1'].coords.slice(2).join(',');
+			for (i = 1; i <= 4; i ++)
+				state.checked['bf' + i] = true;
+			for (i = 1; i <= 6; i ++)
+				state.indeterminate['bq' + i] = true;
+
+			var url = State.getUrl(state);
+			document.getElementById('example').href = url;
+		},
 
 		all: function() {
 			this.indeterminates();
 			this.unclickables();
 			this.preferences();
-			this.example();
-			this.styles();
-			this.layers();
 
 			this.main_handlers();
 			this.key_handlers();
 
+			this.styles();
+			this.layers();
+			this.example();
 			this.lookup = this._lookup();
 			this.categories_toc();
-		}
+		},
 	};
 
 	return _Load;
