@@ -198,11 +198,11 @@ var coords = {
 	},
 	"TM move": {
 		"id": "l",
-		"Move 1":           { "id": "1", "coords": [142,   0,   316,  39], "ref": "   " },
-		"Move 2":           { "id": "2", "coords": [142,  40,   316,  79], "ref": "   " },
-		"Move 3":           { "id": "3", "coords": [142,  80,   316, 119], "ref": "   " },
-		"Move 4":           { "id": "4", "coords": [142, 120,   316, 169], "ref": "   " },
-		"Forget":           { "id": "f", "coords": [142, 170,   316, 209], "ref": "END" },
+		"Move 1":           { "id": "1", "coords": [140,   0,   319,  39], "ref": "   " },
+		"Move 2":           { "id": "2", "coords": [140,  40,   319,  79], "ref": "   " },
+		"Move 3":           { "id": "3", "coords": [140,  80,   319, 119], "ref": "   " },
+		"Move 4":           { "id": "4", "coords": [140, 120,   319, 159], "ref": "   " },
+		"Forget":           { "id": "f", "coords": [140, 170,   319, 209], "ref": "END" },
 		"Cancel":           { "id": "x", "coords": [280, 210,   309, 239], "ref": "END" },
 	},
 	"TM give up": {
