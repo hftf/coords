@@ -12,9 +12,14 @@ var b, current_color, all_inputs, reset_screenshot,
 		menu:  1,
 	},
 	ignore_ids = { 'id': 1, 'desc': 1, 'premium': 1 },
+	ref_key = {
+		"\\w+":	"ID of button",
+		"END":	"End of flow",
+		"NEW":	"Unimplemented (TODO)",
+		"   ":	"Unknown (FIXME)",
+	},
 	level_delim = ' › ',
-	cw = bounds[2] - bounds[0] + 1;
-	ch = bounds[3] - bounds[1] + 1;
+	cw, ch;
 
 function new_canvas() {
 	var c = document.createElement('canvas');
