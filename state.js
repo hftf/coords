@@ -4,10 +4,12 @@ var Box = {
 	unchecked:     { next: 'checked',       checked: false, indeterminate: false, },
 };
 
+var defaultGame = 'x';
+
 var State = (function() {
 	var _State = {
 		state: {
-			game: game,
+			game: defaultGame,
 			coords: [],
 			checked: {},
 			indeterminate: {},
