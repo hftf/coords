@@ -220,6 +220,22 @@ var Load = (function() {
 			}
 			toc.insertAdjacentHTML('beforeend', jumps.join(' · '));
 		},
+		box_handlers: function() {
+			var inputs, i;
+
+			inputs = document.querySelectorAll('.menu-list input');
+			function rotateState(e) { State.rotateState(this); }
+			for (i in inputs) {
+				inputs[i].onclick = rotateState;
+			}
+			inputs = document.querySelectorAll('.menu-heading input');
+			function rotateStates(e) { State.rotateStates(this); }
+			for (i in inputs) {
+				inputs[i].onclick = rotateStates;
+			}
+
+			all_inputs = document.querySelectorAll('.menu-list input');
+		},
 		example: function () {
 			var state = { checked: {}, indeterminate: {} }, i;
 
@@ -249,6 +265,7 @@ var Load = (function() {
 			this.example();
 			this.lookup = this._lookup();
 			this.categories_toc();
+			this.box_handlers();
 		},
 	};
 
