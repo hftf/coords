@@ -267,6 +267,15 @@ var Load = (function() {
 			this.lookup = this._lookup();
 			this.categories_toc();
 			this.box_handlers();
+
+			// requires images
+			try {
+				State.setAllFromUrl();
+			}
+			catch (e) {
+				// TODO display error to user?
+				console.error(e);
+			}
 		},
 	};
 
