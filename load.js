@@ -257,11 +257,12 @@ var Load = (function() {
 			this.unclickables();
 			this.preferences();
 
-			this.main_handlers();
 			this.key_handlers();
 
 			this.styles();
+			/* Must set canvas dimensions before changing context */
 			this.layers();
+			this.main_handlers();
 			this.example();
 			this.lookup = this._lookup();
 			this.categories_toc();
