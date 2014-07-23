@@ -127,8 +127,8 @@ var Load = (function() {
 		},
 
 		data: function(f) {
-			State.setPendingFromUrl();
-			var game = State.setAll1();
+			State.setSplitFromUrl();
+			var game = State.parseSplit('game');
 
 			var s = document.createElement('script');
 			s.src = 'data/' + game + '/data.js';

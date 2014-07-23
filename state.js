@@ -15,7 +15,8 @@ var State = (function() {
 			indeterminate: {},
 			image: '',
 		},
-		pending: undefined,
+		split: undefined,
+		parsed: {},
 
 		replaceState: function() {
 			window.history.replaceState(this.state, null, this.getUrl() + window.location.hash);
@@ -73,15 +74,16 @@ var State = (function() {
 			return r;
 		},
 
-		setPendingFromUrl: function(search) {
-			return this.pending = this.getAllFromUrl(search);
+		setSplitFromUrl: function(search) {
+			return this.split = this.splitUrl(search);
 		},
 		setAllFromUrl: function(search) {
-			if (this.pending === undefined)
-				this.setPendingFromUrl(search);
-			return this.setAll(this.pending);
+			if (this.split === undefined)
+				this.setSplitFromUrl(search);
+			this.parseAllSplit();
+			return this.setAll(this.parsed);
 		},
-		getAllFromUrl: function(search) {
+		splitUrl: function(search) {
 			if (search === undefined)
 				search = decodeURIComponent(window.location.search);
 
@@ -97,20 +99,40 @@ var State = (function() {
 				throw 'Invalid query string: ' + search;
 
 			return {
-				game:                                    m[1] ,   // 'hg'
-				checked:       this._ungroup(this._split(m[2])),  // ['a', 'b']
-				indeterminate: this._ungroup(this._split(m[3])),  // ['c', 'd']
-				coords:                                  m[4],    // 'x,y'
-				image:                                   m[5],    // 'z'
+				game:          m[1],
+				checked:       m[2],
+				indeterminate: m[3],
+				coords:        m[4],
+				image:         m[5],
 			};
 		},
-		_argOrPending: function(state) {
+		_identity: function(v) { return v; },
+		_ungroup_split: function(v) { return this._ungroup(this._split(v)); },
+		parse: {
+			game:          '_identity',
+			checked:       '_ungroup_split',
+			indeterminate: '_ungroup_split',
+			coords:        '_identity',
+			image:         '_identity',
+		},
+		parseSplit: function(k, m) {
+			if (m === undefined)
+				m = this.split;
+			return this.parsed[k] = this[this.parse[k]](m[k]);
+		},
+		parseAllSplit: function(m) {
+			for (var k in this.parse)
+				if (!(k in this.parsed))
+					this.parseSplit(k, m);
+			return this.parsed;
+		},
+		_argOrParsed: function(state) {
 			if (state !== undefined)
 				return state;
-			else if (this.pending !== undefined)
-				return this.pending;
+			else if (this.parsed !== undefined)
+				return this.parsed;
 			else
-				throw 'Both state argument and pending are undefined';
+				throw 'Both state argument and parsed are undefined';
 		},
 		setAll: function(state) {
 			this.setAll1(state);
@@ -118,11 +140,11 @@ var State = (function() {
 			this.setAll3(state);
 		},
 		setAll1: function(state) {
-			state = this._argOrPending(state);
+			state = this._argOrParsed(state);
 			return this.setGame(state.game);
 		},
 		setAll2: function(state) {
-			state = this._argOrPending(state);
+			state = this._argOrParsed(state);
 			this.setStates('checked', state.checked);
 			this.setStates('indeterminate', state.indeterminate);
 			if (state.coords !== undefined)
@@ -135,7 +157,7 @@ var State = (function() {
 				}
 		},
 		setAll3: function(state) {
-			state = this._argOrPending(state);
+			state = this._argOrParsed(state);
 			this.setImage(state.image);
 			this.pending = undefined;
 		},
@@ -260,13 +282,13 @@ var State = (function() {
 	var State = {
 		getCoords:     _State.getCoords.bind(_State),
 		getUrl:        _State.getUrl.bind(_State),
-		getAllFromUrl: _State.getAllFromUrl.bind(_State),
 		getCheckboxId: _State.getCheckboxId.bind(_State),
 		getCheckbox:   _State.getCheckbox.bind(_State),
 		getId:         _State.getId.bind(_State),
 
-		setPendingFromUrl: _State.setPendingFromUrl.bind(_State),
-		setAll1:           _State.setAll1.bind(_State),
+		setAllFromUrl:     _State.setAllFromUrl.bind(_State),
+		setSplitFromUrl:   _State.setSplitFromUrl.bind(_State),
+		parseSplit:        _State.parseSplit.bind(_State),
 
 		replaceState:  wrap(_State.replaceState,  true),
 		setAll:        wrap(_State.setAll,        true),
