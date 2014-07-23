@@ -253,11 +253,11 @@ var Load = (function() {
 			/* Must set canvas dimensions before changing context */
 			this.layers();
 			this.main_handlers();
-			this.example();
 
 			this.lookup = Encode.lookup();
 			this.categories_toc();
 			this.box_handlers();
+			this.example();
 
 			// requires images
 			try {
