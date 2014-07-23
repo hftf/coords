@@ -3,13 +3,16 @@ var game_name = 'HeartGold';
 var bounds =                [  0,   0,   255, 191];
 var coords = {
 "Battle": {
+	"id": "b",
 	"Battle": {
+		"id": "b",
 		"Fight":            [  0,  23,   253, 142],
 		"Bag":              [  0, 143,    78, 191],
 		"Run":              [ 87, 151,   166, 191],
 		"Pokémon":          [175, 143,   253, 191],
 	},
 	"Fight": {
+		"id": "f",
 		"Attack 1":         [  0,  23,   126,  78],
 		"Attack 2":         [127,  23,   253,  78],
 		"Attack 3":         [  0,  87,   126, 142],
@@ -17,12 +20,14 @@ var coords = {
 		"Cancel":           [  7, 151,   246, 191],
 	},
 	"Double battle": {
+		"id": "d",
 		"Foe 1":            [  0,   7,   118,  78],
 		"Foe 2":            [135,   7,   253,  78],
 		"Ally 1":           [  0,  87,   118, 142],
 		"Ally 2":           [135,  87,   253, 142],
 	},
 	"Bag": {
+		"id": "g",
 		"Restore":          [  0,   7,   125,  77],
 		"Balls":            [127,   7,   253,  77],
 		"Status":           [  0,  79,   125, 149],
@@ -31,6 +36,7 @@ var coords = {
 		"Cancel":           [215, 151,   253, 189],
 	},
 	"Pocket": {
+		"id": "q",
 		"Item 1":           [  0,   7,   125,  53],
 		"Item 2":           [127,   7,   253,  53],
 		"Item 3":           [  0,  55,   125, 101],
@@ -42,10 +48,12 @@ var coords = {
 		"Cancel":           [215, 151,   253, 189],
 	},
 	"Item": {
+		"id": "i",
 		"Use":              [  0, 151,   205, 189],
 		"Cancel":           [215, 151,   253, 189],
 	},
 	"Pokémon": { // Also for "use item on"
+		"id": "p",
 		"Pokémon 1":        [  0,   0,   125,  45],
 		"Pokémon 2":        [127,   7,   253,  53],
 		"Pokémon 3":        [  0,  47,   125,  93],
@@ -55,12 +63,14 @@ var coords = {
 		"Cancel":           [215, 151,   253, 189],
 	},
 	"Switch": {
+		"id": "s",
 		"Switch":           [  7,   7,   245, 141],
 		"Summary":          [  0, 151,   101, 189],
 		"Check moves":      [103, 151,   205, 189],
 		"Cancel":           [215, 151,   253, 189],
 	},
 	"Check moves": { // Almost the same as "Summary"
+		"id": "c",
 		"Move 1":           [  0,  47,   125,  93],
 		"Move 2":           [127,  47,   253,  93],
 		"Move 3":           [  0,  95,   125, 141],
@@ -71,6 +81,7 @@ var coords = {
 		"Cancel":           [215, 151,   253, 189],
 	},
 	"Move": {
+		"id": "m",
 		"Slot 1":           [ 87, 151,   125, 165],
 		"Slot 2":           [127, 151,   165, 165],
 		"Slot 3":           [ 87, 167,   125, 181],
@@ -79,7 +90,9 @@ var coords = {
 	},
 },
 "PC": {
+	"id": "p",
 	"Misc": {
+		"id": "z",
 		"Release":          [167, 135,   253, 157],
 		"Release No":       [199, 127,   246, 158],
 		"Release Yes":      [199,  95,   246, 126],
@@ -88,7 +101,9 @@ var coords = {
 	},
 },
 "Overworld": {
+	"id": "o",
 	"Overworld": {
+		"id": "a",
 		"X":                [  7,   0,   158,  14],
 		"Pokédex":          [ 15,  21,    74,  52],
 		"Trainer card":     [ 95,  21,   154,  52],
@@ -103,6 +118,7 @@ var coords = {
 		"A":                [167, 143,   253, 186],
 	},
 	"Bag": {
+		"id": "b",
 		"Items":            [  0,   0,    29,  29],
 		"Medicine":         [ 31,   0,    61,  29],
 		"Balls":            [ 63,   0,    93,  29],
@@ -122,6 +138,7 @@ var coords = {
 		"Cancel":           [191, 167,   253, 189],
 	},
 	"Bag item": {
+		"id": "i",
 		"Use":              [  0, 127,    91, 157], // "Walk" when on bike
 		"Trash":            [ 95, 127,   189, 157], // "Register" or "Deselect" in last pocket
 		"Give":             [  0, 159,    91, 189],
@@ -129,6 +146,7 @@ var coords = {
 		"Cancel":           [191, 167,   253, 189],
 	},
 	"Pokémon": {
+		"id": "p",
 		"Summary":          [127,  23,   255,  54],
 		"Switch":           [127,  55,   255,  86],
 		"Item":             [127,  87,   255, 118],
@@ -139,7 +157,9 @@ var coords = {
 	},
 },
 "Pokégear": {
+	"id": "y",
 	"Settings": {
+		"id": "s",
 		"Settings":         [  7,  160,   54, 191],
 		"Radio":            [ 55,  160,  102, 191],
 		"Map":              [103,  160,  150, 191],
@@ -147,6 +167,7 @@ var coords = {
 		"Exit":             [205,  160,  252, 191],
 	},
 	"Phone": {
+		"id": "p",
 		"Contact 1":        [  7,   7,   222,  30],
 		"Contact 2":        [  7,  31,   222,  54],
 		"Contact 3":        [  7,  55,   222,  78],
@@ -161,12 +182,15 @@ var coords = {
 	},
 },
 "Misc": { /* (nicknames, Pokéathlon, etc.) */
+	"id": "z",
 	"Mart": {
+		"id": "m",
 		"Buy":              [  2,  26,   249,  66],
 		"Sell":             [  2,  73,   249, 113],
 		"See ya":           [  2, 122,   249, 162],
 	},
 	"Buy": {
+		"id": "b",
 		"Item 1":           [  0,  31,   125,  71],
 		"Item 2":           [127,  31,   253,  71],
 		"Item 3":           [  0,  73,   125, 115],
@@ -178,6 +202,7 @@ var coords = {
 		"Cancel":           [191, 167,   253, 189],
 	},
 	"Teach Dialog": {
+		"id": "h",
 		// Teach ___ to a Pokémon?
 		"Teach to? Yes":    [199,  47,   246,  78],
 		"Teach to? No":     [199,  79,   246, 110],
@@ -186,6 +211,7 @@ var coords = {
 		"Should? No":       [199, 111,   246, 142],
 	},
 	"Teach Move": {
+		"id": "l",
 		"Move 1":           [  7,   7,   125,  37],
 		"Move 2":           [  7,  39,   125,  69],
 		"Move 3":           [  7,  71,   125, 101],
