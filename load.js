@@ -126,6 +126,19 @@ var Load = (function() {
 			};
 		},
 
+		data: function(f) {
+			State.setPendingFromUrl();
+			var game = State.setAll1();
+
+			var s = document.createElement('script');
+			s.src = 'data/' + game + '/data.js';
+			s.onload = f;
+			s.onerror = function(e) {
+				throw "Invalid game id '" + game + "'";
+			};
+			document.head.appendChild(s);
+		},
+
 		/* Dependent on bounds */
 		styles: function() {
 			var styleSheet = document.createElement('style'), s, xywh, cls;
@@ -251,19 +264,26 @@ var Load = (function() {
 		},
 
 		all: function() {
-			document.getElementById('game-name').innerHTML = game_name;
+			this.data(this.dependent.bind(this));
 
 			this.indeterminates();
 			this.unclickables();
 			this.preferences();
 
 			this.key_handlers();
+		},
+		dependent: function() {
+			document.getElementById('game-name').innerHTML = game_name;
+
+			cw = bounds[2] - bounds[0] + 1;
+			ch = bounds[3] - bounds[1] + 1;
 
 			this.styles();
 			/* Must set canvas dimensions before changing context */
 			this.layers();
 			this.main_handlers();
 			this.example();
+
 			this.lookup = this._lookup();
 			this.categories_toc();
 			this.box_handlers();
