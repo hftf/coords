@@ -449,15 +449,9 @@ var coords = {
 	},
 	"Starters": {
 		"id": "s",
-		"Snivy":            { "id": "A", "coords": [ 41,  79,   106, 144], "ref": "   " },
-		"Tepig":            { "id": "B", "coords": [128,  79,   191, 144], "ref": "   " },
-		"Oshawott":         { "id": "C", "coords": [216,  79,   281, 144], "ref": "   " },
-		"Pick":             { "id": "p", "coords": [ 89, 209,   228, 239], "ref": "zS"  },
-	},
-	"Starters pick": {
-		"id": "S",
-		"Pick Yes":         { "id": "y", "coords": [229, 109,   319, 139], "ref": "END" },
-		"Pick No":          { "id": "x", "coords": [229, 140,   319, 169], "ref": "zs"  },
+		"Chespin":          { "id": "A", "coords": [ 60, 115,    89, 144], "ref": "   " },
+		"Fennekin":         { "id": "B", "coords": [145, 115,   174, 144], "ref": "   " },
+		"Froakie":          { "id": "C", "coords": [230, 115,   259, 144], "ref": "   " },
 	},
 },
 };
