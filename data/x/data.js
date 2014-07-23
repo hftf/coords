@@ -443,9 +443,9 @@ var coords = {
 	},
 	"Daycare store": {
 		"id": "d",
-		"Store":            { "id": "s", "coords": [189, 149,   319, 179], "ref": "   " },
-		"Summary":          { "id": "w", "coords": [189, 180,   319, 209], "ref": "   " },
-		"Quit":             { "id": "q", "coords": [189, 210,   319, 239], "ref": "   " },
+		"Leave":            { "id": "s", "coords": [200, 150,   319, 179], "ref": "   " },
+		"Summary":          { "id": "w", "coords": [200, 180,   319, 209], "ref": "   " },
+		"Back":             { "id": "q", "coords": [200, 210,   319, 239], "ref": "   " },
 	},
 	"Starters": {
 		"id": "s",
