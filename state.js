@@ -114,7 +114,7 @@ var State = (function() {
 		},
 		setAll1: function(state) {
 			state = this._argOrPending(state);
-			this.setGame(state.game);
+			return this.setGame(state.game);
 		},
 		setAll2: function(state) {
 			state = this._argOrPending(state);
@@ -136,7 +136,7 @@ var State = (function() {
 		},
 
 		setGame: function(game) {
-			this.state.game = game;
+			return this.state.game = game;
 		},
 		setCoords: function(coords) {
 			if (coords.length === 0)
