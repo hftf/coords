@@ -193,40 +193,6 @@ var Load = (function() {
 		},
 
 		/* Dependent on coords */
-		_lookup: (function() {
-			var lookup, max_depth = 3, cur;
-			function get(obj, key) {
-				return obj[key];
-			}
-			function ignore(v) {
-				return !(v in ignore_ids)
-			}
-			function recurse(me) {
-				if (me) {
-					cur.push(me);
-
-					var key = Draw._joinIds.apply(null, cur);
-					if (key in lookup)
-						throw "Key '" + key + "' not unique";
-					lookup[key] = cur.slice(0);
-				}
-
-				var ret = key;
-				if (cur.length < max_depth) {
-					var o = Object.keys(cur.reduce(get, coords)).filter(ignore).map(recurse);
-					if (key)
-						lookup[key + '*'] = ret = Array.prototype.concat.apply([key], o);
-				}
-				cur.pop();
-				return ret;
-			}
-
-			return function() {
-				lookup = {}, cur = [];
-				recurse();
-				return lookup;
-			};
-		})(),
 		categories_toc: function() {
 			var screens = document.getElementById('screens'),
 				toc = document.getElementById('toc'),
@@ -289,7 +255,7 @@ var Load = (function() {
 			this.main_handlers();
 			this.example();
 
-			this.lookup = this._lookup();
+			this.lookup = Encode.lookup();
 			this.categories_toc();
 			this.box_handlers();
 
