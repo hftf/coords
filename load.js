@@ -198,11 +198,10 @@ var Load = (function() {
 			function get(obj, key) {
 				return obj[key];
 			}
+			function ignore(v) {
+				return !(v in ignore_ids)
+			}
 			function recurse(me) {
-				if (cur.length === max_depth)
-					return;
-				if (me in ignore_ids)
-					return;
 				if (me) {
 					cur.push(me);
 
@@ -212,8 +211,14 @@ var Load = (function() {
 					lookup[key] = cur.slice(0);
 				}
 
-				Object.keys(cur.reduce(get, coords)).map(recurse);
+				var ret = key;
+				if (cur.length < max_depth) {
+					var o = Object.keys(cur.reduce(get, coords)).filter(ignore).map(recurse);
+					if (key)
+						lookup[key + '*'] = ret = Array.prototype.concat.apply([key], o);
+				}
 				cur.pop();
+				return ret;
 			}
 
 			return function() {
