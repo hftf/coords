@@ -32,11 +32,11 @@ var State = (function() {
 					if (state[i] === undefined)
 						state[i] = this.state[i];
 
-			return '?' + [                              state.game,
-				this._join('+', Encode.group(Object.keys(state.checked).sort())),
-				this._join('-', Encode.group(Object.keys(state.indeterminate).sort())),
-				this._join(';',                         state.coords),
-				this._join('@',                         state.image),
+			return '?' + [                                    state.game,
+				this._join('+', Encode.groupStars(Object.keys(state.checked).sort())),
+				this._join('-', Encode.groupStars(Object.keys(state.indeterminate).sort())),
+				this._join(';',                               state.coords),
+				this._join('@',                               state.image),
 			].join('');
 		},
 		_split: function(s) {

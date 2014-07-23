@@ -27,8 +27,16 @@ var Encode = (function() {
 					r.push(a[i]);
 			return r;
 		},
+		groupStars: function(a) {
+			var r = this.group(a);
+			for (var i = 0; i < r.length; i ++)
+				if (r[i] in Load.lookup)
+					if ('string' === typeof Load.lookup[r[i]])
+						r[i] = Load.lookup[r[i]];
+			return r;
+		},
 		lookup: (function() {
-			var lookup, max_depth = 3, cur;
+			var lookup, max_depth = 3, cur, star;
 			function get(obj, key) {
 				return obj[key];
 			}
@@ -48,8 +56,11 @@ var Encode = (function() {
 				var ret = key;
 				if (cur.length < max_depth) {
 					var o = Object.keys(cur.reduce(get, coords)).filter(ignore).map(recurse);
-					if (key)
-						lookup[key + '*'] = ret = Array.prototype.concat.apply([key], o);
+					if (key) {
+						lookup[star = key + '*'] = ret = Array.prototype.concat.apply([key], o.sort()); // Side effect
+						if (star.length === max_depth)
+							lookup[Encode.group(ret)] = star; // TODO fix to use this.group instead
+					}
 				}
 				cur.pop();
 				return ret;
