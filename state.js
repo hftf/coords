@@ -15,6 +15,7 @@ var State = (function() {
 			indeterminate: {},
 			image: '',
 		},
+		pending: undefined,
 
 		replaceState: function() {
 			window.history.replaceState(this.state, null, this.getUrl() + window.location.hash);
@@ -67,8 +68,13 @@ var State = (function() {
 			return r;
 		},
 
+		setPendingFromUrl: function(search) {
+			return this.pending = this.getAllFromUrl(search);
+		},
 		setAllFromUrl: function(search) {
-			return this.setAll(this.getAllFromUrl(search));
+			if (this.pending === undefined)
+				this.setPendingFromUrl(search);
+			return this.setAll(this.pending);
 		},
 		getAllFromUrl: function(search) {
 			if (search === undefined)
@@ -93,8 +99,25 @@ var State = (function() {
 				image:                                   m[5],    // 'z'
 			};
 		},
+		_argOrPending: function(state) {
+			if (state !== undefined)
+				return state;
+			else if (this.pending !== undefined)
+				return this.pending;
+			else
+				throw 'Both state argument and pending are undefined';
+		},
 		setAll: function(state) {
+			this.setAll1(state);
+			this.setAll2(state);
+			this.setAll3(state);
+		},
+		setAll1: function(state) {
+			state = this._argOrPending(state);
 			this.setGame(state.game);
+		},
+		setAll2: function(state) {
+			state = this._argOrPending(state);
 			this.setStates('checked', state.checked);
 			this.setStates('indeterminate', state.indeterminate);
 			if (state.coords !== undefined)
@@ -105,8 +128,13 @@ var State = (function() {
 				catch (e) {
 					console.error(e);
 				}
-			this.setImage(state.image);
 		},
+		setAll3: function(state) {
+			state = this._argOrPending(state);
+			this.setImage(state.image);
+			this.pending = undefined;
+		},
+
 		setGame: function(game) {
 			this.state.game = game;
 		},
@@ -231,6 +259,9 @@ var State = (function() {
 		getCheckboxId: _State.getCheckboxId.bind(_State),
 		getCheckbox:   _State.getCheckbox.bind(_State),
 		getId:         _State.getId.bind(_State),
+
+		setPendingFromUrl: _State.setPendingFromUrl.bind(_State),
+		setAll1:           _State.setAll1.bind(_State),
 
 		replaceState:  wrap(_State.replaceState,  true),
 		setAll:        wrap(_State.setAll,        true),
