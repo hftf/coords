@@ -116,23 +116,13 @@ var State = (function() {
 			image:         '_identity',
 		},
 		parseSplit: function(k, m) {
-			if (m === undefined)
-				m = this.split;
-			return this.parsed[k] = this[this.parse[k]](m[k]);
+			return this.parsed[k] = this[this.parse[k]](this.split[k]);
 		},
-		parseAllSplit: function(m) {
+		parseAllSplit: function() {
 			for (var k in this.parse)
 				if (!(k in this.parsed))
-					this.parseSplit(k, m);
+					this.parseSplit(k);
 			return this.parsed;
-		},
-		_argOrParsed: function(state) {
-			if (state !== undefined)
-				return state;
-			else if (this.parsed !== undefined)
-				return this.parsed;
-			else
-				throw 'Both state argument and parsed are undefined';
 		},
 		setAll: function(state) {
 			this.setAll1(state);
@@ -140,11 +130,9 @@ var State = (function() {
 			this.setAll3(state);
 		},
 		setAll1: function(state) {
-			state = this._argOrParsed(state);
 			return this.setGame(state.game);
 		},
 		setAll2: function(state) {
-			state = this._argOrParsed(state);
 			this.setStates('checked', state.checked);
 			this.setStates('indeterminate', state.indeterminate);
 			if (state.coords !== undefined)
@@ -157,9 +145,8 @@ var State = (function() {
 				}
 		},
 		setAll3: function(state) {
-			state = this._argOrParsed(state);
 			this.setImage(state.image);
-			this.pending = undefined;
+			this.parsed = undefined;
 		},
 
 		setGame: function(game) {
