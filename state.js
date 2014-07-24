@@ -246,7 +246,6 @@ var State = (function() {
 		getCheckbox:   _State.getCheckbox.bind(_State),
 		getId:         _State.getId.bind(_State),
 
-		setAllFromUrl:     _State.setAllFromUrl.bind(_State),
 		setSplitFromUrl:   _State.setSplitFromUrl.bind(_State),
 		parseSplit:        _State.parseSplit.bind(_State),
 
