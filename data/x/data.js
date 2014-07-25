@@ -310,8 +310,6 @@ var coords = {
 		"Marking":          { "id": "m", "coords": [210, 110,   319, 139], "ref": "   " },
 		"Release":          { "id": "r", "coords": [210, 140,   319, 169], "ref": "pr"  },
 		"Cancel":           { "id": "x", "coords": [210, 170,   319, 199], "ref": "   " },
-		"Exit PC":          { "id": "z", "coords": [240, 210,   269, 239], "ref": "   " },
-		"Quit":             { "id": "q", "coords": [280, 210,   309, 239], "ref": "pq"  },
 	},
 	"Withdraw": {
 		"id": "w",
@@ -320,8 +318,6 @@ var coords = {
 		"Marking":          { "id": "m", "coords": [210, 110,   319, 139], "ref": "   " },
 		"Release":          { "id": "r", "coords": [210, 140,   319, 169], "ref": "pr"  },
 		"Cancel":           { "id": "x", "coords": [210, 170,   319, 199], "ref": "   " },
-		"Exit PC":          { "id": "z", "coords": [240, 210,   269, 239], "ref": "   " },
-		"Quit":             { "id": "q", "coords": [280, 210,   309, 239], "ref": "pq"  },
 	},
 	"Release": {
 		"id": "r",
@@ -367,6 +363,8 @@ var coords = {
 		"Slot 28 (5,4)":    { "id": "S", "coords": [105, 170,   134, 199], "ref": "   " },
 		"Slot 29 (5,5)":    { "id": "T", "coords": [135, 170,   164, 199], "ref": "   " },
 		"Slot 30 (5,6)":    { "id": "U", "coords": [165, 170,   194, 199], "ref": "   " },
+		"Exit PC":          { "id": "z", "coords": [240, 210,   269, 239], "ref": "END" },
+		"Quit":             { "id": "q", "coords": [280, 210,   309, 239], "ref": "pq"  },
 	},
 },
 "Misc": { /* (nicknames, Pokéathlon, etc.) */
