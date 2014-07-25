@@ -135,7 +135,7 @@ var coords = {
 		"Trainer card":     { "id": "c", "coords": [166, 103,   313, 136], "ref": "NEW" },
 		"Save":             { "id": "s", "coords": [  6, 163,   153, 196], "ref": "NEW" },
 		"Options":          { "id": "o", "coords": [166, 163,   313, 196], "ref": "oo"  },
-		"Quit":             { "id": "q", "coords": [285, 210,   312, 239], "ref": "END" },
+		"Quit":             { "id": "q", "coords": [285, 210,   314, 239], "ref": "END" },
 	},
 	"Bag": {
 		"id": "b",
