@@ -35,8 +35,10 @@ section {
 	padding: 1em 2em;
 	height: 100%;
 	overflow-y: auto;
-	overflow-x: hidden;
+	overflow-x: auto;
 }
+.if { width: 45%; }
+.then { width: 55%; }
 #↑ {
 	position: relative;
 	top: -1em;
@@ -127,7 +129,7 @@ input.noclick {
 	margin-top: 0.5em;
 }
 .menu-list {
-	width: 20em;
+	width: 17em;
 }
 
 .rekt {
