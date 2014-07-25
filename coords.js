@@ -211,7 +211,7 @@ function mouse2coords(e) {
 	var x = (e.offsetX === undefined) ? e.layerX - e.currentTarget.offsetLeft : e.offsetX,
 		y = (e.offsetY === undefined) ? e.layerY - e.currentTarget.offsetTop  : e.offsetY;
 
-	return scale(1 / scales.mouse, [x, y]);
+	return scale(scales.mouse / scales.main, [x, y]);
 }
 
 function text2coords(s) {
