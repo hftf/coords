@@ -6,10 +6,10 @@ var coords = {
 	"id": "b",
 	"Battle": {
 		"id": "b",
-		"Fight":            { "id": "f", "coords": [  0,  30,   319, 179], "ref": ["bf", "br"]  },
-		"Bag":              { "id": "b", "coords": [  0, 180,    99, 239], "ref": "bg"  },
-		"Run":              { "id": "r", "coords": [110, 185,   209, 239], "ref": "END" },
-		"Pokémon":          { "id": "p", "coords": [220, 180,   319, 239], "ref": "bp"  },
+		"Fight":            { "id": "f", "coords": [  0,  30,   319, 169], "ref": ["bf", "br"]  },
+		"Bag":              { "id": "b", "coords": [  0, 180,    94, 239], "ref": "bg"  },
+		"Run":              { "id": "r", "coords": [105, 185,   214, 239], "ref": "END" },
+		"Pokémon":          { "id": "p", "coords": [225, 180,   319, 239], "ref": "bp"  },
 	},
 	"Fight": {
 		"id": "f",
