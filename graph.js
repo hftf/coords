@@ -30,8 +30,11 @@ function draw() {
 					if (to === '   ')
 						continue;
 
-					if ((rekt ==='Cancel' && coords[category][menu][rekt].id === 'x') ||
-						(rekt === 'Quit' && to !== 'END'))
+					var reverse_exists = to in edges && from in edges[to];
+
+					if (reverse_exists &&
+						((rekt ==='Cancel' && coords[category][menu][rekt].id === 'x') ||
+						(rekt === 'Quit' && to !== 'END')))
 						continue;
 
 					if (to === 'END' || to === 'NEW') {
