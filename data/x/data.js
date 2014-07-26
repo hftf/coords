@@ -17,7 +17,7 @@ var coords = {
 		"Attack 2":         { "id": "2", "coords": [160,  40,   319,  99], "ref": ["END", "bd", "bt"] },
 		"Attack 3":         { "id": "3", "coords": [  0, 100,   159, 159], "ref": ["END", "bd", "bt"] },
 		"Attack 4":         { "id": "4", "coords": [160, 100,   319, 159], "ref": ["END", "bd", "bt"] },
-		"Mega":             { "id": "m", "coords": [100, 160,   219, 239], "ref": "END" },
+		"Mega":             { "id": "m", "coords": [ 85, 160,   234, 239], "ref": "END" }, // Overlap with Shift is intentional
 		"Shift Left":       { "id": "j", "coords": [  0, 190,    49, 239], "ref": "END" }, // Triple battle
 		"Shift Right":      { "id": "k", "coords": [ 50, 190,    99, 239], "ref": "END" }, // Triple battle
 		"Cancel":           { "id": "x", "coords": [250, 190,   319, 239], "ref": "bb"  },
@@ -28,7 +28,7 @@ var coords = {
 		"Attack 2":         { "id": "2", "coords": [160,  40,   319,  99], "ref": "END" },
 		"Attack 3":         { "id": "3", "coords": [  0, 100,   159, 159], "ref": "END" },
 		"Attack 4":         { "id": "4", "coords": [160, 100,   319, 159], "ref": "END" },
-		"Mega":             { "id": "m", "coords": [100, 160,   219, 239], "ref": "END" },
+		"Mega":             { "id": "m", "coords": [ 85, 160,   234, 239], "ref": "END" }, // Overlap with Rotate is intentional
 		"Rotate Left":      { "id": "j", "coords": [  0, 190,    49, 239], "ref": "END" },
 		"Rotate Right":     { "id": "k", "coords": [ 50, 190,    99, 239], "ref": "END" },
 		"Cancel":           { "id": "x", "coords": [250, 190,   319, 239], "ref": "bb"  },
