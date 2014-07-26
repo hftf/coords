@@ -112,11 +112,11 @@ var coords = {
 	},
 	"Replace move": {
 		"id": "l",
-		"Move 1":           { "id": "1", "coords": [  0,  45,   159, 104], "ref": "be"  },
-		"Move 2":           { "id": "2", "coords": [160,  45,   319, 104], "ref": "be"  },
-		"Move 3":           { "id": "3", "coords": [  0, 110,   159, 169], "ref": "be"  },
-		"Move 4":           { "id": "4", "coords": [160, 110,   319, 169], "ref": "be"  },
-		"New move":         { "id": "m", "coords": [ 80, 175,   239, 234], "ref": "NEW" },
+		"Move 1":           { "id": "1", "coords": [  0,  49,   159, 102], "ref": "be"  },
+		"Move 2":           { "id": "2", "coords": [160,  49,   319, 102], "ref": "be"  },
+		"Move 3":           { "id": "3", "coords": [  0, 113,   159, 166], "ref": "be"  },
+		"Move 4":           { "id": "4", "coords": [160, 113,   319, 166], "ref": "be"  },
+		"New move":         { "id": "m", "coords": [ 80, 175,   239, 239], "ref": "NEW" },
 		"Cancel":           { "id": "x", "coords": [250, 190,   319, 239], "ref": "bo"  },
 	},
 	"Forget move": {
