@@ -68,9 +68,9 @@ var coords = {
 		"Item 4":           { "id": "4", "coords": [163,  70,   319, 119], "ref": "bi"  },
 		"Item 5":           { "id": "5", "coords": [  0, 130,   156, 179], "ref": "bi"  },
 		"Item 6":           { "id": "6", "coords": [163, 130,   319, 179], "ref": "bi"  },
-		"Previous":         { "id": "j", "coords": [  5, 185,    54, 234], "ref": "bq"  },
-		"Next":             { "id": "k", "coords": [ 70, 185,   119, 234], "ref": "bq"  },
-		"Cancel":           { "id": "x", "coords": [250, 185,   319, 239], "ref": "bg"  },
+		"Previous":         { "id": "j", "coords": [  0, 185,    54, 239], "ref": "bq"  },
+		"Next":             { "id": "k", "coords": [ 70, 185,   119, 239], "ref": "bq"  },
+		"Cancel":           { "id": "x", "coords": [250, 190,   319, 239], "ref": "bg"  },
 	},
 	"Item": {
 		"id": "i",
