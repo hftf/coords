@@ -8,6 +8,12 @@ html, body {
 	stroke: #333;
 	fill: #fff;
 }
+.node.image-node rect {
+	stroke-width: 0.5px;
+}
+.node text {
+	font-weight: bold;
+}
 
 [id^='node-NEW'] rect {
 	fill: #f77;

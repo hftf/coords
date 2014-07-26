@@ -77,11 +77,7 @@ function draw() {
 
 	var renderer = new dagreD3.Renderer();
 	var oldDrawNodes = renderer.drawNodes();
-	renderer.drawNodes(function(graph, root) {
-		var svgNodes = oldDrawNodes(graph, root);
-		svgNodes.attr("id", function(u) { return "node-" + u; });
-		return svgNodes;
-	});
+	renderer.drawNodes(myDrawNodes);
 	var layout = dagreD3.layout().rankSep(60).nodeSep(20).edgeSep(20);
 	renderer.layout(layout).run(g, d3.select("svg g"));
 }
