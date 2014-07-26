@@ -74,7 +74,7 @@ var coords = {
 	},
 	"Item": {
 		"id": "i",
-		"Use":              { "id": "u", "coords": [  0, 190,   249, 239], "ref": "END" },
+		"Use":              { "id": "u", "coords": [  0, 160,   249, 239], "ref": "END" },
 		"Cancel":           { "id": "x", "coords": [250, 185,   319, 239], "ref": "bq"  },
 	},
 	"Pokémon": { // Also for "use item on"
