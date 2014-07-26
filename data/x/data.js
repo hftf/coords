@@ -291,9 +291,10 @@ var coords = {
 		"Trainer card":     { "id": "c", "coords": [168, 210,   197, 239], "ref": "NEW" },
 		"Save":             { "id": "s", "coords": [214, 210,   243, 239], "ref": "NEW" },
 		"Options":          { "id": "o", "coords": [260, 210,   289, 239], "ref": "oo"  },
-		"Previous":         { "id": "j", "coords": [  0,   0,    19,  24], "ref": "NEW" },
+		"Previous":         { "id": "j", "coords": [  0,   0,    34,  24], "ref": "NEW" },
 		"Apps":             { "id": "a", "coords": [145,   0,   174,  29], "ref": "NEW" },
-		"Next":             { "id": "k", "coords": [300,   0,   319,  24], "ref": "NEW" },
+		"Internet":         { "id": "i", "coords": [215,   0,   244,  29], "ref": "NEW" },
+		"Next":             { "id": "k", "coords": [285,   0,   319,  24], "ref": "NEW" },
 	},
 	"Apps 1": {
 		"id": "a",
