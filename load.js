@@ -162,7 +162,7 @@ var Load = (function() {
 		grid: function() {
 			var grid = document.getElementById('grid'),
 				grid_ctx = grid.getContext('2d'),
-				fontSize = 22, s = scales.main, left = s, top = fontSize - s / 2, x;
+				s = scales.main, fontSize = 11 * (1 + s / 4), left = s, top = fontSize - s / 2, x;
 
 			grid_ctx.strokeStyle = '#888';
 			grid_ctx.lineWidth = 1;
