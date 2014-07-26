@@ -8,7 +8,7 @@ var coords = {
 		"id": "b",
 		"Fight":            { "id": "f", "coords": [  0,  30,   319, 179], "ref": ["bf", "br"]  },
 		"Bag":              { "id": "b", "coords": [  0, 180,    99, 239], "ref": "bg"  },
-		"Run":              { "id": "r", "coords": [110, 190,   209, 239], "ref": "END" },
+		"Run":              { "id": "r", "coords": [110, 185,   209, 239], "ref": "END" },
 		"Pokémon":          { "id": "p", "coords": [220, 180,   319, 239], "ref": "bp"  },
 	},
 	"Fight": {
@@ -57,8 +57,8 @@ var coords = {
 		"Balls":            { "id": "b", "coords": [160,  10,   319,  89], "ref": "bq"  },
 		"Status":           { "id": "s", "coords": [  0,  95,   159, 174], "ref": "bq"  },
 		"Battle items":     { "id": "i", "coords": [160,  95,   319, 174], "ref": "bq"  },
-		"Last used":        { "id": "u", "coords": [  0, 190,   249, 239], "ref": "bi"  },
-		"Cancel":           { "id": "x", "coords": [250, 190,   319, 239], "ref": "bb"  },
+		"Last used":        { "id": "u", "coords": [  0, 185,   249, 239], "ref": "bi"  },
+		"Cancel":           { "id": "x", "coords": [250, 185,   319, 239], "ref": "bb"  },
 	},
 	"Pocket": {
 		"id": "q",
@@ -70,12 +70,12 @@ var coords = {
 		"Item 6":           { "id": "6", "coords": [160, 130,   319, 179], "ref": "bi"  },
 		"Previous":         { "id": "j", "coords": [  5, 185,    54, 234], "ref": "bq"  },
 		"Next":             { "id": "k", "coords": [ 70, 185,   119, 234], "ref": "bq"  },
-		"Cancel":           { "id": "x", "coords": [250, 190,   319, 239], "ref": "bg"  },
+		"Cancel":           { "id": "x", "coords": [250, 185,   319, 239], "ref": "bg"  },
 	},
 	"Item": {
 		"id": "i",
 		"Use":              { "id": "u", "coords": [  0, 190,   249, 239], "ref": "END" },
-		"Cancel":           { "id": "x", "coords": [250, 190,   319, 239], "ref": "bq"  },
+		"Cancel":           { "id": "x", "coords": [250, 185,   319, 239], "ref": "bq"  },
 	},
 	"Pokémon": { // Also for "use item on"
 		"id": "p",
