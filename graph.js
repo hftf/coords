@@ -1,3 +1,4 @@
+var game = 'x';
 function draw() {
 	g = new dagreD3.Digraph();
 
@@ -10,8 +11,12 @@ function draw() {
 				continue;
 
 			menu_id = Draw._joinIds(category, menu);
+			var url = 'data/' + game + '/screens/' + category + '/' + menu + '.png';
 
-			g.addNode(menu_id, { label: menu });
+			g.addNode(menu_id, {
+				label: menu,
+				image: url,
+			});
 			for (var rekt in coords[category][menu]) {
 				if (rekt in ignore_ids)
 					continue;
