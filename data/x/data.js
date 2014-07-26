@@ -129,12 +129,12 @@ var coords = {
 	"id": "o",
 	"Overworld": {
 		"id": "a",
-		"Pokémon":          { "id": "p", "coords": [  6,  43,   153,  76], "ref": "op"  },
-		"Pokédex":          { "id": "d", "coords": [166,  43,   313,  76], "ref": "NEW" },
-		"Bag":              { "id": "b", "coords": [  6, 103,   153, 136], "ref": "ob"  },
-		"Trainer card":     { "id": "c", "coords": [166, 103,   313, 136], "ref": "NEW" },
-		"Save":             { "id": "s", "coords": [  6, 163,   153, 196], "ref": "NEW" },
-		"Options":          { "id": "o", "coords": [166, 163,   313, 196], "ref": "oo"  },
+		"Pokémon":          { "id": "p", "coords": [  0,  40,   159,  79], "ref": "op"  },
+		"Pokédex":          { "id": "d", "coords": [160,  40,   319,  79], "ref": "NEW" },
+		"Bag":              { "id": "b", "coords": [  0, 100,   159, 139], "ref": "ob"  },
+		"Trainer card":     { "id": "c", "coords": [160, 100,   319, 139], "ref": "NEW" },
+		"Save":             { "id": "s", "coords": [  0, 160,   159, 199], "ref": "NEW" },
+		"Options":          { "id": "o", "coords": [160, 160,   319, 199], "ref": "oo"  },
 		"Quit":             { "id": "q", "coords": [285, 210,   314, 239], "ref": "END" },
 	},
 	"Bag": {
