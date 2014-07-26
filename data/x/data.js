@@ -277,8 +277,8 @@ var coords = {
 	},
 	"Options save": {
 		"id": "O",
-		"Save Yes":         { "id": "y", "coords": [190,  60,   319,  89], "ref": "END" },
-		"Save No":          { "id": "n", "coords": [190,  90,   319, 119], "ref": "END" },
+		"Yes":              { "id": "y", "coords": [190,  60,   319,  89], "ref": "END" },
+		"No":               { "id": "n", "coords": [190,  90,   319, 119], "ref": "END" },
 	},
 },
 "PC": {
@@ -325,13 +325,13 @@ var coords = {
 	},
 	"Release": {
 		"id": "r",
-		"Release Yes":      { "id": "y", "coords": [230, 140,   319, 169], "ref": "   " },
-		"Release No":       { "id": "x", "coords": [230, 170,   319, 199], "ref": "   " },
+		"Yes":              { "id": "y", "coords": [230, 140,   319, 169], "ref": "   " },
+		"No":               { "id": "x", "coords": [230, 170,   319, 199], "ref": "   " },
 	},
 	"Continue": {
 		"id": "q",
-		"Continue Yes":     { "id": "y", "coords": [230, 140,   319, 169], "ref": "   " },
-		"Continue No":      { "id": "x", "coords": [230, 170,   319, 199], "ref": "pc"  },
+		"Yes":              { "id": "y", "coords": [230, 140,   319, 169], "ref": "   " },
+		"No":               { "id": "x", "coords": [230, 170,   319, 199], "ref": "pc"  },
 	},
 	"Box": {
 		"id": "b",
