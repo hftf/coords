@@ -97,18 +97,18 @@ var coords = {
 	},
 	"Nickname": {
 		"id": "n",
-		"Yes":              { "id": "y", "coords": [ 20,  90,   299, 129], "ref": "zk"  },
-		"No":               { "id": "x", "coords": [ 20, 160,   299, 199], "ref": "END" },
+		"Yes":              { "id": "y", "coords": [ 20,  80,   299, 139], "ref": "zk"  },
+		"No":               { "id": "x", "coords": [ 20, 150,   299, 209], "ref": "END" },
 	},
 	"Delete move": {
 		"id": "o",
-		"Forget":           { "id": "f", "coords": [ 20,  90,   299, 129], "ref": "bl"  },
-		"Keep old":         { "id": "k", "coords": [ 20, 160,   299, 199], "ref": "bu"  },
+		"Forget":           { "id": "f", "coords": [ 20,  80,   299, 139], "ref": "bl"  },
+		"Keep old":         { "id": "k", "coords": [ 20, 150,   299, 209], "ref": "bu"  },
 	},
 	"Give up move": {
 		"id": "u",
-		"Give up":          { "id": "g", "coords": [ 20,  90,   299, 129], "ref": "END" },
-		"Don't give up":    { "id": "d", "coords": [ 20, 160,   299, 199], "ref": "bo"  },
+		"Give up":          { "id": "g", "coords": [ 20,  80,   299, 139], "ref": "END" },
+		"Don't give up":    { "id": "d", "coords": [ 20, 150,   299, 209], "ref": "bo"  },
 	},
 	"Replace move": {
 		"id": "l",
