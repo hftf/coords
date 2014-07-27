@@ -285,8 +285,9 @@ var coords = {
 	"id": "p",
 	"PC": {
 		"id": "p",
-		"Cassius":          { "id": "c", "coords": [ 20,  85,   299, 114], "ref": "pc"  },
-		"Professor":        { "id": "p", "coords": [ 20, 135,   299, 164], "ref": "   " },
+		"Cassius":          { "id": "c", "coords": [ 20,  35,   299,  64], "ref": "pc"  },
+		"Professor":        { "id": "p", "coords": [ 20,  85,   299, 114], "ref": "   " },
+		"PR Videos":        { "id": "v", "coords": [ 20, 135,   299, 164], "ref": "   " },
 		"Power Off":        { "id": "q", "coords": [ 20, 185,   299, 214], "ref": "   " },
 	},
 	"Cassius": {
