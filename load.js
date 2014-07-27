@@ -196,13 +196,12 @@ var Load = (function() {
 		categories_toc: function() {
 			var screens = document.getElementById('screens'),
 				toc = document.getElementById('toc'),
-				jumps = [], returned;
+				returned;
 			for (var category in coords) {
 				returned = Draw.category(category);
 				screens.appendChild(returned[0]);
-				jumps.push(returned[1]);
+				toc.appendChild(returned[1]);
 			}
-			toc.insertAdjacentHTML('beforeend', jumps.join(' · '));
 		},
 		box_handlers: function() {
 			var inputs, i;

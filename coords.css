@@ -27,18 +27,25 @@ ul {
 	margin: 0;
 	padding: 0;
 }
+ul ul {
+	padding-left: 1em;
+	font-size: 0.8em;
+}
+.contents {
+	line-height: 1.5;
+}
 
 section {
 	float: left;
-	width: 50%;
 	box-sizing: border-box;
 	padding: 1em 2em;
 	height: 100%;
 	overflow-y: auto;
 	overflow-x: auto;
 }
-.if { width: 45%; }
-.then { width: 55%; }
+.contents { width: 14%; }
+.if       { width: 43%; }
+.then     { width: 43%; }
 #↑ {
 	position: relative;
 	top: -1em;

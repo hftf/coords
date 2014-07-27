@@ -21,12 +21,22 @@ var Draw = (function() {
 			div.appendChild(h);
 			div.insertAdjacentHTML('afterbegin', '<a href="#↑" title="Return to top of page" class="top">↑ top</a>');
 
-			for (var menu in coords[category])
-				if (!(menu in ignore_ids))
-					div.appendChild(this.menu(menu, category));
+			var li = document.createElement('li'),
+				a = document.createElement('a'),
+				ul = document.createElement('ul');
+			a.setAttribute('href', '#' + id);
+			a.appendChild(document.createTextNode(category));
+			li.appendChild(a);
 
-			var a = '<a href="#' + id + '">' + category + '</a>';
-			return [div, a];
+			for (var menu in coords[category])
+				if (!(menu in ignore_ids)) {
+					var returned = this.menu(menu, category)
+					div.appendChild(returned[0]);
+					ul.appendChild(returned[1]);
+				}
+			li.appendChild(ul);
+
+			return [div, li];
 		},
 		menu: function(menu, category) {
 			// Heading
@@ -50,6 +60,12 @@ var Draw = (function() {
 			var checkbox_id = State.getCheckboxId(menu_id),
 				permalink = this._permalink(menu_id, 'screen');
 			h.insertAdjacentHTML('beforeend', '<label for="' + checkbox_id + '">' + menu + permalink + '</label>');
+
+			var li = document.createElement('li'),
+				a = document.createElement('a');
+			a.setAttribute('href', '#' + menu_id);
+			a.appendChild(document.createTextNode(menu));
+			li.appendChild(a);
 
 			if ('premium' in coords[category] || 'premium' in coords[category][menu]) {
 				div2.innerHTML = '<p>This screen is <a href="#premium">premium-only</a>.</p>';
@@ -103,7 +119,7 @@ var Draw = (function() {
 
 				div2.appendChild(ul);
 			}
-			return section;
+			return [section, li];
 		},
 		rekt: function(rekt, menu, menu_ctx, category) {
 			// Heading
