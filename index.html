@@ -8,7 +8,7 @@
 <body class="rekt-small-disabled grid-disabled">
 <section class="contents">
 <h3>Contents</h3>
-<ul id="toc">
+<ul id="toc" class="nav">
 	<li><a href="#↑">Top</a>
 	<ul>
 		<li><a href="#key">Key</a></li>
@@ -18,7 +18,7 @@
 </ul>
 </section>
 
-<section class="if">
+<section class="if" data-spy="scroll" data-target=".contents" style="position: relative;">
 <div id="↑"></div>
 <h2>In <span id="game-name">?</span>, if I want to click certain buttons while avoiding others…</h2>
 
@@ -96,6 +96,8 @@
 <script src="encode.js"></script>
 <script src="coords.js"></script>
 <script src="onset.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

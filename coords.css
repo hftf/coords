@@ -27,12 +27,24 @@ ul {
 	margin: 0;
 	padding: 0;
 }
-ul ul {
-	padding-left: 1em;
-	font-size: 0.8em;
-}
-.contents {
+
+#toc {
 	line-height: 1.5;
+}
+#toc ul {
+	padding: 0 0 1em 1em;
+	font-size: 0.8em;
+	display: none;
+}
+#toc > .active > ul {
+	display: block;
+}
+#toc a {
+	display: block;
+	padding: 0 4px;
+}
+#toc .active > a {
+	background: #eee;
 }
 
 section {
