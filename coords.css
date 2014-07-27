@@ -28,17 +28,38 @@ ul {
 	padding: 0;
 }
 
+#toc {
+	line-height: 1.5;
+}
+#toc ul {
+	padding: 0 0 1em 1em;
+	font-size: 0.8em;
+	display: none;
+}
+#toc > .active > ul {
+	display: block;
+}
+#toc a {
+	display: block;
+	padding: 0 4px;
+}
+#toc .active > a {
+	background: #eee;
+}
+
 section {
 	float: left;
-	width: 50%;
 	box-sizing: border-box;
-	padding: 1em 2em;
+	padding: 1em 1em;
 	height: 100%;
 	overflow-y: auto;
 	overflow-x: auto;
 }
-.if { width: 45%; }
-.then { width: 55%; }
+section:first-of-type { padding-left:  2em; }
+section:last-of-type  { padding-right: 2em; }
+.contents { width: 14%; }
+.if       { width: 43%; }
+.then     { width: 43%; }
 #↑ {
 	position: relative;
 	top: -1em;

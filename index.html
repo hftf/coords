@@ -6,7 +6,19 @@
 	<link rel="stylesheet" type="text/css" href="coords.css" />
 </head>
 <body class="rekt-small-disabled grid-disabled">
-<section class="if">
+<section class="contents">
+<h3>Contents</h3>
+<ul id="toc" class="nav">
+	<li><a href="#↑">Top</a>
+	<ul>
+		<li><a href="#key">Key</a></li>
+		<li><a href="#prefs">Preferences</a></li>
+	</ul>
+	</li>
+</ul>
+</section>
+
+<section class="if" data-spy="scroll" data-target=".contents" style="position: relative;">
 <div id="↑"></div>
 <h2>In <span id="game-name">?</span>, if I want to click certain buttons while avoiding others…</h2>
 
@@ -20,7 +32,7 @@
 </aside>
 
 <div id="key">
-<p>Key:</p>
+<h3>Key</h3>
 <ul>
 	<li><input type="checkbox" class="noclick"  checked /> I want to click this button</li>
 	<li><input type="checkbox" class="noclick ind"      /> I want to avoid clicking this button</li>
@@ -28,18 +40,16 @@
 </ul>
 </div>
 
-<p id="toc" class="tm">Jump to a section: </p>
-
-<div id="screens">
-</div>
-
 <div id="prefs">
-<p>Preferences:</p>
+<h3>Preferences</h3>
 <ul>
 	<li><input type="checkbox" id="grid-disabled" /> <label for="grid-disabled">Show grid</label></li>
 	<li><input type="checkbox" id="rekt-small-disabled" /> <label for="rekt-small-disabled">Show coordinates next to button labels</label></li>
 	<li><input type="checkbox" id="refs-disabled" /> <label for="refs-disabled">Show reference links next to button labels</label></li>
 </ul>
+</div>
+
+<div id="screens">
 </div>
 
 <div id="premium">
@@ -86,6 +96,8 @@
 <script src="encode.js"></script>
 <script src="coords.js"></script>
 <script src="onset.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
