@@ -162,11 +162,12 @@ var Load = (function() {
 		grid: function() {
 			var grid = document.getElementById('grid'),
 				grid_ctx = grid.getContext('2d'),
-				s = scales.main, fontSize = 11 * (1 + s / 4), left = s, top = fontSize - s / 2, x;
+				s = scales.main, fontSize = 11 * (1 + s / 4), left = s, top = fontSize - s / 2,
+				d = Math.max(cw, ch) / 4, x;
 
 			grid_ctx.strokeStyle = '#888';
 			grid_ctx.lineWidth = 1;
-			for (x = 64; x <= cw; x += 64) {
+			for (x = d; x <= cw; x += d) {
 				grid_ctx.moveTo(s * x + 0.5, 0);
 				grid_ctx.lineTo(s * x + 0.5, s * ch);
 				grid_ctx.moveTo(0,           s * x + 0.5);
@@ -181,12 +182,12 @@ var Load = (function() {
 
 			grid_ctx.strokeText('0',   left,        top);
 			grid_ctx.fillText  ('0',   left,        top);
-			for (x = 64; x <= cw; x += 64) {
+			for (x = d; x <= cw; x += d) {
 				grid_ctx.strokeText(x, left,        s * (x - 1));
 				grid_ctx.fillText  (x, left,        s * (x - 1));
 			}
 			grid_ctx.textAlign = 'right';
-			for (x = 64; x <= cw; x += 64) {
+			for (x = d; x <= cw; x += d) {
 				grid_ctx.strokeText(x, s * (x - 1), top);
 				grid_ctx.fillText  (x, s * (x - 1), top);
 			}
