@@ -200,7 +200,7 @@ function to_xywh(x1, y1, x2, y2) {
 
 function scale(s, x, y, w, h) {
 	if (x.length)
-		return x.map(function(n) { return Math.floor(s * n); });
+		return x.map(function(n) { return s * n; });
 	else
 		return scale(s, [x, y, w, h]);
 }
@@ -213,7 +213,7 @@ function mouse2coords(e) {
 	var x = (e.offsetX === undefined) ? e.layerX - e.currentTarget.offsetLeft : e.offsetX,
 		y = (e.offsetY === undefined) ? e.layerY - e.currentTarget.offsetTop  : e.offsetY;
 
-	return scale(scales.mouse / scales.main, [x, y]);
+	return scale(scales.mouse / scales.main, [x, y]).map(Math.floor);
 }
 
 function text2coords(s) {
