@@ -24,6 +24,9 @@ var State = (function() {
 		getCoords: function() {
 			return this.state.coords.slice(0);
 		},
+		getImage: function() {
+			return this.state.image;
+		},
 		getUrl: function(state) {
 			if (state === undefined)
 				state = this.state;
@@ -137,7 +140,7 @@ var State = (function() {
 		},
 		setImage: function(image) {
 			var clear = false, img;
-			if (image === undefined && (clear = true))
+			if ((image === undefined || image === '') && (clear = true))
 				image = '';
 
 			else {
@@ -241,6 +244,7 @@ var State = (function() {
 
 	var State = {
 		getCoords:     _State.getCoords.bind(_State),
+		getImage:      _State.getImage.bind(_State),
 		getUrl:        _State.getUrl.bind(_State),
 		getCheckboxId: _State.getCheckboxId.bind(_State),
 		getCheckbox:   _State.getCheckbox.bind(_State),
