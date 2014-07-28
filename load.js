@@ -34,7 +34,7 @@ var Load = (function() {
 
 			scale_main_slider.step = scales.mouse / window.devicePixelRatio;
 			if (cur_scale)
-				scales.main = cur_scale;
+				scales.main = +cur_scale;
 			scale_main_slider.value = scales.main;
 			scale_main_value.innerText = scales.main;
 
@@ -42,7 +42,7 @@ var Load = (function() {
 				scale_main_value.innerText = this.value;
 			};
 			scale_main_slider.onchange = function() {
-				scales.main = this.value;
+				scales.main = +this.value;
 				window.localStorage.setItem('scale-main-slider', scales.main);
 				var xywh = scale(scales.main / scales.mouse, to_xywh(bounds));
 				then_layers.style.width = xywh[2] + 'px';
