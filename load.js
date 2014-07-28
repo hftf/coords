@@ -15,7 +15,7 @@ var Load = (function() {
 				key_checkboxes[i].onclick = noclick;
 		},
 		preferences: function() {
-			var prefs_chekboxes = document.querySelectorAll('#prefs input');
+			var prefs_chekboxes = document.querySelectorAll('#prefs input[type="checkbox"]');
 			var click_f = function() {
 				window.localStorage[this.checked ? 'setItem' : 'removeItem'](this.id, 'true');
 				document.body.classList[this.checked ? 'remove' : 'add'](this.id);
@@ -26,6 +26,22 @@ var Load = (function() {
 				el.checked = window.localStorage.getItem(el.id) !== null;
 				document.body.classList[el.checked ? 'remove' : 'add'](el.id);
 			}
+
+			var scale_main_slider = document.getElementById('scale-main-slider'),
+				scale_main_value = document.getElementById('scale-main-value'),
+				cur_scale = window.localStorage.getItem('scale-main-slider');
+
+			scale_main_slider.step = scales.mouse / window.devicePixelRatio;
+			if (cur_scale)
+				scale_main_slider.value = cur_scale;
+			scale_main_value.innerText = scale_main_slider.value;
+
+			scale_main_slider.oninput = function() {
+				scale_main_value.innerText = this.value;
+			};
+			scale_main_slider.onchange = function() {
+				window.localStorage.setItem('scale-main-slider', this.value);
+			};
 		},
 
 		main_handlers: function() {

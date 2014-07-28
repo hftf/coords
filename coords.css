@@ -220,6 +220,11 @@ a:hover {
 	text-decoration: underline;
 }
 
+#scale-main-slider {
+	width: 7em;
+	vertical-align: middle;
+}
+
 body.grid-disabled #grid,
 body.rekt-small-disabled .rekt small > span,
 body.refs-disabled .refs {
