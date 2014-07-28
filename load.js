@@ -47,6 +47,11 @@ var Load = (function() {
 				var xywh = scale(scales.main / scales.mouse, to_xywh(bounds));
 				then_layers.style.width = xywh[2] + 'px';
 				then_layers.style.height = xywh[3] + 'px';
+
+				Load.layers();
+				Load.grid();
+				State.setImage(State.getImage());
+				recomposite_main();
 			};
 		},
 
