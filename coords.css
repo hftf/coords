@@ -102,6 +102,7 @@ input.noclick {
 .layers canvas, .layers img {
 	position: absolute;
 	left: 0; top: 0;
+	width: 100%;
 }
 .menu-heading .layers {
 	cursor: pointer;

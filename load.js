@@ -161,7 +161,7 @@ var Load = (function() {
 			for (s in scales) {
 				xywh = scale(scales[s] / scales.mouse, to_xywh(bounds));
 				cls = '.scale-' + s;
-				styleSheet.innerHTML += cls + ', ' + cls + ' canvas, ' + cls + ' img {\n' +
+				styleSheet.innerHTML += cls + ' {\n' +
 					'\twidth: ' + xywh[2] + 'px; height: ' + xywh[3] + 'px;\n}\n';
 			}
 			document.head.appendChild(styleSheet);
