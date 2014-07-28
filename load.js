@@ -29,18 +29,24 @@ var Load = (function() {
 
 			var scale_main_slider = document.getElementById('scale-main-slider'),
 				scale_main_value = document.getElementById('scale-main-value'),
-				cur_scale = window.localStorage.getItem('scale-main-slider');
+				cur_scale = window.localStorage.getItem('scale-main-slider'),
+				then_layers = document.querySelector('.then .layers.scale-main');
 
 			scale_main_slider.step = scales.mouse / window.devicePixelRatio;
 			if (cur_scale)
-				scale_main_slider.value = cur_scale;
-			scale_main_value.innerText = scale_main_slider.value;
+				scales.main = cur_scale;
+			scale_main_slider.value = scales.main;
+			scale_main_value.innerText = scales.main;
 
 			scale_main_slider.oninput = function() {
 				scale_main_value.innerText = this.value;
 			};
 			scale_main_slider.onchange = function() {
-				window.localStorage.setItem('scale-main-slider', this.value);
+				scales.main = this.value;
+				window.localStorage.setItem('scale-main-slider', scales.main);
+				var xywh = scale(scales.main / scales.mouse, to_xywh(bounds));
+				then_layers.style.width = xywh[2] + 'px';
+				then_layers.style.height = xywh[3] + 'px';
 			};
 		},
 
