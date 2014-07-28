@@ -49,6 +49,7 @@ var Load = (function() {
 				then_layers.style.height = xywh[3] + 'px';
 
 				Load.layers();
+				Load.setStateOfContexts();
 				Load.grid();
 				State.setImage(State.getImage());
 				recomposite_main();
@@ -58,20 +59,17 @@ var Load = (function() {
 		main_handlers: function() {
 			var main = document.getElementById('main');
 			main_ctx = main.getContext('2d');
-			main_ctx.fillStyle = 'rgba(119,170,255,0.4)';
 
 			var varia = document.getElementById('varia');
 			varia_ctx = varia.getContext('2d');
-			varia_ctx.globalAlpha = 0.4;
 
 			var click = document.getElementById('click');
 			click_ctx = click.getContext('2d');
-			click_ctx.fillStyle = '#222';
 
 			var zoom = document.getElementById('zoom');
 			zoom_ctx = zoom.getContext('2d');
-			zoom_ctx.webkitImageSmoothingEnabled = false;
-			zoom_ctx.mozImageSmoothingEnabled = false;
+
+			this.setStateOfContexts();
 
 			reset_screenshot = document.getElementById('reset-screenshot');
 
@@ -120,6 +118,13 @@ var Load = (function() {
 					coords_click_errors.innerHTML = err;
 				}
 			};
+		},
+		setStateOfContexts: function() {
+			main_ctx.fillStyle = 'rgba(119,170,255,0.4)';
+			varia_ctx.globalAlpha = 0.4;
+			click_ctx.fillStyle = '#222';
+			zoom_ctx.webkitImageSmoothingEnabled = false;
+			zoom_ctx.mozImageSmoothingEnabled = false;
 		},
 		key_handlers: function() {
 			var deltas = {
