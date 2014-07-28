@@ -34,42 +34,44 @@ function reset_all(state) {
 	State.setStates(state, inputs);
 }
 
+var Crosshair = (function() {
+	// TODO memoize
+	function crosshair(mouse, main, dpr) {
+		var pixel = mouse / main / dpr,
+			p = pixel % 0.5;
 
-function xywh_to_f(rect, r, px) {
-	return [
-		            rect[0] + r[0] - px,
-		            rect[1] + r[1] - px,
-		Math.max(0, rect[2]        + px * 2),
-		Math.max(0, rect[3]        + px * 2),
-	];
-}
-var crosshair_dpr = (function() {
-	var result = {}, _crosshair_dpr = {
-		1: { rects: [[-2, 0   ], [ 0,    -2], [-0.5,  -0.5 ]], inner: 0,    outer: 0.5  },
-		2: { rects: [[-2, 0.25], [ 0.25, -2], [-0.25, -0.25]], inner: 0.25, outer: 0.75 },
-	};
+		return {
+			rects: [[-2, p], [p, -2], [-pixel, -pixel]],
+			inner: p,
+			outer: 1 - pixel,
+		};
+	}
 	function x1y1_to_xywh(r) {
 		return [r[0], r[1], 1 - 2 * r[0], 1 - 2 * r[1]];
 	}
-	for (var dpr in _crosshair_dpr) {
-		(function(dpr) {
-			var settings = _crosshair_dpr[dpr],
-				xywhs = settings.rects.map(x1y1_to_xywh);
-
-			result[dpr] = function(r) {
-				function partial(px) {
-					return function(rect) {
-						return xywh_to_f(rect, r, px);
-					};
-				}
-				return {
-					inner: xywhs.map(partial(settings.inner)),
-					outer: xywhs.map(partial(settings.outer)),
-				};
-			};
-		})(dpr);
+	function xywh_to_f(rect, r, px) {
+		return [
+			            rect[0] + r[0] - px,
+			            rect[1] + r[1] - px,
+			Math.max(0, rect[2]        + px * 2),
+			Math.max(0, rect[3]        + px * 2),
+		];
 	}
-	return result;
+
+	return function(r) {
+		var settings = crosshair(scales.mouse, scales.main, window.devicePixelRatio),
+			xywhs = settings.rects.map(x1y1_to_xywh);
+
+		function partial(px) {
+			return function(rect) {
+				return xywh_to_f(rect, r, px);
+			};
+		}
+		return {
+			inner: xywhs.map(partial(settings.inner)),
+			outer: xywhs.map(partial(settings.outer)),
+		};
+	};
 })();
 
 function draw_crosshair(r) {
@@ -77,7 +79,7 @@ function draw_crosshair(r) {
 	if (r.length === 0)
 		return;
 
-	var inner_outer = crosshair_dpr[window.devicePixelRatio](r);
+	var inner_outer = Crosshair(r);
 	click_ctx.fillStyle = '#fff';
 	inner_outer.outer.forEach(function(v) {
 		click_ctx.fillRect.apply(click_ctx, coords2main(v));
@@ -198,7 +200,7 @@ function to_xywh(x1, y1, x2, y2) {
 
 function scale(s, x, y, w, h) {
 	if (x.length)
-		return x.map(function(n) { return Math.floor(s * n); });
+		return x.map(function(n) { return s * n; });
 	else
 		return scale(s, [x, y, w, h]);
 }
@@ -211,7 +213,7 @@ function mouse2coords(e) {
 	var x = (e.offsetX === undefined) ? e.layerX - e.currentTarget.offsetLeft : e.offsetX,
 		y = (e.offsetY === undefined) ? e.layerY - e.currentTarget.offsetTop  : e.offsetY;
 
-	return scale(scales.mouse / scales.main, [x, y]);
+	return scale(scales.mouse / scales.main, [x, y]).map(Math.floor);
 }
 
 function text2coords(s) {
