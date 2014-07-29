@@ -36,8 +36,7 @@
 	<li><strong>Click</strong> on a screenshot below to view it enlarged on the main screen.</li>
 	<li><strong>Click</strong> the main screen to list buttons triggered by the clicked coordinate,
 		or just type in a coordinate. Press arrow keys to nudge the cursor.</li>
-	<li><strong>Share</strong> your configuration by copying the URL.
-		<a href="#" onclick="reset_all(); return false">Reset all checkboxes?</a></li>
+	<li><strong>Share</strong> your configuration by copying the URL.</li>
 </ul>
 </aside>
 
@@ -72,6 +71,10 @@
 --><section class="then">
 <h2>…then I can use these coordinates: <span id="coords-hover"></span></h2>
 
+<p>
+	<a href="#" onclick="reset_all(); return false">Reset all checkboxes?</a>
+	<span id="reset-screenshot" style="display: none;"> · <a href="#" onclick="State.setImage(); return false">Reset screenshot?</a></span>
+</p>
 
 <div class="layers scale-main">
 <canvas id="zoom" ></canvas>
@@ -81,7 +84,6 @@
 <canvas id="click"></canvas>
 </div>
 
-<p id="reset-screenshot" style="display: none;"><a href="#" onclick="State.setImage(); return false">Reset screenshot</a></p>
 <p><strong><input type="text" id="coords-click" /></strong> clicks these buttons:</p>
 <p id="coords-click-errors" class="errors" style="display: none;"></p>
 <div id="overlaps" style="display: none;">
