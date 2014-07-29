@@ -89,7 +89,6 @@ section:last-of-type  { padding-right: 2em; }
 }
 
 input.noclick {
-	margin-right: 1.5em;
 	outline: none;
 }
 
