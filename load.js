@@ -80,19 +80,6 @@ var Load = (function() {
 				this.drawImage(img, 0, 0, main.width, main.height);
 			};
 
-			var coords_hover = document.getElementById('coords-hover');
-			click.onmousemove = function(e) {
-				var s = '';
-				var r = mouse2coords(e);
-
-				if (r[0] >= 0 && r[1] >= 0) {
-					var p = coords2main(r);
-					var d = main_ctx.getImageData(p[0], p[1], 1, 1).data;
-					coords_hover.innerHTML = r[0] + ',' + r[1];
-					coords_hover.style.backgroundColor = 'rgba(' + d[0] + ',' + d[1] + ',' + d[2] + ',' + (d[3]/255) + ')';
-				}
-
-			};
 			var coords_click = document.getElementById('coords-click'),
 				coords_click_errors = document.getElementById('coords-click-errors');
 
