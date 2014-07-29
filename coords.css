@@ -178,7 +178,6 @@ input.noclick {
 	font-size: 0.7em;
 }
 
-.top:link, .top:visited,
 .permalink a:link, .permalink a:visited {
 	color: #aaa;
 }
@@ -188,9 +187,6 @@ input.noclick {
 }
 label:hover .permalink {
 	visibility: visible;
-}
-.top {
-	float: right;
 }
 
 .refs {

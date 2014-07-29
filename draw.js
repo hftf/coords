@@ -19,7 +19,6 @@ var Draw = (function() {
 			div.setAttribute('id', id);
 			div.setAttribute('class', 'category');
 			div.appendChild(h);
-			div.insertAdjacentHTML('afterbegin', '<a href="#↑" title="Return to top of page" class="top">↑ top</a>');
 
 			var li = document.createElement('li'),
 				a = document.createElement('a'),
