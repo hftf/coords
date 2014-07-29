@@ -42,9 +42,18 @@ function xywh_to_f(rect, r, px) {
 		Math.max(0, rect[3]        + px * 2),
 	];
 }
+
 var Crosshair = (function() {
-	// TODO memoize
-	function crosshair(mouse, main, dpr) {
+	function memoize(f) {
+		f.memo = {};
+		return function() {
+			var k = Array.prototype.join.call(arguments, ',');
+			if (k in f.memo)
+				return f.memo[k];
+			return f.memo[k] = f.apply(this, arguments);
+		};
+	}
+	var crosshair = memoize(function(mouse, main, dpr) {
 		var pixel = mouse / main / dpr,
 			p = pixel % 0.5;
 
@@ -53,7 +62,7 @@ var Crosshair = (function() {
 			inner: p,
 			outer: 1 - pixel,
 		};
-	}
+	});
 	function x1y1_to_xywh(r) {
 		return [r[0], r[1], 1 - 2 * r[0], 1 - 2 * r[1]];
 	}
