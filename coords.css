@@ -225,6 +225,7 @@ a:hover {
 	vertical-align: middle;
 }
 
+body.instructions-disabled #instructions,
 body.grid-disabled #grid,
 body.rekt-small-disabled .rekt small > span,
 body.refs-disabled .refs {
