@@ -34,6 +34,14 @@ function reset_all(state) {
 	State.setStates(state, inputs);
 }
 
+function xywh_to_f(rect, r, px) {
+	return [
+		            rect[0] + r[0] - px,
+		            rect[1] + r[1] - px,
+		Math.max(0, rect[2]        + px * 2),
+		Math.max(0, rect[3]        + px * 2),
+	];
+}
 var Crosshair = (function() {
 	// TODO memoize
 	function crosshair(mouse, main, dpr) {
@@ -48,14 +56,6 @@ var Crosshair = (function() {
 	}
 	function x1y1_to_xywh(r) {
 		return [r[0], r[1], 1 - 2 * r[0], 1 - 2 * r[1]];
-	}
-	function xywh_to_f(rect, r, px) {
-		return [
-			            rect[0] + r[0] - px,
-			            rect[1] + r[1] - px,
-			Math.max(0, rect[2]        + px * 2),
-			Math.max(0, rect[3]        + px * 2),
-		];
 	}
 
 	return function(r) {
