@@ -29,7 +29,7 @@ var Draw = (function() {
 
 			for (var menu in coords[category])
 				if (!(menu in ignore_ids)) {
-					var returned = this.menu(menu, category)
+					var returned = this.menu(menu, category);
 					div.appendChild(returned[0]);
 					ul.appendChild(returned[1]);
 				}

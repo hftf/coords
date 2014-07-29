@@ -41,13 +41,14 @@ var Encode = (function() {
 				return obj[key];
 			}
 			function ignore(v) {
-				return !(v in ignore_ids)
+				return !(v in ignore_ids);
 			}
 			function recurse(me) {
+				var key;
 				if (me) {
 					cur.push(me);
 
-					var key = Draw._joinIds.apply(null, cur);
+					key = Draw._joinIds.apply(null, cur);
 					if (key in lookup)
 						throw "Key '" + key + "' not unique";
 					lookup[key] = cur.slice(0);
