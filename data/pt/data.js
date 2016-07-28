@@ -65,11 +65,18 @@ var coords = {
 	"Switch": {
 		"id": "s",
 		"Switch":           { "id": "s", "coords": [  7,   7,   245, 141], "ref": "END" },
-		"Summary":          { "id": "w", "coords": [  0, 151,   101, 189], "ref": "NEW" },
+		"Summary":          { "id": "w", "coords": [  0, 151,   101, 189], "ref": "bw"  },
 		"Check moves":      { "id": "m", "coords": [103, 151,   205, 189], "ref": "bc"  },
 		"Cancel":           { "id": "x", "coords": [215, 151,   253, 189], "ref": "bp"  },
 	},
-	"Check moves": { // Almost the same as "Summary"
+	"Summary": {
+		"id": "w",
+		"Previous":         { "id": "j", "coords": [  0, 151,    37, 189], "ref": "bw"  },
+		"Next":             { "id": "k", "coords": [ 39, 151,    77, 189], "ref": "bw"  },
+		"Check moves":      { "id": "m", "coords": [ 95, 151,   197, 189], "ref": "bc"  },
+		"Cancel":           { "id": "x", "coords": [215, 151,   253, 189], "ref": "bs"  },
+	},
+	"Check moves": {
 		"id": "c",
 		"Move 1":           { "id": "1", "coords": [  0,  47,   125,  93], "ref": "bm"  },
 		"Move 2":           { "id": "2", "coords": [127,  47,   253,  93], "ref": "bm"  },
@@ -77,7 +84,7 @@ var coords = {
 		"Move 4":           { "id": "4", "coords": [127,  95,   253, 141], "ref": "bm"  },
 		"Previous":         { "id": "j", "coords": [  0, 151,    37, 189], "ref": "bc"  },
 		"Next":             { "id": "k", "coords": [ 39, 151,    77, 189], "ref": "bc"  },
-		"Summary":          { "id": "w", "coords": [ 95, 151,   197, 189], "ref": "NEW" },
+		"Summary":          { "id": "w", "coords": [ 95, 151,   197, 189], "ref": "bw"  },
 		"Cancel":           { "id": "x", "coords": [215, 151,   253, 189], "ref": "bs"  },
 	},
 	"Move": {
