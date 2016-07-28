@@ -25,6 +25,7 @@ var coords = {
 		"Foe 2":            { "id": "2", "coords": [135,   7,   253,  78], "ref": "END" },
 		"Ally 1":           { "id": "a", "coords": [  0,  87,   118, 142], "ref": "END" },
 		"Ally 2":           { "id": "b", "coords": [135,  87,   253, 142], "ref": "END" },
+		"Cancel":           { "id": "x", "coords": [  7, 151,   246, 191], "ref": "bf"  },
 	},
 	"Bag": {
 		"id": "g",
