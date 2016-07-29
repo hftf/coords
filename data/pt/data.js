@@ -134,41 +134,6 @@ var coords = {
 },
 "Misc": { /* (nicknames, Pokéathlon, etc.) */
 	"id": "z",
-	"Mart": {
-		"id": "m",
-		"Buy":              { "id": "b", "coords": [  2,  26,   249,  66], "ref": "zb"  },
-		"Sell":             { "id": "s", "coords": [  2,  73,   249, 113], "ref": "   " },
-		"See ya":           { "id": "x", "coords": [  2, 122,   249, 162], "ref": "   " },
-	},
-	"Buy": {
-		"id": "b",
-		"Item 1":           { "id": "1", "coords": [  0,  31,   125,  71], "ref": "   " },
-		"Item 2":           { "id": "2", "coords": [127,  31,   253,  71], "ref": "   " },
-		"Item 3":           { "id": "3", "coords": [  0,  73,   125, 115], "ref": "   " },
-		"Item 4":           { "id": "4", "coords": [127,  73,   253, 115], "ref": "   " },
-		"Item 5":           { "id": "5", "coords": [  0, 117,   125, 151], "ref": "   " },
-		"Item 6":           { "id": "6", "coords": [127, 117,   253, 151], "ref": "   " },
-		"Previous":         { "id": "j", "coords": [  0, 167,    37, 189], "ref": "   " },
-		"Next":             { "id": "k", "coords": [ 39, 167,    77, 189], "ref": "   " },
-		"Cancel":           { "id": "x", "coords": [191, 167,   253, 189], "ref": "   " },
-	},
-	"Teach Dialog": {
-		"id": "h",
-		// Teach ___ to a Pokémon?
-		"Teach to? Yes":    { "id": "y", "coords": [199,  47,   246,  78], "ref": "   " },
-		"Teach to? No":     { "id": "x", "coords": [199,  79,   246, 110], "ref": "   " },
-		// Should a move be replaced with ___?
-		"Should? Yes":      { "id": "Y", "coords": [199,  80,   246, 110], "ref": "zl"  }, // TODO fix 80
-		"Should? No":       { "id": "X", "coords": [199, 111,   246, 142], "ref": "   " },
-	},
-	"Teach Move": {
-		"id": "l",
-		"Move 1":           { "id": "1", "coords": [  7,   7,   125,  37], "ref": "   " },
-		"Move 2":           { "id": "2", "coords": [  7,  39,   125,  69], "ref": "   " },
-		"Move 3":           { "id": "3", "coords": [  7,  71,   125, 101], "ref": "   " },
-		"Move 4":           { "id": "4", "coords": [  7, 103,   125, 133], "ref": "   " },
-		"Forget":           { "id": "f", "coords": [  7, 151,   125, 181], "ref": "   " },
-	},
 	"Name": {
 		"id": "k",
 		"A":                { "id": "A", "coords": [ 27,  87,    43, 106], "ref": "   " },
