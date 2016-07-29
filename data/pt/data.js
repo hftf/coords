@@ -97,17 +97,6 @@ var coords = {
 		"Cancel":           { "id": "x", "coords": [215, 151,   253, 189], "ref": "bc"  },
 	},
 },
-"PC": {
-	"id": "p",
-	"Misc": {
-		"id": "z",
-		"Release":          { "id": "r", "coords": [167, 135,   253, 157], "ref": "   " },
-		"Release No":       { "id": "x", "coords": [199, 127,   246, 158], "ref": "   " },
-		"Release Yes":      { "id": "y", "coords": [199,  95,   246, 126], "ref": "   " },
-		"See ya":           { "id": "q", "coords": [130, 122,   250, 161], "ref": "   " },
-		"Quit all PCs":     { "id": "z", "coords": [  2, 147,   249, 186], "ref": "   " },
-	},
-},
 "Overworld": {
 	"id": "o",
 	"Bag": {
