@@ -134,6 +134,12 @@ var coords = {
 },
 "Misc": { /* (nicknames, Pokéathlon, etc.) */
 	"id": "z",
+	"Pokétch": {
+		"id": "y",
+		"Screen":           { "id": "s", "coords": [ 15,   15,  205, 173], "ref": "   " },
+		"Up":               { "id": "j", "coords": [223,   31,  253,  94], "ref": "   " },
+		"Down":             { "id": "k", "coords": [223,   95,  253, 158], "ref": "   " },
+	},
 	"Name": {
 		"id": "k",
 		"A":                { "id": "A", "coords": [ 27,  87,    43, 106], "ref": "   " },
