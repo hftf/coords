@@ -96,6 +96,43 @@ var coords = {
 		"Slot 4":           { "id": "4", "coords": [127, 167,   165, 181], "ref": "bm"  },
 		"Cancel":           { "id": "x", "coords": [215, 151,   253, 189], "ref": "bc"  },
 	},
+	"Nickname": {
+		"id": "n",
+		"Yes":              { "id": "y", "coords": [  7,  39,   246,  94], "ref": "zk"  },
+		"No":               { "id": "x", "coords": [  7, 111,   246, 166], "ref": "END" },
+	},
+	"Delete move": {
+		"id": "o",
+		"Forget":           { "id": "f", "coords": [  7,  39,   246,  94], "ref": "bl"  },
+		"Keep old":         { "id": "k", "coords": [  7, 111,   246, 166], "ref": "bu"  },
+	},
+	"Give up move": {
+		"id": "u",
+		"Give up":          { "id": "g", "coords": [  7,  39,   246,  94], "ref": "END" },
+		"Don't give up":    { "id": "d", "coords": [  7, 111,   246, 166], "ref": "bo"  },
+	},
+	"Replace move": {
+		"id": "l",
+		"Battle/Contest":   { "id": "c", "coords": [183,   0,   253,  37], "ref": "   " },
+		"Move 1":           { "id": "1", "coords": [  0,  47,   126,  94], "ref": "be"  },
+		"Move 2":           { "id": "2", "coords": [127,  47,   255,  94], "ref": "be"  },
+		"Move 3":           { "id": "3", "coords": [  0,  95,   126, 142], "ref": "be"  },
+		"Move 4":           { "id": "4", "coords": [127,  95,   255, 142], "ref": "be"  },
+		"New move":         { "id": "m", "coords": [ 63, 143,   190, 191], "ref": "bv"  },
+		"Cancel":           { "id": "x", "coords": [215, 151,   255, 191], "ref": "bu"  },
+	},
+	"Forget move": {
+		"id": "e",
+		"Battle/Contest":   { "id": "c", "coords": [183,   0,   253,  37], "ref": "   " },
+		"Forget":           { "id": "f", "coords": [  0, 151,   206, 191], "ref": "END" },
+		"Back":             { "id": "x", "coords": [215, 151,   255, 191], "ref": "bl"  },
+	},
+	"New move": {
+		"id": "v",
+		"Battle/Contest":   { "id": "c", "coords": [183,   0,   253,  37], "ref": "   " },
+		"Cancel":           { "id": "u", "coords": [  0, 151,   206, 191], "ref": "bu"  },
+		"Back":             { "id": "x", "coords": [215, 151,   255, 191], "ref": "bl"  },
+	},
 },
 "Overworld": {
 	"id": "o",
